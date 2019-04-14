@@ -22,16 +22,12 @@ h3 {
     grid-auto-rows: 1fr;*/
 }
 
-.column {
-    flex: 33%;
-    max-width: 33%;
-}
-
 .cinema-room {
     padding: 20px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease-in-out;
-    flex: 50%;
+    flex: 33%;
+    max-width: 33%;
 }
 
 h5>a
@@ -253,6 +249,7 @@ body {
     margin-top: 3px;
     margin-bottom: 8px;
 }
+-
 
 @media only screen and (max-device-width: 1024px) and (orientation: portrait) {
     /* Styles */
@@ -298,19 +295,15 @@ body {
     }
 
     .cinema-rooms-grid-container{
-        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
         grid-gap: 10px;
     }
 
     .cinema-room {
-        padding: 10px;
-    }
-
-    .column {
         flex: 100%;
         max-width: 100%;
+        padding: 10px;
     }
-
 }
 
 
@@ -322,16 +315,13 @@ body {
     }
 
     .cinema-rooms-grid-container{
-        grid-template-columns: auto;
+        grid-template-rows: auto;
         grid-gap: 10px;
     }
 
     .cinema-room {
-        padding: 10px;
-    }
-
-    .column {
         flex: 100%;
         max-width: 100%;
+        padding: 10px;
     }
 }
