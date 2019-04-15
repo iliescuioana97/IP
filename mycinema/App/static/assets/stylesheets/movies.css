@@ -16,28 +16,43 @@ body {
 }
 
 .movies-body {
-    margin-left: 50px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+
     align-content: center;
     align-items: center;
+    margin-left: 50px;
 }
 
 .movies-data-show {
+    background-image: url("../images/john-doe.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100% 63%;
     background-color: #43425d;
-    margin: 15px;
-    padding: 50px 50px 15px 50px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    margin: 30px;
+    padding: 200px 50px 15px 50px;
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
 }
 
 .movie-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 135px;
+
     color: white;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
-    font-size: 28px;
+    font-size: 14px;
 }
 
 .movie-price {
@@ -46,7 +61,7 @@ body {
 }
 
 .movie-name p {
-    margin-top: 125%;
+    margin-top: 0;
     margin-bottom: 0;
 }
 
