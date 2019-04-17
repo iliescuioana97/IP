@@ -40,8 +40,8 @@ h5>a
 
 .slide {
     display: none;
-    width: 100%;
-    height: auto;
+    height: 300px;
+    width: auto;
 }
 
 .slide:nth-child(1) {
@@ -79,7 +79,11 @@ h5>a
     margin: 0;
     margin-bottom: 10px;
 }
--
+.slider-container.w3-content.w3-display-container {
+   height: 184px;
+   overflow: hidden;
+}
+
 
 @media only screen and (max-device-width: 1024px) and (orientation: portrait) {
     /* Styles */
@@ -114,45 +118,6 @@ h5>a
     }
     .toggle-menu {
         display: inline-block!important;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    /* Styles */
-    .cinema-rooms-container {
-        margin-left: 40px;
-        padding: 10px 10px;
-    }
-
-    .cinema-rooms-grid-container{
-        grid-template-rows: auto auto;
-        grid-gap: 10px;
-    }
-
-    .cinema-room {
-        flex: 100%;
-        max-width: 100%;
-        padding: 10px;
-    }
-}
-
-
-@media screen and (max-width: 425px) {
-    /* Styles */
-    .cinema-rooms-container {
-        margin-left: 40px;
-        padding: 10px 10px;
-    }
-
-    .cinema-rooms-grid-container{
-        grid-template-rows: auto;
-        grid-gap: 10px;
-    }
-
-    .cinema-room {
-        flex: 100%;
-        max-width: 100%;
-        padding: 10px;
     }
 }
 

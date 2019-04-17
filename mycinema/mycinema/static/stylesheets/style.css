@@ -55,7 +55,7 @@ body {
     margin-right: 9px;
 }
 
-@media(max-width: 600px) {
+@media(max-width: 700px) {
     .layout .l-left {
         display: block;
         width: 100%;
