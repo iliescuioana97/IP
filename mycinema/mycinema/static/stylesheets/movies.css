@@ -1,12 +1,3 @@
-body {
-    margin: 0;
-    padding: 0;
-}
-
-.body-main{
-    background-color: #f0f0f7;
-}
-
 #movies-title {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 25px;
@@ -16,38 +7,50 @@ body {
 }
 
 .movies-body {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
 
     align-content: center;
-    align-items: center;
-    margin-left: 50px;
+    align-items: center; */
+    /* margin-left: 50px; */
 }
 
 .movies-data-show {
-    <-- background-image: url("../images/john-doe.png"); -->
+    /* <-- background-image: url("../images/john-doe.png"); --> */
     background-position: top;
     background-repeat: no-repeat;
-    background-size: 100% 63%;
+    /* background-size: 100% 63%; */
     background-color: #43425d;
 
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 
-    margin: 30px;
-    padding: 200px 50px 15px 50px;
+    /* margin: 30px; */
+    /* padding: 200px 50px 15px 50px; */
     font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
+    box-shadow: 0 0 2px 1px rgba(150, 150, 150, 0.2);
+}
+.movie-image {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center center;
+}
+
+.movie-info {
+    padding: 10px;
+    padding-bottom: 14px;
 }
 
 .movie-name {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 135px;
+    width: 100%;
 
     color: white;
     font-family: 'Source Sans Pro', sans-serif;
@@ -58,20 +61,8 @@ body {
 .movie-price {
     color: white;
     font-size: 18px;
-}
-
-.movie-name p {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.movie-price p {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.movie-name p, .movie-price p {
-    padding: 5px;
+    text-align: center;
+    padding-bottom: 5px;
 }
 
 .movie-book-now {

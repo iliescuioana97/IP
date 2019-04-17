@@ -72,39 +72,28 @@
                 </div>
                 <div class="main">
                     <h2 class="title">Movies</h2>
-                    {% for m in movies %}
-                    <div class="movies-body">
-                        <div class="movies-data-show"
-                             style="background-image: url({{ m.photo_main.url }})">
-                        <div class="movie-name">
-                            <p>{{ m.name }}</p>
-                        </div>
-                        <div class="movie-price">
-                            <p>{{ m.price }}</p>
-                        </div>
-                        <div class="movie-book-now">
-                            <button class="movie-button-book-now">Book now</button>
-                        </div>
-                    </div>
-                    {% endfor %}
+                    <div class="movies-body row">
                         {% for m in movies %}
-                    <div class="movies-body">
-                        <div class="movies-data-show"
-                             style="background-image: url({{ m.photo_main.url }})">
-                        <div class="movie-name">
-                            <p>{{ m.name }}</p>
-                        </div>
-                        <div class="movie-price">
-                            <p>{{ m.price }}</p>
-                        </div>
-                        <div class="movie-book-now">
-                            <button class="movie-button-book-now">Book now</button>
-                        </div>
+                            <div class="col col-sm-12 col-md-4 col-lg-3">
+                                <div class="movies-data-show">
+                                    <div class="movie-image" style="background-image: url({{ m.photo_main.url }})"></div>
+                                    <div class="movie-info">
+                                        <div class="movie-name">
+                                            {{ m.name }}
+                                        </div>
+                                        <div class="movie-price">
+                                            {{ m.price }}
+                                        </div>
+                                        <div class="movie-book-now">
+                                            <button class="movie-button-book-now">Book now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
-        </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
