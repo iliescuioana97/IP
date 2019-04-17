@@ -7,4 +7,5 @@ db.sqlite3
 /media
 venv
 /static
-/.idea
+.idea
+**/.idea
