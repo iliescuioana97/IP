@@ -23,7 +23,7 @@ def cinema_room(request, room_id):
     return render(request, 'cinema_rooms/cinema_room.html')
 
 
-def search(request):
+def search_room(request):
     queryset_rooms = []
     # Rooms
     if 'room' in request.GET:

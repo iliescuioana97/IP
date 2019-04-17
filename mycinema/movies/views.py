@@ -22,15 +22,14 @@ def movie(request, movie_id):
     return render(request, 'movies/movie.html')
 
 
-def search(request):
+def search_movie(request):
     queryset_movies = []
-    # Rooms
+    # Movie
     if 'movie' in request.GET:
-        print("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-        room = request.GET['movie']
-        if room:
+        movie = request.GET['movie']
+        if movie:
             queryset_movies = Movie.objects.all().filter(is_published=True)
-            queryset_movies = queryset_movies.filter(name__icontains=room)  # column__iexact / column__exact
+            queryset_movies = queryset_movies.filter(name__icontains=movie)  # column__iexact / column__exact
 
     context = {
         'movies': queryset_movies,

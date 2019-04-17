@@ -15,6 +15,8 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <script src="{% static 'scripts/cinema-rooms.js' %}"></script>
         <link rel="stylesheet" type="text/css" media="screen" href="{% static 'stylesheets/cinema_rooms.css' %}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'stylesheets/style.css' %}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'stylesheets/cinema_rooms.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/beautify/bootstrap.css' %}">
 
     </head>
@@ -54,7 +56,7 @@
             </div>
             <div class="l-right">
                 <div class="top-bar">
-                    <form action="{% url 'search' %}" class="left">
+                    <form action="{% url 'search_room' %}" class="left">
                         <a href="#" class="toggle-menu topm2"><i class="material-icons">menu</i></a>
                         <img src="{% static 'icons/icon_search.svg' %}" alt="" class="icon" onclick="getFocus()">
                         <input type="text" id="input_search" name="room" placeholder="Search" value="{{ values.room }}">
@@ -114,6 +116,7 @@
 function getFocus() {
   document.getElementById("input_search").focus();
 }
+
         </script>
     </body>
 </html>
