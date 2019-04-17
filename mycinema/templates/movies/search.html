@@ -59,7 +59,7 @@
                     <form action="{% url 'search' %}" class="left">
                         <a href="#" class="toggle-menu topm2"><i class="material-icons">menu</i></a>
                         <img src="{% static 'icons/icon_search.svg' %}" alt="" class="icon" onclick="getFocus()">
-                        <input type="text" id="input_search" name="movie" placeholder="Search">
+                        <input type="text" id="input_search" name="movie" placeholder="Search" value="{{ values.movie }}">
                     </form>
                     <div class="right">
                         <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
@@ -96,44 +96,6 @@
                     {% else %}
                     <h5 class="title" style="margin-left: 5%">No Movies Available</h5>
                     {% endif %}
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">
-                            {% if movies.has_other_pages %}
-                            <ul class="pagination">
-                                {% if movies.has_previous %}
-                                <li class="page-item">
-                                    <a href="?page={{movies.previous_page_number}}" class="page-link">&laquo;</a>
-                                </li>
-                                {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">&laquo;</a>
-                                </li>
-                                {% endif %}
-                                {% for i in movies.paginator.page_range %}
-                                {% if movies.number == i %}
-                                <li class="page-item active">
-                                    <a class="page-link">{{i}}</a>
-                                </li>
-                                {% else %}
-                                <li class="page-item">
-                                    <a href="?page={{i}}" class="page-link">{{i}}</a>
-                                </li>
-                                {% endif %}
-                                {% endfor %}
-                                {% if movies.has_next %}
-                                <li class="page-item">
-                                    <a href="?page={{movies.next_page_number}}" class="page-link">&raquo;</a>
-                                </li>
-                                {% else %}
-                                <li class="page-item disabled">
-                                    <a class="page-link">&raquo;</a>
-                                </li>
-                                {% endif %}
-                            </ul>
-                            {% endif %}
-                        </div>
-                    </div>
 
                 </div>
             </div>
