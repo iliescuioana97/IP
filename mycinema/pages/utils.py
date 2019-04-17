@@ -5,7 +5,7 @@ import json
 def get_data():
     data = []
     try:
-        with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates\pages\home.json')) as fh:
+        with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates/pages/home.json')) as fh:
             file_data = fh.read()
 
         data = json.loads(file_data, encoding='utf-8')
