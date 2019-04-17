@@ -8,3 +8,7 @@ var setInitialTriggers = function() {
         $(".layout .l-left").toggleClass("on")
     })
 }
+
+function getFocus() {
+    document.getElementById("input_search").focus();
+}

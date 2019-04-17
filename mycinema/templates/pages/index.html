@@ -12,6 +12,7 @@
               rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'stylesheets/style.css' %}">
         <link rel="stylesheet" type="text/css" media="screen" href="{% static 'stylesheets/styleHome.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/beautify/bootstrap.css' %}">
 
@@ -118,7 +119,7 @@
                                 </div>
                                 <!--/.Carousel Wrapper-->
                                 <br> <br>
-                                <div id="cinema-articles">
+                                <div class="row" id="cinema-articles">
                                     <div id="article1">
                                         <br>
                                         <h5 class="title-article">{{ content.0.title }}</h5>
@@ -161,10 +162,5 @@
                 crossorigin="anonymous"></script>
         <script src="{% static 'scripts/script.js' %}"></script>
         <script src="{% static 'scripts/home.js' %}"></script>
-        <script>
-function getFocus() {
-  document.getElementById("input_search").focus();
-}
-        </script>
     </body>
 </html>
