@@ -52,10 +52,10 @@
             </div>
             <div class="l-right">
                 <div class="top-bar">
-                    <form action="" class="left">
+                    <form action="{% url 'search_movie' %}" class="left">
                         <a href="#" class="toggle-menu topm2"><i class="material-icons">menu</i></a>
                         <img src="{% static 'icons/icon_search.svg' %}" alt="" class="icon" onclick="getFocus()">
-                        <input type="text" id="input_search" placeholder="Search">
+                        <input type="text" id="input_search" name="movie" placeholder="Search">
                     </form>
                     <div class="right">
                         <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
