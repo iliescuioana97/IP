@@ -32,7 +32,7 @@
                         <img src="{% static 'icons/icon_home-1.svg' %}" alt="" class="ico">
                         Home
                     </a>
-                    <a href="Statistics.html" class="menu-item">
+                    <a href="{% url 'statistics_data' %}" class="menu-item">
                         <img src="{% static 'icons/icon_dashboard-1.svg' %}" alt="" class="ico">
                         Statistics
                     </a>
@@ -44,11 +44,11 @@
                         <img src="{% static 'icons/icon_Invoices-1.svg' %}" alt="" class="ico">
                         Cinema Rooms
                     </a>
-                    <a href="Program.html" class="menu-item">
+                    <a href="{% url 'program' %}" class="menu-item">
                         <img src="{% static 'icons/icon_calendar-1.svg' %}" alt="" class="ico">
                         Program
                     </a>
-                    <a href="Settings.html" class="menu-item">
+                    <a href="{% url 'settings' %}" class="menu-item">
                         <img src="{% static 'icons/icon_setting.svg' %}" alt="" class="ico">
                         Settings
                     </a>
@@ -63,7 +63,7 @@
                     </form>
                     <div class="right">
                         <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
-                        <a href="Settings.html" class="user-menu">
+                        <a href="{% url 'settings' %}" class="user-menu">
                             John Doe
                             <img src="{% static 'icons/icon_down-arrow-small.svg' %}" alt="" class="arrow">
 
@@ -77,7 +77,7 @@
                         {% for r in rooms %}
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
                             <div class="cinema-room">
-                                <h5 class="title"><a href="Program.html">{{ r.name }}</a></h5>
+                                <h5 class="title"><a href="{% url 'program' %}">{{ r.name }}</a></h5>
                                 <div class="slider-container w3-content w3-display-container">
                                     <img class="slide" src="{{ r.photo_main.url }}">
                                     {% if r.photo_1 %}
