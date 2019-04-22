@@ -15,20 +15,19 @@
             <div class="title-container"> My Cinema</div>
             <div class="subtitle-container">Please complete to create your account.</div>
             <div class="signup-container">
-
                 <form action="{% url 'register' %}" method="POST">
                     {% csrf_token %}
                     <div class="firstname-lastname-container">
-                        <div class="firstname"><input type="text" id="firstname" placeholder="First Name"></div>
-                        <div class="lastname"><input type="text" id="lastname" placeholder="Last Name"></div>
+                        <div class="firstname"><input type="text" id="firstname" placeholder="First Name" required></div>
+                        <div class="lastname"><input type="text" id="lastname" placeholder="Last Name" required></div>
                     </div>
-                    <input type="text" id="username" placeholder="Username">
-                    <input type="text" id="email" placeholder="E-mail">
-                    <input type="text" id="password" placeholder="Password">
-                    <input type="text" id="confirmpassword" placeholder="Confirm Password">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="text" id="email" placeholder="E-mail" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="confirmpassword" placeholder="Confirm Password" required>
 
                     <div class="checkbox-container">
-                        <input type="checkbox" id="Terms">
+                        <input type="checkbox" id="Terms" required>
                         <label for="Terms">I agree with terms and conditions</label>
                     </div>
 
@@ -47,3 +46,4 @@
         </div>
         <div class="flex-white-container"></div>
     </body>
+</html>
