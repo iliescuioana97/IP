@@ -64,7 +64,9 @@
                     <div class="right">
                         <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
                         <a href="{% url 'settings' %}" class="user-menu">
-                            John Doe
+                            {% if user.is_authenticated %}
+                            {{ user.username }}
+                            {% endif %}
                             <img src="{% static 'icons/icon_down-arrow-small.svg' %}" alt="" class="arrow">
 
                         </a>
