@@ -19,11 +19,11 @@
                 {% include 'partials/alerts.html' %}
                 <form action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" id="username" placeholder="Username" required>
-                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="text" name="username" id="username" placeholder="Username" required>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
                     <div class="checkbox-forgpass-container">
                         <div class="checkbox-container">
-                            <input type="checkbox" id="RememberMe">
+                            <input type="checkbox" id="RememberMe" autocomplete="off">
                             <label for="RememberMe"> Remember Me</label>
                         </div>
                         <div class="forgot-password-container" onclick="location.href='{% url 'forgot_password' %}'">
