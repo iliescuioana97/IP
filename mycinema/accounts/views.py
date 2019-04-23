@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
+
+import re
 
 
 def register(request):
@@ -16,8 +19,9 @@ def register(request):
 
         # Check agreement
         if not terms or terms != "1":
-            messages.error(request, 'Sorry, you must accept the terms and conditions')
+            messages.error(request, 'You must accept the terms and conditions')
             return redirect('register')
+
         # Check if passwords match
         if password == password2:
             # Check username
@@ -30,6 +34,17 @@ def register(request):
                     messages.error(request, 'Email is being used by another user')
                     return redirect('register')
                 else:
+                    # Check valid mail
+                    if not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+                        messages.error(request, 'Email is not valid')
+                        return redirect('register')
+
+                    try:
+                        validate_password(password)
+                    except Exception as e:
+                        messages.error(request, 'Password does not meet requirements')
+                        return redirect('register')
+
                     user = User.objects.create_user(username=username,
                                                     password=password,
                                                     email=email,
