@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.contrib.auth.decorators import login_required
 
 from .models import Movie
 
 
+@login_required(login_url='/accounts/login')
 def index(request):
     movies = Movie.objects.order_by('-date_added').filter(is_published=True)
 
@@ -18,10 +20,12 @@ def index(request):
     return render(request, 'movies/movies.html', context)
 
 
+@login_required(login_url='/accounts/login')
 def movie(request, movie_id):
     return render(request, 'movies/movie.html')
 
 
+@login_required(login_url='/accounts/login')
 def search_movie(request):
     queryset_movies = []
     # Movie

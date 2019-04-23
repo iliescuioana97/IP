@@ -63,12 +63,11 @@ def login(request):
 
 
 def logout(request):
-    return redirect('login')
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success(request, 'You are now logged out')
+        return redirect('login')
 
 
 def forgot_password(request):
     return render(request, 'accounts/forgot_password.html')
-
-
-def dashboard(request):
-    return render(request, 'accounts/dashboard.html')

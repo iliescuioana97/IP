@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponse
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-
+from django.contrib.auth.decorators import login_required
 from .models import CinemaRoom
 
 
+@login_required(login_url='/accounts/login')
 def index(request):
     rooms = CinemaRoom.objects.all().filter(is_published=True)
     # CinemaRoom.objects.order_by('-date_added').filter(is_published=True)
@@ -19,10 +20,12 @@ def index(request):
     return render(request, 'cinema_rooms/cinema_rooms.html', context)
 
 
+@login_required(login_url='/accounts/login')
 def cinema_room(request, room_id):
     return render(request, 'cinema_rooms/cinema_room.html')
 
 
+@login_required(login_url='/accounts/login')
 def search_room(request):
     queryset_rooms = []
     # Rooms

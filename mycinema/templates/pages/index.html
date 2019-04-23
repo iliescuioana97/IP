@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" type="text/css" media="screen" href="{% static 'stylesheets/style.css' %}">
         <link rel="stylesheet" type="text/css" media="screen" href="{% static 'stylesheets/styleHome.css' %}">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/beautify/bootstrap.css' %}">
 
         <title>MyCinema | Home</title>
@@ -63,8 +64,18 @@
                             {% if user.is_authenticated %}
                             {{ user.username }}
                             {% endif %}
-                            <img src="{% static 'icons/icon_down-arrow-small.svg' %}" alt="" class="arrow">
+                            <a href="{% url 'settings' %}" class="user-menu">
+                                <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                                    <i class="fa fa-sign-out"></i> Logout
+                                </a>
+                                <form action="{% url 'logout' %}" method="POST" id="logout">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+                                </form>
+                                <img src="{% static 'icons/icon_down-arrow-small.svg' %}" alt="" class="arrow">
 
+                            </a>
+                            <img src="{% static 'icons/icon_down-arrow-small.svg' %}" alt="" class="arrow">
                         </a>
                     </div>
                 </div>
