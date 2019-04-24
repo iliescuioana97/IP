@@ -58,7 +58,7 @@
                         <form action="save" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-sm-12 col-lg-6">
+                                <div class="col-sm-12 col-lg-4 offset-sm-1">
                                     <div class="clear">
                                         <div class="image-part">
                                             <img src="{% static 'images/john-doe.png' %}" alt=""
@@ -116,7 +116,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-lg-6">
+                                <div class="col-sm-12 col-lg-6 offset-lg-1">
                                     <div class="field">
                                         <input type="text" class="formField" name="settings_first_name"
                                                placeholder="Enter your first name">
