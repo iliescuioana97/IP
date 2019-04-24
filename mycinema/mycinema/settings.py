@@ -85,10 +85,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mycinema',
         'USER': 'postgres',
-        'PASSWORD': 'ius',
+        'PASSWORD': 'admin',
         'HOST': 'localhost'
     }
 }
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'albret66@gmail.com'
+EMAIL_HOST_PASSWORD = 'dani2007'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

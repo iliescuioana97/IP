@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MyCinema</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/beautify/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'stylesheets/ForgotPassword.css' %}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="image-container"></div>
+        <div class="flex-white-container"></div>
+        <div class="white-contanier">
+            <div class="title-container"> My Cinema</div>
+            {% block content %}
+
+            {% endblock %}
+        </div>
+        <div class="flex-white-container"></div>
+    </body>
+</html>
