@@ -166,9 +166,7 @@ label{
 .button:hover{
    background-color:  white;
    color: #43425D;
-
    border-color:#43425D;
-
    cursor:pointer;
 }
 

@@ -186,6 +186,12 @@ body {
     overflow-y: auto;
 }
 
+.clear:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
 
 .card {
     box-shadow: 0 0 3px 0 rgba(150, 150, 150, 0.2);

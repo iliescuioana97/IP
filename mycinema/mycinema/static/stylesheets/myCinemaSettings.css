@@ -202,7 +202,7 @@ form.settingsForm {
     text-overflow: ellipsis;
     transform-origin: left bottom;
     transform: translate(0, 2.125rem) scale(1.5);
-    font-size: 15x;
+    font-size: 13px;
   }
 
   /**
@@ -435,3 +435,80 @@ div.image-part > div > img {
   margin-top:0%;
 }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.settingsContainer {
+    background: #fff;
+    padding: 25px;
+}
+.image-part {
+    position: relative;
+    max-width: 150px;
+    margin: 0;
+    float: left;
+    margin-right: 20px;
+}
+.image-part img.profile {
+    width: 100%;
+    border-radius: 15px;
+}
+.image-part .editProfileImage {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.settingsContainer .details {
+    display: block;
+    float: none;
+}
+.settingsContainer .details-container {
+    padding: 20px 0;
+}
+.settingsContainer .profile_image_upload_hidden {
+    display: none;
+}
+
+.button {
+    display: inline-block;
+    font-family: 'Source Sans Pro';
+    width: auto;
+    height: auto;
+    margin: 3px;
+    padding: 4px 10px;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #43425D;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button:hover{
+   background-color:  white;
+   color: #43425D;
+   border-color:#43425D;
+}

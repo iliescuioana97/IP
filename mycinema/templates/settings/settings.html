@@ -52,101 +52,98 @@
                 <div class="main">
                     <h2 class="title">Settings</h2>
 
-                    <div class="settingsContainer">
-                        <div class="settings">
-                            <div class="settingsLeftSide">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-10 offset-lg-1">
 
-                                <div class="image-details">
-                                    <div class="image-part">
-                                        <img src="{% static 'images/john-doe.png' %}" alt="" class="profile">
-                                        <div class="bgPen"><img src="{% static 'icons/icon_edit.svg' %}" alt=""
-                                                                class="editProfile">
+
+                            <div class="settingsContainer">
+
+                                <form action="" method="POST">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-6">
+                                            <div class="clear">
+                                                <div class="image-part">
+                                                    <img src="{% static 'images/john-doe.png' %}" alt="" class="profile">
+                                                    <img src="{% static 'icons/icon_edit.svg' %}" alt="" class="editProfileImage">
+                                                    <input type="file" name="profile_image" class="profile_image_upload_hidden">
+                                                </div>
+                                                <div class="profile-usrn-info">
+                                                    <h3>{{ user.username }}</h3>
+                                                    <p>User type</p>
+                                                </div>
+                                            </div>
+                                            <div class="details-container">
+                                                <div class="details">
+                                                    <h5>First Name</h5>
+                                                    <p>{{ user.first_name }}</p>
+                                                </div>
+                                                <div class="details">
+                                                    <h5>Last Name</h5>
+                                                    <p>{{ user.last_name }}</p>
+                                                </div>
+                                                <div class="details">
+                                                    <h5>Email</h5>
+                                                    <p>{{ user.email }}</p>
+                                                </div>
+                                                <div class="details">
+                                                    <h5>Phone</h5>
+                                                    <p>{%if user.phone_number %} {{ user.phone_number }} {% else %} - {% endif %}</p>
+                                                </div>
+                                                <div class="details">
+                                                    <h5>Birthdate</h5>
+                                                    <p>{%if user.birthdate %} {{ user.birthdate }} {% else %} - {% endif %}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6">
+                                            <div class="field">
+                                                <input type="text" class="formField" name="first_name" placeholder="Enter your first name">
+                                                <label name="settings">First Name</label>
+                                            </div>
+
+                                            <div class="field">
+                                                <input type="text" class="formField" name="last_name" placeholder="Enter your last name">
+                                                <label name="settings">Last Name</label>
+                                            </div>
+
+                                            <div class="field">
+                                                <input type="email" class="formField" name="email" placeholder="Enter your email address">
+                                                <label name="settings">Email Address</label>
+                                            </div>
+
+                                            <div class="field">
+                                                <input type="text" class="formField" name="phone_number" placeholder="Enter your phone number">
+                                                <label name="settings">Phone Number</label>
+                                            </div>
+
+                                            <div class="field">
+                                                <input type="date" class="formField" name="birthdate">
+                                                <label name="settings">Birthdate</label>
+                                            </div>
+
+                                            <div class="field">
+                                                <input type="text" class="formField" name="password" placeholder="Type to change password">
+                                                <label name="settings">New Password</label>
+                                            </div>
+                                            <div class="field">
+                                                <input type="text" class="formField" name="password2" placeholder="Password confirmation">
+                                                <label name="settings">New Password Confirm</label>
+                                            </div>
+                                            <div class="text-center">
+                                                <input type="submit" class="button" value="Change profile">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="nameContainerProfile">
-
-                                    </div>
-                                    <div class="name">
-                                        <h3>{% if user.is_authenticated %}
-                            {{ user.username }}
-                            {% endif %}</h3>
-                                        <p>User type</p>
-                                    </div>
-                                    <div class="editPenName">
-                                        <img src="{% static 'icons/icon_edit.svg' %}" alt="" class="editName">
-                                    </div>
-                                </div>
-                                <div class="details-part">
-                                    <div class="details">
-                                        <h5>First Name</h5>
-                                        <p>John</p>
-                                    </div>
-
-                                    <div class="details">
-                                        <h5>Last Name</h5>
-                                        <p>Doe</p>
-                                    </div>
-
-                                    <div class="details">
-                                        <h5>Profile Data</h5>
-                                        <p>Regular 18pt</p>
-                                    </div>
-
-                                    <div class="details">
-                                        <h5>Profile Data</h5>
-                                        <p>Regular 18pt</p>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="settingsRightSide">
-                                <form class="settingsForm" action="">
-                                    <div class="field">
-                                        <input type="text" class="formField" name="FName"
-                                               placeholder="Enter your first name" onsubmit="return checkforblank()"
-                                               required>
-                                        <label name="settings">First Name</label>
-                                    </div>
-
-                                    <div class="field">
-                                        <input type="text" class="formField" name="LName"
-                                               placeholder="Enter your last name"
-                                               required>
-                                        <label name="settings">Last Name</label>
-                                    </div>
-
-                                    <div class="field">
-                                        <input type="email" class="formField" name="email"
-                                               placeholder="Enter your email address" required>
-                                        <label name="settings">Email Address</label>
-                                    </div>
-
-                                    <div class="field">
-                                        <input type="text" class="formField" name="phone"
-                                               placeholder="Enter your phone number" required>
-                                        <label name="settings">Phone Number</label>
-                                    </div>
-
-                                    <div class="field">
-                                        <input type="text" class="formField" name="settings" placeholder="Placeholder"
-                                               required>
-                                        <label name="settings">Label</label>
-                                    </div>
-
-                                    <div class="field">
-                                        <input type="text" class="formField" name="settings" placeholder="Placeholder"
-                                               required>
-                                        <label name="settings">Label</label>
-                                    </div>
                                 </form>
-                                <div class="form-buttons-container">
-                                    <button class="discardBtn" type="button">Discard</button>
-                                    <button class="saveBtn" type="submit" disabled>Save</button>
-                                </div>
                             </div>
+
+
+
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
