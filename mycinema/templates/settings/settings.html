@@ -57,10 +57,8 @@
 
 
                             <div class="settingsContainer">
-
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                <form action="save" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
-
                                     <div class="row">
                                         <div class="col-sm-12 col-lg-6">
                                             <div class="clear">
@@ -122,41 +120,41 @@
                                         </div>
                                         <div class="col-sm-12 col-lg-6">
                                             <div class="field">
-                                                <input type="text" class="formField" name="first_name"
+                                                <input type="text" class="formField" name="settings_first_name"
                                                        placeholder="Enter your first name">
                                                 <label name="settings">First Name</label>
                                             </div>
 
                                             <div class="field">
-                                                <input type="text" class="formField" name="last_name"
+                                                <input type="text" class="formField" name="settings_last_name"
                                                        placeholder="Enter your last name">
                                                 <label name="settings">Last Name</label>
                                             </div>
 
                                             <div class="field">
-                                                <input type="email" class="formField" name="email"
+                                                <input type="email" class="formField" name="settings_email"
                                                        placeholder="Enter your email address">
                                                 <label name="settings">Email Address</label>
                                             </div>
 
                                             <div class="field">
-                                                <input type="text" class="formField" name="phone_number"
+                                                <input type="text" class="formField" name="settings_phone_number"
                                                        placeholder="Enter your phone number">
                                                 <label name="settings">Phone Number</label>
                                             </div>
 
                                             <div class="field">
-                                                <input type="date" class="formField" name="birthdate">
+                                                <input type="date" class="formField" name="settings_birthdate">
                                                 <label name="settings">Birthdate</label>
                                             </div>
 
                                             <div class="field">
-                                                <input type="text" class="formField" name="password"
+                                                <input type="text" class="formField" name="settings_password1"
                                                        placeholder="Type to change password">
                                                 <label name="settings">New Password</label>
                                             </div>
                                             <div class="field">
-                                                <input type="text" class="formField" name="password2"
+                                                <input type="text" class="formField" name="settings_password2"
                                                        placeholder="Password confirmation">
                                                 <label name="settings">New Password Confirm</label>
                                             </div>
