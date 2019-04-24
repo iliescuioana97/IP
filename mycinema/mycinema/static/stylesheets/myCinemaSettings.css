@@ -158,7 +158,7 @@ form.settingsForm {
     border-radius: 0;
     padding-bottom: 2%;
     cursor: text;
-    caret-color: #3B86FF;
+    caret-color: #43425D !important;
   }
 
   input.formField:hover{
@@ -169,7 +169,7 @@ form.settingsForm {
 
   input.formField:focus {
     outline: 0;
-    border-bottom: 3px solid #3B86FF;
+    border-bottom: 3px solid #43425D !important;
   }
 
   input.formFiled:invalid{
@@ -230,7 +230,7 @@ form.settingsForm {
   input.formField:focus + label {
     transform: translate(0, 0) scale(1);
     cursor: pointer;
-    color: #3B86FF;
+    color: #43425D !important;
   }
 
   input.formField:not(:focus):not(:placeholder-shown) + label{
@@ -248,7 +248,7 @@ form.settingsForm {
 
 .discardBtn {
   grid-area: discardBtn;
-  background-color: #3B86FF;
+  background-color: #43425D !important;
   border:none;
   width: 70px;
   text-align: center;
@@ -260,7 +260,7 @@ form.settingsForm {
 
 .saveBtn{
   grid-area: saveBtn;
-  background-color: #3B86FF;
+  background-color: #43425D !important;
   border:none;
   width: 70px;
   text-align: center;
@@ -511,4 +511,16 @@ div.image-part > div > img {
    background-color:  white;
    color: #43425D;
    border-color:#43425D;
+}
+
+input.formField:focus {
+    border-bottom: 3px solid #43425D !important;
+}
+
+input.formField {
+    caret-color: #43425D !important;
+}
+
+input.formField {
+    caret-color: #43425D !important;
 }

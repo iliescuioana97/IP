@@ -9,7 +9,7 @@ from .models import Movie
 def index(request):
     movies = Movie.objects.order_by('-date_added').filter(is_published=True)
 
-    paginator = Paginator(movies, 3)
+    paginator = Paginator(movies, 8)
     page = request.GET.get('page')
     paged_movies = paginator.get_page(page)
 
