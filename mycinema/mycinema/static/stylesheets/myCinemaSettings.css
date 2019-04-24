@@ -486,6 +486,7 @@ div.image-part > div > img {
 }
 .settingsContainer .details-container {
     padding: 20px 0;
+    word-break: break-all;
 }
 .settingsContainer .profile_image_upload_hidden {
     display: none;
