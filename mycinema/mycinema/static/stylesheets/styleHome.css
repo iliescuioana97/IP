@@ -1,15 +1,16 @@
 .main .card-body{
-    margin-left: 5vw;
-    margin-right: 5vw;
+    /* margin-left: 5vw;
+    margin-right: 5vw; */
 }
 .main .card .card-body .big-container{
 
     /* background: #a3a0fb; */
-    display: grid;
-    grid-template-areas:
-    'cinema-photos'
-    'cinema-articles';
-    grid-gap: 15px 0vw ;
+    /* display: grid; */
+    /* grid-template-areas: */
+    /* 'cinema-photos' */
+    /* 'cinema-articles'; */
+    /* grid-gap: 15px 0vw ; */
+    padding: 20px;
     justify-content: stretch;
     align-content: stretch;
     justify-items: stretch;
