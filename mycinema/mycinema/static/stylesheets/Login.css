@@ -146,7 +146,7 @@ label{
 
 .button{
   font-family:SansPro-Regular;
-  width: 128px;
+  width: 50%;
   height: auto;
   padding-top:1vh;
   padding-bottom:1vh;
@@ -164,8 +164,6 @@ label{
 
 
 .button:hover{
-
-
    background-color:  white;
    color: #43425D;
 

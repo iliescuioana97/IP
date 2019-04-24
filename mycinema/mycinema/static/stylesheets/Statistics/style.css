@@ -278,18 +278,6 @@ display: none;
 .chart td {
   display: block;
 }
-.l-right .top-bar form.left #input_search {
-  margin-left: 75px;
-  font-size: 14pt;
-  font-weight: 600;
-
-
-}
-.l-right .top-bar form.left {
-  display: block;
-  padding: 0px;
-  flex: 1;
-}
 
 .row
 {

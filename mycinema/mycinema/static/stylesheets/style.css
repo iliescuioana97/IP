@@ -33,6 +33,7 @@ body {
     display: -ms-flex;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .layout .toggle-menu {
@@ -142,7 +143,7 @@ body {
     font-size: 14px;
     font-weight: 600;
     margin-left: 7px;
-    width: 80%;
+    width: 75%;
 }
 
 .l-right .top-bar .right {
