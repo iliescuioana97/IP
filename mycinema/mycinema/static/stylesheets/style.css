@@ -156,6 +156,10 @@ body {
 }
 
 .l-right .top-bar .right .user-menu {
+    display: inline-block;
+}
+.l-right .top-bar .right .user-menu > a {
+    display: inline-block;
     vertical-align: bottom;
     text-decoration: none;
     color: #333;

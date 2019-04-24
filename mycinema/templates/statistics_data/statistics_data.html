@@ -125,13 +125,27 @@
                     </form>
                     <div class="right">
                         <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
-                        <a href="#" class="user-menu">
-                            {% if user.is_authenticated %}
-                            {{ user.username }}
-                            {% endif %}
-                            <img src="{% static 'icons/icon_down-arrow-small.svg' %}" alt="" class="arrow">
-
-                        </a>
+                        <div class="dropdown user-menu">
+                            <a href="#" class="" data-toggle="dropdown">
+                                <!--  -->
+                                {% if user.is_authenticated %}
+                                {{ user.username }}
+                                {% endif %}
+                                <img src="{% static 'icons/icon_down-arrow-small.svg' %}" alt="" class="arrow">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{% url 'settings' %}">
+                                    <i class="fa fa-cog"></i> Settings
+                                </a>
+                                <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">
+                                    <i class="fa fa-sign-out"></i> Logout
+                                </a>
+                            </div>
+                            <form action="{% url 'logout' %}" method="POST" id="logout">
+                                {% csrf_token %}
+                                <input type="hidden">
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class="main">
