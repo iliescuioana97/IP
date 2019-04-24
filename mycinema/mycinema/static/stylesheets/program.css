@@ -18,7 +18,7 @@ body {
 .programs {
     box-shadow: 0 0 3px 0 rgba(150, 150, 150, 0.2);
     background-color: white;
-    margin: 0 50px 0 50px;
+    /* margin: 0 50px 0 50px; */
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
