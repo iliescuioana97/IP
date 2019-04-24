@@ -1,8 +1,8 @@
-.container{  
+.container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: 
-    "settingsContainer settingsContainer settingsContainer settingsContainer settingsContainer";   
+    grid-template-areas:
+    "settingsContainer settingsContainer settingsContainer settingsContainer settingsContainer";
     position: relative;
     min-height: auto;
     font-family: 'Source Sans Pro';
@@ -46,14 +46,12 @@ background-color: #F0F0F9;
 }
 .image-details{
   grid-area:image-details;
-  margin-top:5%;
-  margin-left: 7%;
   display: flex;
   flex-direction: left;
-  margin-bottom: 5%;
   display:grid;
   grid-template-columns: 35% 5% 1fr 30%;
   grid-template-areas: "image . name editPenName";
+  margin: 15px;
 }
 
 .editPenName {
@@ -85,7 +83,8 @@ img.profile, img.editProfile {
 }
 
 .image-part img.profile{
-height: 140px;
+/* height: 140px; */
+max-width: 100%;
 border-radius: 27%;
 }
 
@@ -107,7 +106,7 @@ border-radius: 27%;
 
 .details-part{
  margin-left: 7%;
- margin-top:10%; 
+ margin-top:10%;
  grid-area:details-part;
 }
 
@@ -150,7 +149,7 @@ form.settingsForm {
     transition: all 0.2s;
     touch-action: manipulation;
   }
-  
+
   input.formField {
     font-size: 18px;
     border: 0;
@@ -161,7 +160,7 @@ form.settingsForm {
     cursor: text;
     caret-color: #3B86FF;
   }
-  
+
   input.formField:hover{
     outline: 0;
     border-bottom: 3px solid gray ;
@@ -175,14 +174,14 @@ form.settingsForm {
 
   input.formFiled:invalid{
     outline: 0;
-    border-bottom: 3px solid red; 
+    border-bottom: 3px solid red;
   }
 
   input.formFiled:disabled{
     outline: 0;
     border-bottom: 3px dotted gray;
   }
-  
+
   label {
     letter-spacing: 0.05em;
     margin-top: 0.5em;
@@ -197,7 +196,7 @@ form.settingsForm {
 
   input.formField:placeholder-shown + label {
     cursor: text;
-    max-width: 66.66%; 
+    max-width: 66.66%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -207,7 +206,7 @@ form.settingsForm {
   }
 
   /**
-  * By default, the placeholder should be transparent. Also, it should 
+  * By default, the placeholder should be transparent. Also, it should
   * inherit the transition.
   */
   .formField::-webkit-input-placeholder {
@@ -224,14 +223,14 @@ form.settingsForm {
 
   /**
   * When the element is focused, remove the label transform.
-  * Also, do this when the placeholder is _not_ shown, i.e. when 
+  * Also, do this when the placeholder is _not_ shown, i.e. when
   * there's something in the input at all.
   */
   input.formField:not(:placeholder-shown) + label,
   input.formField:focus + label {
     transform: translate(0, 0) scale(1);
     cursor: pointer;
-    color: #3B86FF; 
+    color: #3B86FF;
   }
 
   input.formField:not(:focus):not(:placeholder-shown) + label{
@@ -242,15 +241,17 @@ form.settingsForm {
 .form-buttons-container{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
-  grid-template-areas: ". . . discardBtn saveBtn ";
+  grid-template-areas: ". . discardBtn saveBtn ";
   border:none;
+  padding-bottom: 5px;
 }
 
 .discardBtn {
   grid-area: discardBtn;
   background-color: #3B86FF;
   border:none;
-  padding: 5%;
+  width: 70px;
+  text-align: center;
   border-radius: 6%;
   color: white;
   margin-left: 15%;
@@ -261,7 +262,8 @@ form.settingsForm {
   grid-area: saveBtn;
   background-color: #3B86FF;
   border:none;
-  padding: 5%;
+  width: 70px;
+  text-align: center;
   border-radius: 6%;
   color: white;
   margin-left: 7%;
@@ -285,7 +287,7 @@ form.settingsForm {
 
 
 @media(max-width: 420px) {
-  
+
   .settings{
     display: block;
     grid-area: settings;
@@ -344,10 +346,10 @@ form.settingsForm {
 @media(max-width: 375px) {
 
   .container{
-   
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "settingsContainer settingsContainer settingsContainer settingsContainer settingsContainer";
     position: relative;
     min-height: auto;
@@ -389,7 +391,7 @@ form.settingsForm {
       margin-right: 5%;
       margin-bottom: 2%;
   }
-  
+
     .settingsLeftSide{
       display: block;
       border-right: none;
@@ -397,17 +399,17 @@ form.settingsForm {
     .image-details{
       display: block;
     }
-  
+
     div.image-part > div > img {
       right: 145px;
     }
-  
+
     .editPenName .editName{
       margin-top:0%;
     }
 }
 
-@media(max-width: 320px) {  
+@media(max-width: 580px) {
   .settings{
   display: block;
   grid-area: settings;
@@ -433,5 +435,3 @@ div.image-part > div > img {
   margin-top:0%;
 }
   }
-
-  
