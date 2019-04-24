@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        
+
         {% include "partials/head_styles.html" %}
 
         <link rel="stylesheet" href="{% static 'stylesheets/myCinemaSettings.css' %}">
@@ -47,37 +47,7 @@
                 </div>
             </div>
             <div class="l-right">
-                <div class="top-bar">
-                    <form action="" class="left">
-                        <a href="#" class="toggle-menu topm2"><i class="material-icons">menu</i></a>
-                        <img src="{% static 'icons/icon_search.svg' %}" alt="" class="icon">
-                        <input type="text" id="input_search" placeholder="Search" class="Search">
-                    </form>
-                    <div class="right">
-                        <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
-                        <div class="dropdown user-menu">
-                            <a href="#" class="" data-toggle="dropdown">
-                                <!--  -->
-                                {% if user.is_authenticated %}
-                                {{ user.username }}
-                                {% endif %}
-                                <img src="{% static 'icons/icon_down-arrow-small.svg' %}" alt="" class="arrow">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{% url 'settings' %}">
-                                    <i class="fa fa-cog"></i> Settings
-                                </a>
-                                <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">
-                                    <i class="fa fa-sign-out"></i> Logout
-                                </a>
-                            </div>
-                            <form action="{% url 'logout' %}" method="POST" id="logout">
-                                {% csrf_token %}
-                                <input type="hidden">
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                {% include 'partials/top_bar.html' %}
 
                 <div class="container">
 

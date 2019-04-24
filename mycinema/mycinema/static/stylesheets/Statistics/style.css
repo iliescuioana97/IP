@@ -1,205 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-:root {
-  --color-prim: #43425d;
-  /* --color-sec: #3c3b54; */
-  --color-sec: #a3a0fb;
-  --color-bg1: #f0f0f7;
-
-  --darken-1: rgba(0, 0, 0, 0.2);
-}
-
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-.layout {
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  min-height: 100vh;
-}
-.layout .l-left {
-  flex-basis: 220px;
-  background: var(--color-prim);
-  color: #333;
-  position: relative;
-}
-.layout .l-right {
-  flex: 1;
-  background: var(--color-bg1);
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  flex-direction: column;
-}
-
-.layout .toggle-menu {
-  display: none;
-}
-.l-left .toggle-menu.topm1 {
-  display: none;
-  position: absolute;
-  top: 15px;
-  right: 14px;
-  color: white;
-  z-index: 5;
-}
-.l-right .toggle-menu.topm2 {
-  display: none;
-  color: #aaa;
-  margin-bottom: -8px;
-  vertical-align: top;
-  margin-top: 2px;
-  margin-right: 9px;
-}
-
-@media(max-width: 600px) {
-  .layout .l-left {
-      display: block;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: -100%;
-      z-index: 2;
-      min-height: 100vh;
-      transition: .3s all;
-  
-  }
-  .l-left.on {
-      left: 0;
-  }
-  .toggle-menu {
-      display: inline-block!important;
-  }
-}
-
-.l-left .logo-menu {
-  display: block;
-  text-decoration: none;
-  color: #fff;
-  letter-spacing: 3px;
-  padding: 0 20px;
-  position: relative;
-  height: 55px;
-  line-height: 55px;
-  font-size: 15px;
-  font-weight: bold;
-  background: var(--darken-1);
-}
-.l-left .menu {
-  display: block;
-}
-.l-left .menu .menu-item {
-  display: block;
-  text-decoration: none;
-  width: 100%;
-  height: 45px;
-  line-height: 45px;
-  color: rgba(255, 255, 255, 0.9);
-  padding: 0 20px;
-  font-size: 14px;
-  font-weight: 500;
-  border-left: 5px solid transparent;
-  margin-top: 2px;
-}
-/*
-.l-left .menu .menu-item:hover,
-.l-left .menu .menu-item.active {
-  background: var(--darken-1);
-  border-left-color: var(--color-sec);
-}*/
-
-.l-left .menu .menu-item img.ico {
-  height: 14px;
-  vertical-align: baseline;
-  margin-bottom: -2px;
-  margin-right: 6px;
-}
-
-.l-right .top-bar {
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  background: white;
-  flex-basis: 55px;
-  flex-grow: 0;
-  flex-shrink: 0;
-  box-shadow: 0 0 2px 1px rgba(150, 150, 150, 0.2);
-}
-
-.l-right .top-bar form.left {
-  display: block;
-  padding: 14px;
-  flex: 1;
-}
-
-.l-right .top-bar form.left #input_search {
-  display: inline-block;
-  border: none;
-  outline: none;
-  height: calc(55px - 2*14px);
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 7px;
-  width: 80%;
-}
-
-.l-right .top-bar .right {
-  padding: 15px;
-}
-
-.l-right .top-bar .right .notif-ico {
-  vertical-align: bottom;
-  height: 22px;
-  margin-bottom: 2px;
-}
-
-.l-right .top-bar .right .user-menu {
-  vertical-align: bottom;
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 0 10px;
-  padding-left: 15px;
-  margin-left: 10px;
-  border-left: 1px solid #ddd;
-}
-.l-right .top-bar .right .user-menu .arrow {
-  margin: 0 5px;
-  margin-left: 12px;
-}
-/*
-
-.l-right .main {
-  padding: 20px 50px;
-  overflow-y: auto;
-}
-*/
-.main{
-  padding-top:20px;
-  padding-left:50px;
-  padding-right:50px;
-
-}
-
-.card {
-  box-shadow: 0 0 3px 0 rgba(150, 150, 150, 0.2);
-  border-radius: 0;
-  border: none;
-}
-
-
-html, body {
-height: 100%;
-}
-
 /*terminare cod Ioana */
 
 .sparklist {
@@ -288,7 +86,7 @@ padding: 3px;
   color: rgb(0, 0, 255);
   transform: rotate(-135deg);
   }
-  
+
   .down {
   color: red;
   transform: rotate(45deg);
@@ -331,7 +129,7 @@ margin-top: 10px;
 margin-bottom: 20px;
 font-weight: bold;
 margin-left:10px;
-} 
+}
 .column .movies h4{
   color:rgb(26, 158, 147);
 }
@@ -346,8 +144,8 @@ margin-bottom: 20px;
 .row {
 
     background-clip: padding-box;
-    width:100%;    
-    text-align:left;      
+    width:100%;
+    text-align:left;
     margin-left:50px;
     margin-top:50px;
 }
@@ -358,11 +156,11 @@ margin-bottom: 20px;
   background-color:white;
 }
 .tickets1, .earnings1, .movies1{
- 
+
     float: left;
     width: 60%;
     background-color:white;
-  
+
 }
 .chart
 {
@@ -374,7 +172,7 @@ margin-bottom: 20px;
 .selectdiv {
   position: relative;
   /*Don't really need this just for demo styling*/
-  
+
   float: left;
   min-width: 200px;
   margin: 50px 33%;
@@ -403,7 +201,7 @@ display: none;
   -moz-appearance: none;
   appearance: none;
   /* Add some styling */
-  
+
   display: block;
   width: 100%;
   max-width: 320px;
@@ -421,7 +219,7 @@ display: none;
   word-break: normal;
 }
 
- 
+
 
 @media screen and (max-width: 1700px) and (min-width:1201px)
 {
@@ -435,16 +233,16 @@ display: none;
     margin-top: 10px;
   }
 
-  .row 
+  .row
   {
     margin-left: 30px;
     margin-top:15px;
   }
-  
+
 }
 @media screen and (max-width: 1200px) and (min-width:601px)
 {
- 
+
   .chart
   {
     margin-left:80px;
@@ -454,16 +252,16 @@ display: none;
     width: 100%;
     margin-top: 10px;
   }
-  .chart table,tr,td { 
+  .chart table,tr,td {
     display: block;
   }
-  .row 
+  .row
   {
     margin-left: 0px;
     margin-top:15px;
   }
-  
-} 
+
+}
 
 @media screen and (max-width: 600px) {
   .column {
@@ -477,15 +275,15 @@ display: none;
   margin-left:0px;
   margin-top:50px;
 }
-.chart td { 
-  display: block;  
+.chart td {
+  display: block;
 }
 .l-right .top-bar form.left #input_search {
   margin-left: 75px;
   font-size: 14pt;
   font-weight: 600;
 
-  
+
 }
 .l-right .top-bar form.left {
   display: block;
@@ -493,11 +291,10 @@ display: none;
   flex: 1;
 }
 
-.row 
+.row
 {
   margin-left: 0;
   margin-top:15px;
 }
 
 }
-
