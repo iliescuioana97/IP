@@ -52,124 +52,117 @@
                 <div class="main">
                     <h2 class="title">Settings</h2>
 
-                    <div class="row">
-                        <div class="col-md-12 col-lg-10 offset-lg-1">
 
 
-                            <div class="settingsContainer">
-                                <form action="save" method="POST" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <div class="row">
-                                        <div class="col-sm-12 col-lg-6">
-                                            <div class="clear">
-                                                <div class="image-part">
-                                                    <img src="{% static 'images/john-doe.png' %}" alt=""
-                                                         class="profile">
-                                                    <img src="{% static 'icons/icon_edit.svg' %}" alt=""
-                                                         class="editProfileImage">
-                                                    <input type="file" name="profile_image"
-                                                           class="profile_image_upload_hidden">
-                                                </div>
-                                                <div class="profile-usrn-info">
-                                                    <h3>{{ user.username }}</h3>
-                                                    <p>{{ user_user_type }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="details-container">
-                                                <div class="details">
-                                                    <h5>First Name</h5>
-                                                    {% if user.first_name %}
-                                                    <p>{{ user.first_name }}</p>
-                                                    {% else %}
-                                                    <p>-</p>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="details">
-                                                    <h5>Last Name</h5>
-                                                    {% if user.last_name %}
-                                                    <p>{{ user.last_name }}</p>
-                                                    {% else %}
-                                                    <p>-</p>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="details">
-                                                    <h5>Email</h5>
-                                                    {% if user.email %}
-                                                    <p>{{ user.email }}</p>
-                                                    {% else %}
-                                                    <p>-</p>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="details">
-                                                    <h5>Phone</h5>
-                                                    {% if user_phone_number %}
-                                                    <p>{{ user_phone_number }}</p>
-                                                    {% else %}
-                                                    <p>-</p>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="details">
-                                                    <h5>Birthdate</h5>
-                                                    {%if user_birthdate %}
-                                                    <p>{{ user_birthdate }}</p>
-                                                    {% else %}
-                                                    <p>-</p>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
+                    <div class="settingsContainer">
+                        <form action="save" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="clear">
+                                        <div class="image-part">
+                                            <img src="{% static 'images/john-doe.png' %}" alt=""
+                                                 class="profile">
+                                            <img src="{% static 'icons/icon_edit.svg' %}" alt=""
+                                                 class="editProfileImage">
+                                            <input type="file" name="profile_image"
+                                                   class="profile_image_upload_hidden">
                                         </div>
-                                        <div class="col-sm-12 col-lg-6">
-                                            <div class="field">
-                                                <input type="text" class="formField" name="settings_first_name"
-                                                       placeholder="Enter your first name">
-                                                <label name="settings">First Name</label>
-                                            </div>
-
-                                            <div class="field">
-                                                <input type="text" class="formField" name="settings_last_name"
-                                                       placeholder="Enter your last name">
-                                                <label name="settings">Last Name</label>
-                                            </div>
-
-                                            <div class="field">
-                                                <input type="email" class="formField" name="settings_email"
-                                                       placeholder="Enter your email address">
-                                                <label name="settings">Email Address</label>
-                                            </div>
-
-                                            <div class="field">
-                                                <input type="text" class="formField" name="settings_phone_number"
-                                                       placeholder="Enter your phone number">
-                                                <label name="settings">Phone Number</label>
-                                            </div>
-
-                                            <div class="field">
-                                                <input type="date" class="formField" name="settings_birthdate">
-                                                <label name="settings">Birthdate</label>
-                                            </div>
-
-                                            <div class="field">
-                                                <input type="text" class="formField" name="settings_password1"
-                                                       placeholder="Type to change password">
-                                                <label name="settings">New Password</label>
-                                            </div>
-                                            <div class="field">
-                                                <input type="text" class="formField" name="settings_password2"
-                                                       placeholder="Password confirmation">
-                                                <label name="settings">New Password Confirm</label>
-                                            </div>
-                                            <div class="text-center">
-                                                <input type="submit" class="button" value="Change profile">
-                                            </div>
+                                        <div class="profile-usrn-info">
+                                            <h3>{{ user.username }}</h3>
+                                            <p>{{ user_user_type }}</p>
                                         </div>
                                     </div>
-                                </form>
+                                    <div class="details-container">
+                                        <div class="details">
+                                            <h5>First Name</h5>
+                                            {% if user.first_name %}
+                                            <p>{{ user.first_name }}</p>
+                                            {% else %}
+                                            <p>-</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="details">
+                                            <h5>Last Name</h5>
+                                            {% if user.last_name %}
+                                            <p>{{ user.last_name }}</p>
+                                            {% else %}
+                                            <p>-</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="details">
+                                            <h5>Email</h5>
+                                            {% if user.email %}
+                                            <p>{{ user.email }}</p>
+                                            {% else %}
+                                            <p>-</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="details">
+                                            <h5>Phone</h5>
+                                            {% if user_phone_number %}
+                                            <p>{{ user_phone_number }}</p>
+                                            {% else %}
+                                            <p>-</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="details">
+                                            <h5>Birthdate</h5>
+                                            {%if user_birthdate %}
+                                            <p>{{ user_birthdate }}</p>
+                                            {% else %}
+                                            <p>-</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="field">
+                                        <input type="text" class="formField" name="settings_first_name"
+                                               placeholder="Enter your first name">
+                                        <label name="settings">First Name</label>
+                                    </div>
+
+                                    <div class="field">
+                                        <input type="text" class="formField" name="settings_last_name"
+                                               placeholder="Enter your last name">
+                                        <label name="settings">Last Name</label>
+                                    </div>
+
+                                    <div class="field">
+                                        <input type="email" class="formField" name="settings_email"
+                                               placeholder="Enter your email address">
+                                        <label name="settings">Email Address</label>
+                                    </div>
+
+                                    <div class="field">
+                                        <input type="text" class="formField" name="settings_phone_number"
+                                               placeholder="Enter your phone number">
+                                        <label name="settings">Phone Number</label>
+                                    </div>
+
+                                    <div class="field">
+                                        <input type="date" class="formField" name="settings_birthdate">
+                                        <label name="settings">Birthdate</label>
+                                    </div>
+
+                                    <div class="field">
+                                        <input type="text" class="formField" name="settings_password1"
+                                               placeholder="Type to change password">
+                                        <label name="settings">New Password</label>
+                                    </div>
+                                    <div class="field">
+                                        <input type="text" class="formField" name="settings_password2"
+                                               placeholder="Password confirmation">
+                                        <label name="settings">New Password Confirm</label>
+                                    </div>
+                                    <div class="text-center">
+                                        <input type="submit" class="button" value="Change profile">
+                                    </div>
+                                </div>
                             </div>
-
-
-                        </div>
+                        </form>
                     </div>
-
 
                 </div>
             </div>
