@@ -34,7 +34,8 @@ def get_data(request):
 
     if profile:
         if profile.birthdate:
-            user_data["user_birthdate"] = profile.birthdate
+            user_data["user_birthdate"] = "{}/{}/{}".format(profile.birthdate.month, profile.birthdate.day,
+                                                            profile.birthdate.year)
         if profile.phone_number:
             if "None" not in str(profile.phone_number):
                 user_data["user_phone_number"] = profile.phone_number
@@ -64,12 +65,7 @@ def save(request):
 
         print("SALUT ")
         print(request.user.id)
-        print(first_name)
-        print(last_name)
-        print(email)
-        print(phone_number)
-        print(birthdate)
-        print(password)
+        print(photo)
 
         if first_name:
             first_name = first_name.strip().title()
@@ -112,6 +108,7 @@ def save(request):
                 return redirect('settings')
 
         ##################################################################################
+
         user_update_dict = dict()
         profile_update_dict = dict()
 
@@ -132,11 +129,9 @@ def save(request):
             profile_update_dict["phone_number"] = phone_number
 
         if birthdate:
-            user_data["user_birthdate"] = birthdate
-            profile_update_dict["birthdate"] = birthdate
-            # profile = Profile.objects.filter(user_id=request.user.id).update(
-            #     birthdate=make_aware(datetime.strptime(birthdate, '%Y-%M-%d')))
-            # profile.save()
+            birthdate = datetime.strptime(birthdate, '%Y-%m-%d')
+            user_data["user_birthdate"] = "{}/{}/{}".format(birthdate.month, birthdate.day, birthdate.year)
+            profile_update_dict["birthdate"] = make_aware(birthdate)
 
         # if photo:  # create
         #     Profile.objects.filter(user_id=request.user.id).update(photo=photo)
