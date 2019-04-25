@@ -1,15 +1,20 @@
+import os
 import re
 from datetime import datetime
+
+from PIL import Image
 
 import phonenumbers
 from phonenumbers import carrier
 from phonenumbers.phonenumberutil import number_type
 
 from django.apps import apps
+from django.conf import settings
 from django.contrib import messages
 from django.utils.timezone import localtime
 from django.contrib.auth.models import User
 from django.utils.timezone import make_aware
+from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.password_validation import validate_password
@@ -40,7 +45,8 @@ def get_data(request):
             if "None" not in str(profile.phone_number):
                 user_data["user_phone_number"] = profile.phone_number
         if profile.photo:
-            user_data["user_avatar"] = profile.photo
+            user_data["user_photo"] = profile.photo
+
     return user_data
 
 
@@ -55,17 +61,13 @@ def save(request):
     user_data = get_data(request)
 
     if request.method == 'POST':
-        photo = request.POST.get("profile_image")
+        photo = request.FILES.get("profile_image")
         first_name = request.POST.get("settings_first_name")
         last_name = request.POST.get("settings_last_name")
         email = request.POST.get("settings_email")
         phone_number = request.POST.get("settings_phone_number")
         birthdate = request.POST.get("settings_birthdate")
         password = request.POST.get("settings_password")
-
-        print("SALUT ")
-        print(request.user.id)
-        print(photo)
 
         if first_name:
             first_name = first_name.strip().title()
@@ -107,7 +109,23 @@ def save(request):
                 messages.error(request, 'Phone number is not valid')
                 return redirect('settings')
 
-        ##################################################################################
+        valid_photo = False
+        if photo:
+            fs = FileSystemStorage()
+            filename = fs.save(
+                os.path.join(settings.MEDIA_ROOT, "photos", "users", request.user.username + "_profile.png"), photo)
+            try:
+                trial_image = Image.open(filename)
+                trial_image.verify()
+                uploaded_file_url = fs.url(filename)
+                valid_photo = True
+            except Exception as e:
+                try:
+                    os.remove(filename)
+                except Exception as e:
+                    pass
+                messages.error(request, 'Photo is not valid')
+                return redirect('settings')
 
         user_update_dict = dict()
         profile_update_dict = dict()
@@ -133,8 +151,9 @@ def save(request):
             user_data["user_birthdate"] = "{}/{}/{}".format(birthdate.month, birthdate.day, birthdate.year)
             profile_update_dict["birthdate"] = make_aware(birthdate)
 
-        # if photo:  # create
-        #     Profile.objects.filter(user_id=request.user.id).update(photo=photo)
+        if photo and valid_photo:  # create
+            user_data["user_photo"] = uploaded_file_url
+            profile_update_dict["photo"] = uploaded_file_url
 
         if password:
             user = User.objects.get(id=request.user.id)

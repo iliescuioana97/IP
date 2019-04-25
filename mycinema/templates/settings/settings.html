@@ -48,7 +48,6 @@
             </div>
             <div class="l-right">
                 {% include 'partials/top_bar.html' %}
-
                 <div class="main">
                     <h2 class="title">Settings</h2>
                     <div class="settingsContainer">
@@ -60,8 +59,11 @@
                                 <div class="col-sm-12 col-lg-4 offset-sm-1">
                                     <div class="clear">
                                         <div class="image-part">
-                                            <img src="{% static 'images/john-doe.png' %}" alt=""
-                                                 class="profile">
+                                            {% if user_photo %}
+                                            <img src="{{ user_photo }}" alt="" class="profile">
+                                            {% else %}
+                                            <img src="{% static 'images/no-photo.png' %}" alt="" class="profile">
+                                            {% endif %}
                                             <img src="{% static 'icons/icon_edit.svg' %}" alt=""
                                                  class="editProfileImage">
                                             <input type="file" name="profile_image"
