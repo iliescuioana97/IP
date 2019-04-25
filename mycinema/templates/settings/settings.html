@@ -51,12 +51,11 @@
 
                 <div class="main">
                     <h2 class="title">Settings</h2>
-
-
-
                     <div class="settingsContainer">
                         <form action="save" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
+                            <!--Alerts-->
+                            {% include 'partials/alerts.html' %}
                             <div class="row">
                                 <div class="col-sm-12 col-lg-4 offset-sm-1">
                                     <div class="clear">
@@ -76,24 +75,24 @@
                                     <div class="details-container">
                                         <div class="details">
                                             <h5>First Name</h5>
-                                            {% if user.first_name %}
-                                            <p>{{ user.first_name }}</p>
+                                            {% if user_first_name %}
+                                            <p>{{ user_first_name }}</p>
                                             {% else %}
                                             <p>-</p>
                                             {% endif %}
                                         </div>
                                         <div class="details">
                                             <h5>Last Name</h5>
-                                            {% if user.last_name %}
-                                            <p>{{ user.last_name }}</p>
+                                            {% if user_last_name %}
+                                            <p>{{ user_last_name }}</p>
                                             {% else %}
                                             <p>-</p>
                                             {% endif %}
                                         </div>
                                         <div class="details">
                                             <h5>Email</h5>
-                                            {% if user.email %}
-                                            <p>{{ user.email }}</p>
+                                            {% if user_email %}
+                                            <p>{{ user_email }}</p>
                                             {% else %}
                                             <p>-</p>
                                             {% endif %}
@@ -168,6 +167,9 @@
             </div>
         </div>
         {% include "partials/footer_scripts.html" %}
+        <script src="{% static 'scripts/main.js' %}"></script>
+        <script src="{% static 'scripts/bootstrap.bundle.min.js' %} "></script>
+        <script src="{% static 'scripts/lightbox.min.js' %} "></script>
     </body>
 
 </html>

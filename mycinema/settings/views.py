@@ -1,8 +1,11 @@
 import re
+from datetime import datetime
 
 from django.apps import apps
 from django.contrib import messages
+from django.utils.timezone import localtime
 from django.contrib.auth.models import User
+from django.utils.timezone import make_aware
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.password_validation import validate_password
@@ -11,8 +14,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 Profile = apps.get_model('accounts', 'Profile')
 
 
-@login_required(login_url='/accounts/login')
-def index(request):
+def get_data(request):
     user = request.user
     try:
         profile = Profile.objects.get(user_id=user.id)
@@ -21,6 +23,9 @@ def index(request):
 
     user_data = {
         "user_user_type": "administrator" if user.is_superuser else "mycinema user",
+        "user_first_name": user.first_name,
+        "user_last_name": user.last_name,
+        "user_email": user.email,
     }
 
     if profile:
@@ -31,12 +36,19 @@ def index(request):
                 user_data["user_phone_number"] = profile.phone_number
         if profile.photo:
             user_data["user_avatar"] = profile.photo
+    return user_data
 
+
+@login_required(login_url='/accounts/login')
+def index(request):
+    user_data = get_data(request)
     return render(request, 'settings/settings.html', user_data)
 
 
 @login_required(login_url='/accounts/login')
 def save(request):
+    user_data = get_data(request)
+
     if request.method == 'POST':
         photo = request.POST.get("profile_image")
         first_name = request.POST.get("settings_first_name")
@@ -62,6 +74,7 @@ def save(request):
                 messages.error(request, 'First Name is not valid')
                 return redirect('settings')
 
+            user_data["user_first_name"] = first_name
             User.objects.filter(id=request.user.id).update(first_name=first_name)
 
         if last_name:
@@ -70,6 +83,7 @@ def save(request):
                 messages.error(request, 'Last Name is not valid')
                 return redirect('settings')
 
+            user_data["user_last_name"] = last_name
             User.objects.filter(id=request.user.id).update(last_name=last_name)
 
         if email:
@@ -77,6 +91,11 @@ def save(request):
                 messages.error(request, 'Email is not valid')
                 return redirect('settings')
 
+            if User.objects.filter(email=email).exclude(id=request.user.id).exists():
+                messages.error(request, 'Email is being used by another user')
+                return redirect('settings')
+
+            user_data["user_email"] = email
             User.objects.filter(id=request.user.id).update(email=email)
 
         if password1 and password2:
@@ -91,14 +110,19 @@ def save(request):
                 return redirect('settings')
 
         if phone_number:
+            user_data["user_phone_number"] = phone_number
             Profile.objects.filter(user_id=request.user.id).update(phone_number=phone_number)
 
         if birthdate:
-            Profile.objects.filter(user_id=request.user.id).update(birthdate=birthdate)
+            user_data["user_birthdate"] = birthdate
+            Profile.objects.filter(user_id=request.user.id).update(
+                birthdate=make_aware(datetime.strptime(birthdate, '%Y-%M-%d')))
 
-        if photo:
+        if photo:  # create
             Profile.objects.filter(user_id=request.user.id).update(photo=photo)
 
-        return render(request, 'settings/settings.html')
+        # Extra data
+        # request.user.save()
+        return render(request, 'settings/settings.html', user_data)
     else:
-        return render(request, 'settings/settings.html')
+        return render(request, 'settings/settings.html', user_data)
