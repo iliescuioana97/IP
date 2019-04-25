@@ -23,19 +23,19 @@ def register(request):
             return redirect('register')
 
         # Check username
-        username = username.strip()
+        username = username.strip().lower()
         if not username:
             messages.error(request, 'Username is not valid')
             return redirect('register')
 
         # Check first_name, last_name
         if first_name:
-            first_name = first_name.strip()
+            first_name = first_name.strip().title()
             if not first_name:
                 messages.error(request, 'First Name is not valid')
                 return redirect('register')
         if last_name:
-            last_name = last_name.strip()
+            last_name = last_name.strip().title()
             if not last_name:
                 messages.error(request, 'Last Name is not valid')
                 return redirect('register')
