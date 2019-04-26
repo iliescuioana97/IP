@@ -7,6 +7,9 @@ import re
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'POST':
         # Get form values
         first_name = request.POST['first_name']
@@ -79,6 +82,9 @@ def register(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -103,4 +109,7 @@ def logout(request):
 
 
 def forgot_password(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+
     return render(request, 'accounts/forgot_password.html')
