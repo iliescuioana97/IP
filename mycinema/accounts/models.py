@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='photos/users/%Y/%m/%d/', blank=True)
+    photo = models.ImageField(upload_to='photos/users/%Y/%m/%d/', blank=True, max_length=255)
     phone_number = PhoneNumberField(null=True, blank=True)
     birthdate = models.DateTimeField(null=True, blank=True)
 
