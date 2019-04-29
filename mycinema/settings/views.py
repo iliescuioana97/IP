@@ -152,8 +152,8 @@ def save(request):
             profile_update_dict["birthdate"] = make_aware(birthdate)
 
         if photo and valid_photo:  # create
-            user_data["user_photo"] = uploaded_file_url
-            profile_update_dict["photo"] = uploaded_file_url
+            user_data["user_photo"] = os.path.join("/media", "photos", "users", os.path.basename(filename))
+            profile_update_dict["photo"] = os.path.join("/media", "photos", "users", os.path.basename(filename))
 
         if password:
             user = User.objects.get(id=request.user.id)
