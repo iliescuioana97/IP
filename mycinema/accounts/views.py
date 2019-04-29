@@ -122,9 +122,9 @@ def login(request):
     if request.user.is_authenticated:
         return redirect('home')
 
-    cookie_username = ''
-    if 'cookie_username' in request.COOKIES:
-        cookie_username = request.COOKIES['cookie_username']
+    login_username = ''
+    if 'login_username' in request.COOKIES:
+        login_username = request.COOKIES['login_username']
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -137,19 +137,19 @@ def login(request):
 
             # Setting the cookie for username
             response = redirect('index')
-            response.set_cookie('cookie_username', username)
+            response.set_cookie('login_username', username)
 
             return response
         else:
             messages.error(request, 'Invalid credentials')
-            cookie_username = request.POST['username']
+            login_username = request.POST['username']
 
             response = redirect('login')
-            response.set_cookie('cookie_username', cookie_username)
+            response.set_cookie('login_username', login_username)
 
             return response
     else:
-        return render(request, 'accounts/login.html', context={'cookie_username': cookie_username})
+        return render(request, 'accounts/login.html', context={'login_username': login_username})
 
 
 def logout(request):

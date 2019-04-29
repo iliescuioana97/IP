@@ -19,7 +19,7 @@
                 {% include 'partials/alerts.html' %}
                 <form action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="username" id="username" placeholder="Username" required value={{ cookie_username }}>
+                    <input type="text" name="username" id="username" placeholder="Username" required value={{ login_username }}>
                     <input type="password" name="password" id="password" placeholder="Password" required>
                     <div class="checkbox-forgpass-container">
                         <div class="checkbox-container">
