@@ -10,6 +10,37 @@ def register(request):
     if request.user.is_authenticated:
         return redirect('home')
 
+    # Function to make code cleaner and more readable
+    def redirect_register():
+
+        # Set the new values for cookies
+        cookie_fname = request.POST['first_name']
+        cookie_lname = request.POST['last_name']
+        cookie_email = request.POST['email']
+        cookie_username = request.POST['username']
+
+        response = redirect('register')
+
+        # max_age - 60 seconds availability, cookies reset
+        # Assuming that the user doesn't need more than 60 seconds to make an account
+        max_age_seconds = 60
+        response.set_cookie('cookie_fname', cookie_fname, max_age=max_age_seconds)
+        response.set_cookie('cookie_lname', cookie_lname, max_age=max_age_seconds)
+        response.set_cookie('cookie_email', cookie_email, max_age=max_age_seconds)
+        response.set_cookie('cookie_username', cookie_username, max_age=max_age_seconds)
+
+        return response
+
+    # Default values for cookies
+    cookie_fname, cookie_lname, cookie_email, cookie_username = '', '', '', ''
+
+    # If the cookies are already set, just grab them to render
+    if {'cookie_username', 'cookie_email', 'cookie_fname', 'cookie_lname'} & request.COOKIES.keys():
+        cookie_username = request.COOKIES['cookie_username']
+        cookie_fname = request.COOKIES['cookie_fname']
+        cookie_lname = request.COOKIES['cookie_lname']
+        cookie_email = request.COOKIES['cookie_email']
+
     if request.method == 'POST':
         # Get form values
         first_name = request.POST['first_name']
@@ -23,7 +54,7 @@ def register(request):
         # Check agreement
         if not terms or terms != "1":
             messages.error(request, 'You must accept the terms and conditions')
-            return redirect('register')
+            return redirect_register()
 
         # Check username
         username = username.strip().lower()
@@ -64,7 +95,7 @@ def register(request):
                         validate_password(password)
                     except Exception as e:
                         messages.error(request, 'Password does not meet requirements')
-                        return redirect('register')
+                        return redirect_register()
 
                     user = User.objects.create_user(username=username,
                                                     password=password,
@@ -78,12 +109,22 @@ def register(request):
             messages.error(request, 'Passwords do not match')
             return redirect('register')
     else:
-        return render(request, 'accounts/register.html')
+        response = render(request, 'accounts/register.html', context={
+            'cookie_username': cookie_username,
+            'cookie_fname': cookie_fname,
+            'cookie_lname': cookie_lname,
+            'cookie_email': cookie_email})
+
+        return response
 
 
 def login(request):
     if request.user.is_authenticated:
         return redirect('home')
+
+    cookie_username = ''
+    if 'cookie_username' in request.COOKIES:
+        cookie_username = request.COOKIES['cookie_username']
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -93,12 +134,22 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'You are now logged in')
-            return redirect('index')
+
+            # Setting the cookie for username
+            response = redirect('index')
+            response.set_cookie('cookie_username', username)
+
+            return response
         else:
             messages.error(request, 'Invalid credentials')
-            return redirect('login')
+            cookie_username = request.POST['username']
+
+            response = redirect('login')
+            response.set_cookie('cookie_username', cookie_username)
+
+            return response
     else:
-        return render(request, 'accounts/login.html')
+        return render(request, 'accounts/login.html', context={'cookie_username': cookie_username})
 
 
 def logout(request):
@@ -106,10 +157,3 @@ def logout(request):
         auth.logout(request)
         messages.success(request, 'You are now logged out')
         return redirect('login')
-
-
-def forgot_password(request):
-    if request.user.is_authenticated:
-        return redirect('home')
-
-    return render(request, 'accounts/forgot_password.html')
