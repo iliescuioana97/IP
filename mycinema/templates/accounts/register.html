@@ -21,14 +21,14 @@
                     {% csrf_token %}
                     <div class="firstname-lastname-container">
                         <div class="firstname">
-                            <input type="text" name="first_name" id="first_name" placeholder="First Name" required>
+                            <input type="text" name="first_name" id="first_name" placeholder="First Name" required value={{ cookie_fname }}>
                         </div>
                         <div class="lastname">
-                            <input type="text" name="last_name" id="last_name" placeholder="Last Name" required>
+                            <input type="text" name="last_name" id="last_name" placeholder="Last Name" required value={{ cookie_lname }}>
                         </div>
                     </div>
-                    <input type="text" name="username" id="username" placeholder="Username" required>
-                    <input type="text" name="email" id="email" placeholder="E-mail" required>
+                    <input type="text" name="username" id="username" placeholder="Username" required value={{ cookie_username }}>
+                    <input type="text" name="email" id="email" placeholder="E-mail" required value={{ cookie_email }}>
                     <input type="password" name="password" id="password" placeholder="Password" required>
                     <input type="password" name="password2" id="password2" placeholder="Confirm Password" required>
 
