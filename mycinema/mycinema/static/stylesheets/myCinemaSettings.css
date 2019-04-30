@@ -1,11 +1,11 @@
 .container{
-    display: grid;
+    /* display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
     "settingsContainer settingsContainer settingsContainer settingsContainer settingsContainer";
     position: relative;
     min-height: auto;
-    font-family: 'Source Sans Pro';
+    font-family: 'Source Sans Pro'; */
 }
 
 .settingsContainer{
@@ -347,12 +347,12 @@ form.settingsForm {
 
   .container{
 
-    display: grid;
+    /* display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
     "settingsContainer settingsContainer settingsContainer settingsContainer settingsContainer";
     position: relative;
-    min-height: auto;
+    min-height: auto; */
 }
 
   .settings{
