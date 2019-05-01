@@ -86,3 +86,12 @@ a.active.selector-chooseall:focus, a.active.selector-clearall:focus, a.active.se
 a.active.selector-chooseall:focus, a.active.selector-chooseall:hover {
     background-position: 100% -160px !important;
 }
+
+.calendar td.selected a {
+    background: #8f8dae !important;
+}
+
+.calendar td a:focus, .timelist a:focus, .calendar td a:hover, .timelist a:hover {
+    background: #8f8dae !important;
+}
+

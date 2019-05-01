@@ -16,7 +16,6 @@
     </head>
 
     <body>
-
         <div class="layout">
             <div class="l-left">
                 <a href="#" class="toggle-menu topm1"><i class="material-icons">menu</i></a>
@@ -61,10 +60,10 @@
                                 <div class="movie-image" style="background-image: url({{ m.photo_main.url }})"></div>
                                 <div class="movie-info">
                                     <div class="movie-name">
-                                        {{ m.name }}
+                                        <a href="{% url 'movie' m.id %}">{{ m.name }}</a>
                                     </div>
                                     <div class="movie-price">
-                                        {{ m.price }}
+                                        LEI {{ m.price }}
                                     </div>
                                     <div class="movie-book-now">
                                         <button class="movie-button-book-now">Book now</button>

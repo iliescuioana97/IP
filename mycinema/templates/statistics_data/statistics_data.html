@@ -115,13 +115,17 @@
 
                 <div class="main">
                     <h2 class="title">Statistics</h2>
-
+                    {% if user.is_superuser %}
                     <div class="row">
                         <div class="column">
                             <div class="tickets">
                                 <h6>Total Tickets</h6>
-                                <h3>246k</h3>
-                                <h4><i class="arrow down"></i> 13,8%</h4>
+                                <h3>{{ total_tickets }}</h3>
+                                {% if tickets_growth %}
+                                <h4><i class="arrow up"></i> {{ tickets_percentage }}%</h4>
+                                {% else %}
+                                <h4><i class="arrow down"></i> {{ tickets_percentage }}%</h4>
+                                {% endif %}
                             </div>
                             <div class="tickets1">
                                 <p class="sparklist">
@@ -160,8 +164,13 @@
                         <div class="column">
                             <div class="movies">
                                 <h6>Movies played</h6>
-                                <h3>2453</h3>
-                                <h4><i class="arrow up"></i> 13,8%</h4></div>
+                                <h3>{{ total_shows }}</h3>
+                                {% if shows_growth %}
+                                <h4><i class="arrow up"></i> {{ shows_percentage }}%</h4>
+                                {% else %}
+                                <h4><i class="arrow down"></i> {{ shows_percentage }}%</h4>
+                                {% endif %}
+                            </div>
                             <div class="movies1">
                                 <p class="sparklist">
                      <span class="sparkline">
@@ -186,8 +195,13 @@
                         <div class="column">
                             <div class="earnings">
                                 <h6>Total Earnings</h6>
-                                <h3>$39k</h3>
-                                <h4><i class="arrow down"></i> 13,8%</h4></div>
+                                <h3>${{ total_earnings }}</h3>
+                                {% if earnings_growth %}
+                                <h4><i class="arrow up"></i> {{ earnings_percentage }}%</h4>
+                                {% else %}
+                                <h4><i class="arrow down"></i> {{ earnings_percentage }}%</h4>
+                                {% endif %}
+                            </div>
                             <div class="earnings1"><p class="sparklist">
                       <span class="sparkline">
                         <span class="index"><span class="count3"
@@ -221,8 +235,8 @@
                             </div>
                         </div>
 
-
                     </div>
+                    {% endif %}
                 </div>
 
                 <div class="chart">

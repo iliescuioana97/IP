@@ -9,7 +9,7 @@ def index(request):
 
 
 @login_required(login_url='/accounts/login')
-def movie(request, movie_id):
+def program_movie(request, movie_id):
     return render(request, 'program/program.html')
 
 

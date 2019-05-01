@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth.decorators import login_required
 
@@ -22,7 +22,13 @@ def index(request):
 
 @login_required(login_url='/accounts/login')
 def movie(request, movie_id):
-    return render(request, 'movies/movie.html')
+    movie = get_object_or_404(Movie, pk=movie_id)
+
+    context = {
+        'movie': movie
+    }
+
+    return render(request, 'movies/movie.html', context)
 
 
 @login_required(login_url='/accounts/login')
