@@ -115,7 +115,7 @@
 
                 <div class="main">
                     <h2 class="title">Statistics</h2>
-
+                    {% if user.is_superuser %}
                     <div class="row">
                         <div class="column">
                             <div class="tickets">
@@ -221,8 +221,8 @@
                             </div>
                         </div>
 
-
                     </div>
+                    {% endif %}
                 </div>
 
                 <div class="chart">

@@ -116,3 +116,19 @@
     background-color: #dedee7 !important;
     border-color: #dedee7 !important;
 }
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #fff;
+
+}
+
+.movie-button-book-now {
+    background-color: #8f8dae;
+}
+.movie-button-book-now:hover{
+background-color: #dedde7;
+}

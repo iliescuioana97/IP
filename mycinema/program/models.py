@@ -18,7 +18,7 @@ class Show(models.Model):
     is_published = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.movie_id.name
+        return "{}__{}".format(self.movie_id.name, self.date.strftime('%Y-%m-%d %H:%M:%S'))
 
 
 class Ticket(models.Model):
@@ -30,4 +30,4 @@ class Ticket(models.Model):
     is_valid = models.BooleanField(default=True)
 
     def __str__(self):
-        return "{}_{}".format(self.show_id.movie_id.name, self.user_id.username)
+        return "{}__{}".format(self.show_id.movie_id.name, self.user_id.username)
