@@ -75,6 +75,7 @@
             chart.draw(data, options);
         }
 
+
         </script>
         <title>MyCinema | Statistics</title>
     </head>
@@ -122,9 +123,9 @@
                                 <h6>Total Tickets</h6>
                                 <h3>{{ total_tickets }}</h3>
                                 {% if tickets_growth %}
-                                <h4><i class="arrow up"></i> {{ tickets_percentage }}%</h4>
+                                <h4><i class="arrow up"></i>&nbsp;{{ tickets_percentage }}%</h4>
                                 {% else %}
-                                <h4><i class="arrow down"></i> {{ tickets_percentage }}%</h4>
+                                <h4><i class="arrow down"></i>&nbsp;{{ tickets_percentage }}%</h4>
                                 {% endif %}
                             </div>
                             <div class="tickets1">
@@ -166,9 +167,9 @@
                                 <h6>Movies played</h6>
                                 <h3>{{ total_shows }}</h3>
                                 {% if shows_growth %}
-                                <h4><i class="arrow up"></i> {{ shows_percentage }}%</h4>
+                                <h4><i class="arrow up"></i>&nbsp;{{ shows_percentage }}%</h4>
                                 {% else %}
-                                <h4><i class="arrow down"></i> {{ shows_percentage }}%</h4>
+                                <h4><i class="arrow down"></i>&nbsp;{{ shows_percentage }}%</h4>
                                 {% endif %}
                             </div>
                             <div class="movies1">
@@ -197,9 +198,9 @@
                                 <h6>Total Earnings</h6>
                                 <h3>${{ total_earnings }}</h3>
                                 {% if earnings_growth %}
-                                <h4><i class="arrow up"></i> {{ earnings_percentage }}%</h4>
+                                <h4><i class="arrow up"></i>&nbsp;{{ earnings_percentage }}%</h4>
                                 {% else %}
-                                <h4><i class="arrow down"></i> {{ earnings_percentage }}%</h4>
+                                <h4><i class="arrow down"></i>&nbsp;{{ earnings_percentage }}%</h4>
                                 {% endif %}
                             </div>
                             <div class="earnings1"><p class="sparklist">
