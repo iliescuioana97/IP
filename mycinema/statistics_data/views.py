@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils.timezone import make_aware
 from django.db.models import Min, Sum
+from django.http import JsonResponse
 
 from program.models import Show, Ticket
 from accounts.models import Profile
@@ -18,6 +19,10 @@ import datetime
 
 @login_required(login_url='/accounts/login')
 def index(request):
+    return render(request, 'statistics_data/statistics_data.html', {})
+
+@login_required(login_url='/accounts/login')
+def stats_api(request):
     admin_shows = statistics_admin_shows()
     admin_tickets = statistics_admin_tickets()
     admin_earnings = statistics_admin_earnings()
@@ -26,33 +31,33 @@ def index(request):
 
     if request.user.is_superuser:
         context = {
-            'total_shows': human_format(admin_shows['total_shows']),
+            'total_shows': (admin_shows['total_shows']),
             'shows_percentage': abs(admin_shows['percentage']),
             'shows_growth': True if admin_shows['percentage'] > 0 else False,
-            'total_tickets': human_format(admin_tickets['total_tickets']),
+            'total_tickets': (admin_tickets['total_tickets']),
             'tickets_percentage': abs(admin_tickets['percentage']),
             'tickets_growth': True if admin_tickets['percentage'] > 0 else False,
-            'total_earnings': human_format(admin_earnings['total_earnings']),
+            'total_earnings': (admin_earnings['total_earnings']),
             'earnings_percentage': abs(admin_earnings['percentage']),
             'earnings_growth': True if admin_earnings['percentage'] > 0 else False
         }
+
     age_distribution = statistics_age_distribution()
     movie_distribution = statistics_movie_distribution()
 
-    statistics_location = os.path.join(settings.MEDIA_ROOT, 'statistics')
-    os.makedirs(statistics_location, exist_ok=True)
+    context['age_distribution'] = age_distribution
+    context['movie_distribution'] = movie_distribution
 
-    with open(os.path.join(statistics_location, 'age_distribution.json'), 'w+') as fh:
-        json.dump(age_distribution, fh, indent=4)
+    # statistics_location = os.path.join(settings.MEDIA_ROOT, 'statistics')
+    # os.makedirs(statistics_location, exist_ok=True)
 
-    with open(os.path.join(statistics_location, 'movie_distribution.json'), 'w+') as fh:
-        json.dump(movie_distribution, fh, indent=4)
+    # with open(os.path.join(statistics_location, 'age_distribution.json'), 'w+') as fh:
+    #     json.dump(age_distribution, fh, indent=4)
+    #
+    # with open(os.path.join(statistics_location, 'movie_distribution.json'), 'w+') as fh:
+    #     json.dump(movie_distribution, fh, indent=4)
 
-    context['age_distribution_statistics'] = age_distribution
-    context['movie_distribution_statistics'] = movie_distribution
-    
-    return render(request, 'statistics_data/statistics_data.html', context)
-
+    return JsonResponse(context)
 
 def statistics_admin_shows():
     data = {
@@ -157,8 +162,10 @@ def statistics_admin_earnings():
 
 
 def statistics_age_distribution():
-    data = {'title': 'Age Distribution',
-            'param': 'Number of People',
+    data = {
+        'title': 'Age Distribution',
+        'param': 'Number of People',
+        'values': {
             'under 7': 0,
             '7-14': 0,
             '15-18': 0,
@@ -168,61 +175,64 @@ def statistics_age_distribution():
             '45–54': 0,
             '55–64': 0,
             '65+': 0
-            }
+        }
+    }
     users = Profile.objects.filter(birthdate__isnull=False)
 
     for user in users.iterator():
         user_age = calculate_age(user.birthdate)
         if user_age < 7:
-            data['under 7'] += 1
+            data['values']['under 7'] += 1
         elif 7 <= user_age <= 14:
-            data['7-14'] += 1
+            data['values']['7-14'] += 1
         elif 15 <= user_age <= 18:
-            data['15-18'] += 1
+            data['values']['15-18'] += 1
         elif 19 <= user_age <= 24:
-            data['19-24'] += 1
+            data['values']['19-24'] += 1
         elif 25 <= user_age <= 34:
-            data['25–34'] += 1
+            data['values']['25–34'] += 1
         elif 35 <= user_age <= 44:
-            data['35–44'] += 1
+            data['values']['35–44'] += 1
         elif 45 <= user_age <= 54:
-            data['45–54'] += 1
+            data['values']['45–54'] += 1
         elif 55 <= user_age <= 64:
-            data['55–54'] += 1
+            data['values']['55–54'] += 1
         elif user_age >= 65:
-            data['65+'] += 1
+            data['values']['65+'] += 1
 
     return data
 
 
 def statistics_movie_distribution():
     data = {
-        'name': 'Movie Distribution',
+        'title': 'Movie Distribution',
         'param': 'Number of Movies',
-        'Action': 0,
-        'Adventure': 0,
-        'Animation': 0,
-        'Biography': 0,
-        'Comedy': 0,
-        'Crime': 0,
-        'Documentary': 0,
-        'Drama': 0,
-        'Family': 0,
-        'Fantasy': 0,
-        'Film Noir': 0,
-        'History': 0,
-        'Horror': 0,
-        'Music': 0,
-        'Musical': 0,
-        'Mystery': 0,
-        'Romance': 0,
-        'Sci-Fi': 0,
-        'Short': 0,
-        'Sport': 0,
-        'Superhero': 0,
-        'Thriller': 0,
-        'War': 0,
-        'Western': 0
+        'values': {
+            'Action': 0,
+            'Adventure': 0,
+            'Animation': 0,
+            'Biography': 0,
+            'Comedy': 0,
+            'Crime': 0,
+            'Documentary': 0,
+            'Drama': 0,
+            'Family': 0,
+            'Fantasy': 0,
+            'Film Noir': 0,
+            'History': 0,
+            'Horror': 0,
+            'Music': 0,
+            'Musical': 0,
+            'Mystery': 0,
+            'Romance': 0,
+            'Sci-Fi': 0,
+            'Short': 0,
+            'Sport': 0,
+            'Superhero': 0,
+            'Thriller': 0,
+            'War': 0,
+            'Western': 0
+        }
     }
 
     users = Movie.objects.all()
@@ -231,8 +241,8 @@ def statistics_movie_distribution():
         genres = re.findall('\w+', movie.genre)
         for genre in genres:
             genre = genre.title()
-            if genre in data.keys():
-                data[genre] += 1
+            if genre in data['values'].keys():
+                data['values'][genre] += 1
 
     return data
 

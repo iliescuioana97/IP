@@ -9,76 +9,6 @@
         {% include "partials/head_styles.html" %}
 
         <link rel="stylesheet" href="{% static 'stylesheets/Statistics/style.css' %}">
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-        <script type="text/javascript">
-        // Load google charts
-        google.charts.load('current', {'packages': ['corechart']});
-        google.charts.setOnLoadCallback(drawAgeDistributionChart);
-        google.charts.setOnLoadCallback(drawMovieDistributionChart);
-
-        // Draw the chart and set the chart values
-        function drawAgeDistributionChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Age', 'Number of People'],
-                ['under 7', 4260],
-                ['7-14', 3970],
-                ['14-18', 3454],
-                ['18+', 2390],
-            ]);
-
-            // Optional; add a title and set the width and height of the chart
-            var options = {
-                'title': 'Age Distribution', titleTextStyle: {fontSize: 15, fontName: 'Source Sans Pro', regular: true},
-                pieHole: 0.58, 'width': 400, 'height': 250,
-                colors: ['#55D9FD', '#FE8575', '#FFD983', '#A49DFF'], backgroundColor: '#FEFCFF',
-                legend: {
-                    position: 'right',
-                    alignment: 'center',
-                    textStyle: {fontSize: 11, fontName: 'Source Sans Pro', regular: true}
-                }, pieSliceText: 'none'
-            };
-            // Display the chart inside the <div> element with id="piechart"
-            var chart = new google.visualization.PieChart(document.getElementById('Age_chart_div'));
-            chart.draw(data, options);
-        }
-
-        // Draw the chart and set the chart values
-        function drawMovieDistributionChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Gender', 'Number of Movies'],
-                ['Action', 4260],
-                ['Comedy', 3970],
-                ['Drama', 3454],
-                ['Animation', 2390],
-            ]);
-
-            // Optional; add a title and set the width and height of the chart
-            var options = {
-                'title': 'Movie Distribution',
-                titleTextStyle: {fontSize: 15, fontName: 'Source Sans Pro', regular: true},
-                pieHole: 0.58,
-                'width': 400,
-                'height': 250,
-                colors: ['#55D9FD', '#FE8575', '#FFD983', '#A49DFF'],
-                backgroundColor: '#FEFCFF',
-                legend: {
-                    position: 'right',
-                    alignment: 'center',
-                    textStyle: {fontSize: 11, fontName: 'Source Sans Pro', regular: true}
-                },
-                pieSliceText: 'none'
-            };
-
-            // Display the chart inside the <div> element with id="piechart"
-            var chart = new google.visualization.PieChart(document.getElementById('Movie_chart_div'));
-            chart.draw(data, options);
-        }
-
-
-
-
-        </script>
         <title>MyCinema | Statistics</title>
     </head>
     <body>
@@ -123,12 +53,8 @@
                         <div class="column">
                             <div class="tickets">
                                 <h6>Total Tickets</h6>
-                                <h3>{{ total_tickets }}</h3>
-                                {% if tickets_growth %}
-                                <h4><i class="arrow up"></i>&nbsp;{{ tickets_percentage }}%</h4>
-                                {% else %}
-                                <h4><i class="arrow down"></i>&nbsp;{{ tickets_percentage }}%</h4>
-                                {% endif %}
+                                <h3 class="info-tickets-total">-</h3>
+                                <h4><i class="arrow up info-tickets-arrow"></i>&nbsp; <span class="info-tickets-percentage">-%</span></h4>
                             </div>
                             <div class="tickets1">
                                 <p class="sparklist">
@@ -167,12 +93,8 @@
                         <div class="column">
                             <div class="movies">
                                 <h6>Movies played</h6>
-                                <h3>{{ total_shows }}</h3>
-                                {% if shows_growth %}
-                                <h4><i class="arrow up"></i>&nbsp;{{ shows_percentage }}%</h4>
-                                {% else %}
-                                <h4><i class="arrow down"></i>&nbsp;{{ shows_percentage }}%</h4>
-                                {% endif %}
+                                <h3 class="info-shows-total">-</h3>
+                                <h4><i class="arrow up info-shows-arrow"></i>&nbsp; <span class="info-shows-percentage">-%</span></h4>
                             </div>
                             <div class="movies1">
                                 <p class="sparklist">
@@ -198,12 +120,8 @@
                         <div class="column">
                             <div class="earnings">
                                 <h6>Total Earnings</h6>
-                                <h3>${{ total_earnings }}</h3>
-                                {% if earnings_growth %}
-                                <h4><i class="arrow up"></i>&nbsp;{{ earnings_percentage }}%</h4>
-                                {% else %}
-                                <h4><i class="arrow down"></i>&nbsp;{{ earnings_percentage }}%</h4>
-                                {% endif %}
+                                <h3 class="info-earnings-total">-</h3>
+                                <h4><i class="arrow up info-earnings-arrow"></i>&nbsp; <span class="info-earnings-percentage">-%</span></h4>
                             </div>
                             <div class="earnings1"><p class="sparklist">
                       <span class="sparkline">
@@ -258,6 +176,9 @@
                 </div>
             </div>
         </div>
+
         {% include "partials/footer_scripts.html" %}
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="{% static 'scripts/stats.js' %}"></script>
     </body>
 </html>
