@@ -94,7 +94,7 @@ body {
     text-align: center;
     border-right: 1px solid cornflowerblue;
     border-top: 1px solid cornflowerblue;
-    padding: 10px 0;
+    padding: 7px 0;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -139,6 +139,13 @@ body {
 
 .column-left p {
     margin: 5px 10px 5px 15px;
+    word-break: break-word;
+    margin-left: 3px;
+    text-align: left;
+}
+.column-left .information-play {
+    padding: 5px;
+    padding-left: 10px;
 }
 
 .column-right {
