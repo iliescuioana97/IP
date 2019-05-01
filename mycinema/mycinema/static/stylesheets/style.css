@@ -21,6 +21,7 @@ body {
     min-height: 100vh;
 }
 .layout .l-left {
+    flex: 0;
     flex-basis: 220px;
     background: var(--color-prim);
     color: #333;
