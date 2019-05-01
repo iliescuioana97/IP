@@ -62,15 +62,15 @@
                             <div class="cinema-room">
                                 <h5 class="title"><a href="{% url 'program' %}">{{ r.name }}</a></h5>
                                 <div class="slider-container w3-content w3-display-container">
-                                    <img class="slide" src="{{ r.photo_main.url }}">
+                                    <div class="slide slide-bg" style="background-image: url('{{ r.photo_main.url }}')"></div>
                                     {% if r.photo_1 %}
-                                    <img class="slide" src="{{ r.photo_1.url }}">
+                                    <div class="slide slide-bg" style="background-image: url('{{ r.photo_1.url }}')"></div>
                                     {% endif %}
                                     {% if r.photo_2 %}
-                                    <img class="slide" src="{{ r.photo_2.url }}">
+                                    <div class="slide slide-bg" style="background-image: url('{{ r.photo_2.url }}')"></div>
                                     {% endif %}
                                     {% if r.photo_3 %}
-                                    <img class="slide" src="{{ r.photo_3.url }}">
+                                    <div class="slide slide-bg" style="background-image: url('{{ r.photo_3.url }}')"></div>
                                     {% endif %}
                                     <div class="badges-container w3-center w3-container w3-large w3-text-white w3-display-bottommiddle">
                                         <span class="w3-badge badge w3-hover-white"> </span>

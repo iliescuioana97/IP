@@ -22,6 +22,7 @@ body {
 }
 .layout .l-left {
     flex: 0;
+    flex-shrink: 0;
     flex-basis: 220px;
     background: var(--color-prim);
     color: #333;
