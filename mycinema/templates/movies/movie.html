@@ -1,13 +1,108 @@
 {% load static %}
 {% load humanize %}
-<h1>MOVIE TEMPLATE</h1>
-<h1>eu sunt movie.html</h1>
-<h1>{{ movie.name }}</h1>
-<h2>{{ movie.genre }}</h2>
-<h1>{{ movie.description }}</h1>
-<h1>{{ movie.trailer_link }}</h1>
-<h1>{{ movie.duration }}</h1>
-<h1>{{ movie.price }}</h1>
-<h1>{{ movie.photo_main }}</h1>
-<h1>is_published = {{ movie.is_published }} daca e publicat, apare si butonul de book_now care redirecteaza la: vezi movies.html, si
-    butonul sa fie de acolo preluat</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        {% include "partials/head_styles.html" %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/movie.css' %}">
+
+        <title>MyCinema | Movies</title>
+
+    </head>
+
+    <body>
+                <div class="layout">
+            <div class="l-left">
+                <a href="#" class="toggle-menu topm1"><i class="material-icons">menu</i></a>
+                <a href="{% url 'home' %}" class="logo-menu">My Cinema</a>
+                <div class="menu">
+                    <a href="{% url 'home' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_home-1.svg' %}" alt="" class="ico">
+                        Home
+                    </a>
+                    <a href="{% url 'statistics_data' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_dashboard-1.svg' %}" alt="" class="ico">
+                        Statistics
+                    </a>
+                    <a href="{% url 'movies' %}" class="menu-item active">
+                        <img src="{% static 'icons/icon_products-1.svg' %}" alt="" class="ico">
+                        Movies
+                    </a>
+                    <a href="{% url 'cinema_rooms' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_Invoices-1.svg' %}" alt="" class="ico">
+                        Cinema Rooms
+                    </a>
+                    <a href="{% url 'program' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_calendar-1.svg' %}" alt="" class="ico">
+                        Program
+                    </a>
+                    <a href="{% url 'settings' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_setting.svg' %}" alt="" class="ico">
+                        Settings
+                    </a>
+                </div>
+            </div>
+            <div class="l-right">
+                {% include 'partials/top_bar.html' %}
+
+                <div class="main">
+                    <div style="font-size: 30px; text-transform: uppercase;">{{ movie.name }}</div>
+                    <br>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="iframe-container">
+
+                                <!-- movie.trailer_link este ID-ul filmului de pe youtube ci nu link-ul in sine. -->
+                                <iframe width="1580" height="720" src="https://www.youtube.com/embed/{{ movie.trailer_link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                            </div>
+
+                            <div class="description-container">
+                                <div class="desc-text">
+                                    <div class="description">{{ movie.description }}</div>
+                                    <br>
+                                    <h2><b>Name</b>: {{movie.name}}</h2> 
+                                    <h2><b>Genre</b>: {{movie.genre}}</h2> 
+                                    <h2><b>Duration</b>: {{movie.duration}} minutes</h2>
+                                    <h2><b>Price</b>: {{movie.price}} lei</h2> 
+                                </div>
+
+                                <div class="image-container">
+                                    <div class="movie-image" style="background-image: url({{ movie.photo_main.url }})"></div>
+                                </div>
+                            </div>
+                            
+                            {% if movie.is_published %}
+                                <div class="button-book">
+                                    <div class="filler"></div>
+                                    <button class="movie-button-book-now">Book now</button>
+                                    <div class="filler"></div>
+                                </div>
+                            {% else %}
+                                <br>
+                                <div class="button-book">
+                                    <div class="filler"></div>
+                                    <h1>Movie not yet available in our cinema!</h1>
+                                    <div class="filler"></div>
+                                </div>
+                            {% endif %}  
+
+                        </div>
+
+                       
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+
+        
+    </body>
+</html>
