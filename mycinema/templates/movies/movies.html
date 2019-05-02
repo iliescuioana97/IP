@@ -60,7 +60,7 @@
                                 <div class="movie-image" style="background-image: url({{ m.photo_main.url }})"></div>
                                 <div class="movie-info">
                                     <div class="movie-name">
-                                        <a href="{% url 'movie' m.id %}">{{ m.name }}</a>
+                                        <a href="{% url 'movie' m.id %}" style="font-size: 130%">{{ m.name }}</a>
                                     </div>
                                     <div class="movie-price">
                                         LEI {{ m.price }}
