@@ -60,7 +60,7 @@
                                     <div class="clear">
                                         <div class="image-part">
                                             {% if user_photo %}
-                                            <img src="{{ user_photo }}" alt="" class="profile">
+                                            <img src="{{ user_photo.url }}" alt="" class="profile">
                                             {% else %}
                                             <img src="{% static 'images/no-photo.png' %}" alt="" class="profile">
                                             {% endif %}

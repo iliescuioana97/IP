@@ -111,9 +111,14 @@ def save(request):
 
         valid_photo = False
         if photo:
+            current_date = datetime.now()
+            photo_location = os.path.join("photos", "users", str(current_date.year),
+                                          "{:02d}".format(current_date.month), "{:02d}".format(current_date.day),
+                                          request.user.username + "_profile.png")
+            photo_save_location = os.path.join(settings.MEDIA_ROOT, photo_location)
             fs = FileSystemStorage()
-            filename = fs.save(
-                os.path.join(settings.MEDIA_ROOT, "photos", "users", request.user.username + "_profile.png"), photo)
+            filename = fs.save(photo_save_location, photo)
+            photo_location = photo_location.replace(os.path.basename(photo_location), os.path.basename(filename))
             try:
                 trial_image = Image.open(filename)
                 trial_image.verify()
@@ -152,8 +157,8 @@ def save(request):
             profile_update_dict["birthdate"] = make_aware(birthdate)
 
         if photo and valid_photo:  # create
-            user_data["user_photo"] = os.path.join("/media", "photos", "users", os.path.basename(filename))
-            profile_update_dict["photo"] = os.path.join("/media", "photos", "users", os.path.basename(filename))
+            user_data["user_photo"] = photo_location.replace(os.sep, '/')
+            profile_update_dict["photo"] = photo_location.replace(os.sep, '/')
 
         if password:
             user = User.objects.get(id=request.user.id)
@@ -161,7 +166,12 @@ def save(request):
             user.save()
 
         User.objects.filter(id=request.user.id).update(**user_update_dict)
-        Profile.objects.filter(user_id=request.user.id).update(**profile_update_dict)
+        profile_id = Profile.objects.filter(user_id=request.user.id).update(**profile_update_dict)
+
+        if photo and valid_photo:
+            profile = Profile.objects.get(id=profile_id)
+            profile_photo = profile.photo
+            user_data["user_photo"] = profile_photo
 
         messages.success(request, 'Your data has been changed')
         return render(request, 'settings/settings.html', user_data)

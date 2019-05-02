@@ -12,7 +12,7 @@ class Profile(models.Model):
     birthdate = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return self.user.user_name
+        return self.user.username
 
 
 @receiver(post_save, sender=User)
