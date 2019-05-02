@@ -51,8 +51,7 @@
                 {% include 'partials/top_bar.html' %}
 
                 <div class="main">
-                    <div style="font-size: 30px; text-transform: uppercase;">{{ movie.name }}</div>
-                    <br>
+                    <div class="title">{{ movie.name }}</div>
 
                     <div class="card">
                         <div class="card-body">
@@ -64,35 +63,32 @@
                             </div>
 
                             <div class="description-container">
-                                <div class="desc-text">
-                                    <div class="description">{{ movie.description }}</div>
-                                    <br>
-                                    <h2><b>Name</b>: {{movie.name}}</h2> 
-                                    <h2><b>Genre</b>: {{movie.genre}}</h2> 
-                                    <h2><b>Duration</b>: {{movie.duration}} minutes</h2>
-                                    <h2><b>Price</b>: {{movie.price}} lei</h2> 
-                                </div>
-
                                 <div class="image-container">
                                     <div class="movie-image" style="background-image: url({{ movie.photo_main.url }})"></div>
                                 </div>
-                            </div>
-                            
-                            {% if movie.is_published %}
-                                <div class="button-book">
-                                    <div class="filler"></div>
-                                    <button class="movie-button-book-now">Book now</button>
-                                    <div class="filler"></div>
-                                </div>
-                            {% else %}
-                                <br>
-                                <div class="button-book">
-                                    <div class="filler"></div>
-                                    <h1>Movie not yet available in our cinema!</h1>
-                                    <div class="filler"></div>
-                                </div>
-                            {% endif %}  
 
+                                <div class="desc-text">
+                                    <div class="description">{{ movie.description }}</div>
+                                    <br>
+                                    <div class="text-desc"><b>Name</b>: {{movie.name}}</div>
+                                    <div class="text-desc"><b>Genre</b>: {{movie.genre}}</div>
+                                    <div class="text-desc"><b>Duration</b>: {{movie.duration}} minutes</div>
+                                    <div class="text-desc"><b>Price</b>: {{movie.price}} Lei</div>
+
+                                    <br><br>
+                                    {% if movie.is_published %}
+                                        <div class="button-book">                          
+                                            <button class="movie-button-book-now">Book now</button>
+                                        </div>
+                                    {% else %}
+                                        <div class="button-book">
+                                            <div class="filler"></div>
+                                            <h1>Movie not yet available in our cinema!</h1>
+                                            <div class="filler"></div>
+                                        </div>
+                                    {% endif %}  
+                                </div>  
+                            </div>
                         </div>
 
                        
