@@ -1,5 +1,10 @@
 $(document).ready(function(){
     setInitialTriggers();
+
+    $(".programs .buttons-top button").click(function (e) {
+       e.preventDefault();
+       $(this).removeClass('active');
+    });
 })
 
 var setInitialTriggers = function() {

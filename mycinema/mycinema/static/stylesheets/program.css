@@ -58,6 +58,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     width: 95%;
+    margin: auto;
 }
 
 .headers-table p {
