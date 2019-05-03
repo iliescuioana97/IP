@@ -52,29 +52,27 @@
 
                     <div class="programs">
                         <div class="buttons-top">
-                            <button data-toggle="tab" href="#program-tab-1" class="button-day">Monday</button>
-                            <button data-toggle="tab" href="#program-tab-2" class="button-day">Tuesday</button>
-                            <button data-toggle="tab" href="#program-tab-3" class="button-day">Wednesday</button>
-                            <button data-toggle="tab" href="#program-tab-4" class="button-day">Thursday</button>
-                            <button data-toggle="tab" href="#program-tab-5" class="button-day">Friday</button>
-                            <button data-toggle="tab" href="#program-tab-6" class="button-day">Saturday</button>
-                            <button data-toggle="tab" href="#program-tab-7" class="button-day">Sunday</button>
+                            {% for program_day in program_days.keys %}
+                            <button data-toggle="tab" href="#{{ program_day }}" class="button-day">
+                                {{ program_day }}
+                            </button>
+                            {% endfor %}
                         </div>
                         <div class="headers-table">
                             <p id="header-movie">Movie</p>
                             <p id="header-hours">Screening Hours</p>
                         </div>
                         <div class="tab-content">
-
-
-                            <div class="tab-pane fade active show" id="program-tab-1">
+                            {% for program_day, program_day_data in program_days.items %}
+                            {% if program_day_data.current_day is True %}
+                            <div class="tab-pane fade active show" id="{{ program_day }}">
                                 <div class="table-row">
                                     <div class="column-left">
                                         <div class="information-play"></div>
                                         <p>Movie Name</p>
                                     </div>
                                     <div class="column-right">
-                                        <button class="button-hour">20:00</button>
+                                        <button class="button-hour">{{ program_day }}</button>
                                         <button class="button-hour">20:00</button>
                                         <button class="button-hour">20:00</button>
                                         <button class="button-hour">20:00</button>
@@ -162,13 +160,12 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="tab-pane fade" id="program-tab-2">
+                            {% else %}
+                            <div class="tab-pane fade" id="{{ program_day }}">
                                 x
                             </div>
-
-
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
