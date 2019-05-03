@@ -22,16 +22,22 @@ def index(request):
         week_day = '{:02d}'.format(program_day.day)
         current_month = calendar.month_name[program_day.month]
 
+        program_day_beautify = '{}, {} {}'.format(week_human_day, week_day, current_month)
+
         if current_day_setup is False:
             current_day_setup = True
-            context['program_days']['{}, {} {}'.format(week_human_day, week_day, current_month)] = {
+            context['program_days'][
+                program_day_beautify.replace(' ', '_').replace(',', '_')] = {
                 'date': program_day,
+                'date_beautify': program_day_beautify,
                 'current_day': True,
                 'movies': dict()
             }
         else:
-            context['program_days']['{}, {} {}'.format(week_human_day, week_day, current_month)] = {
+            context['program_days'][
+                program_day_beautify.replace(' ', '_').replace(',', '_')] = {
                 'date': program_day,
+                'date_beautify': program_day_beautify,
                 'movies': dict()}
 
     for program_day in context.get('program_days'):
