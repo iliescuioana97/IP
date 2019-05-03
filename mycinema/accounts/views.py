@@ -3,6 +3,13 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from .tokens import account_activation_token
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+
 import re
 
 
@@ -102,8 +109,25 @@ def register(request):
                                                     email=email,
                                                     first_name=first_name,
                                                     last_name=last_name)
+
+                    # is_active = False until he confirms his email
+                    user.is_active = False
                     user.save()
-                    messages.success(request, 'You are now registered and can log in')
+                    messages.success(request, 'We\'ve sent you a confirmation email, in order to complete the registration')
+
+                    # Sending email confirmation stuff
+                    current_site = get_current_site(request)
+                    mail_subject = 'Activate your MyCinema account'
+                    message = render_to_string('registration/account_activation_email.html', {
+                        'user': user,
+                        'domain': current_site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': account_activation_token.make_token(user),
+                    }, request=request)
+
+                    email_object = EmailMessage(mail_subject, message, to=[email])
+                    email_object.send()
+
                     return redirect('login')
         else:
             messages.error(request, 'Passwords do not match')
@@ -132,14 +156,25 @@ def login(request):
 
         user = auth.authenticate(username=username, password=password)
         if user is not None:
-            auth.login(request, user)
-            messages.success(request, 'You are now logged in')
+            # if user has confirmed email
+            if user.is_active:
+                auth.login(request, user)
+                messages.success(request, 'You are now logged in')
 
-            # Setting the cookie for username
-            response = redirect('index')
-            response.set_cookie('login_username', username)
+                # Setting the cookie for username
+                response = redirect('index')
+                response.set_cookie('login_username', username)
 
-            return response
+                return response
+
+            else:
+                messages.error(request, 'User has not confirmed his email')
+                login_username = request.POST['username']
+
+                response = redirect('login')
+                response.set_cookie('login_username', login_username)
+                return response
+
         else:
             messages.error(request, 'Invalid credentials')
             login_username = request.POST['username']
@@ -148,6 +183,7 @@ def login(request):
             response.set_cookie('login_username', login_username)
 
             return response
+
     else:
         return render(request, 'accounts/login.html', context={'login_username': login_username})
 
@@ -156,4 +192,24 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
         messages.success(request, 'You are now logged out')
+        return redirect('login')
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except User.DoesNotExist as e:
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        auth.login(request, user)
+
+        messages.success(request, 'Thank you for your email confirmation. Now you can login your account.')
+        return redirect('login')
+
+    else:
+        messages.error(request, 'Activation link is invalid!')
         return redirect('login')

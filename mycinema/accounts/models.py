@@ -11,6 +11,9 @@ class Profile(models.Model):
     phone_number = PhoneNumberField(null=True, blank=True)
     birthdate = models.DateTimeField(null=True, blank=True)
 
+    # !!! IMPORTANT, DON'T REMOVE !!!
+    email_confirmed = None
+
     def __str__(self):
         return self.user.username
 
