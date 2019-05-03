@@ -52,9 +52,9 @@
 
                     <div class="programs">
                         <div class="buttons-top">
-                            {% for program_day in program_days.keys %}
-                            <button data-toggle="tab" href="#{{ program_day }}" class="button-day">
-                                {{ program_day }}
+                            {% for key, value in program_days.items %}
+                            <button data-toggle="tab" href="#{{ key }}" class="button-day">
+                                {{ value.date_beautify }}
                             </button>
                             {% endfor %}
                         </div>
@@ -63,106 +63,26 @@
                             <p id="header-hours">Screening Hours</p>
                         </div>
                         <div class="tab-content">
-                            {% for program_day, program_day_data in program_days.items %}
-                            {% if program_day_data.current_day is True %}
-                            <div class="tab-pane fade active show" id="{{ program_day }}">
+                            {% for key, value in program_days.items %}
+                            {% if value.current_day is True %}
+                            <div class="tab-pane fade active show" id="{{ key }}">
+                                {% for movie, hours in value.movies.items %}
                                 <div class="table-row">
                                     <div class="column-left">
                                         <div class="information-play"></div>
-                                        <p>Movie Name</p>
+                                        <p>{{ movie }}</p>
                                     </div>
                                     <div class="column-right">
-                                        <button class="button-hour">{{ program_day }}</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
+                                        {% for hour in hours %}
+                                        <button class="button-hour">{{ hour }}</button>
+                                        {% endfor %}
                                     </div>
                                 </div>
-                                <div class="table-row">
-                                    <div class="column-left">
-                                        <div class="information-play"></div>
-                                        <p>Movie Long Long Long Long Name</p>
-                                    </div>
-                                    <div class="column-right">
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                        <button class="button-hour">20:00</button>
-                                    </div>
-                                </div>
-                                <div class="table-row">
-                                    <div class="column-left">
-                                        <div class="information-play"></div>
-                                        <p>Movie Long Name And Only One Hour</p>
-                                    </div>
-                                    <div class="column-right">
-                                        <button class="button-hour">20:00</button>
-                                    </div>
-                                </div>
-                                <div class="table-row">
-                                    <div class="column-left">
-                                        <div class="information-play"></div>
-                                        <p>Movie Long Name And Only One Hour</p>
-                                    </div>
-                                    <div class="column-right">
-                                        <button class="button-hour">20:00</button>
-                                    </div>
-                                </div>
-                                <div class="table-row">
-                                    <div class="column-left">
-                                        <div class="information-play"></div>
-                                        <p>Movie Long Name And Only One Hour</p>
-                                    </div>
-                                    <div class="column-right">
-                                        <button class="button-hour">20:00</button>
-                                    </div>
-                                </div>
-                                <div class="table-row">
-                                    <div class="column-left">
-                                        <div class="information-play"></div>
-                                        <p>Movie Long Name And Only One Hour</p>
-                                    </div>
-                                    <div class="column-right">
-                                        <button class="button-hour">20:00</button>
-                                    </div>
-                                </div>
-                                <div class="table-row">
-                                    <div class="column-left">
-                                        <div class="information-play"></div>
-                                        <p>MovieMovieMovieMovie LongLongLongLong Name And Only One Hour</p>
-                                    </div>
-                                    <div class="column-right">
-                                        <button class="button-hour">20:00</button>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                             {% else %}
-                            <div class="tab-pane fade" id="{{ program_day }}">
-                                x
+                            <div class="tab-pane fade" id="{{ key }}">
+                                {{ value.date_beautify }}
                             </div>
                             {% endif %}
                             {% endfor %}
