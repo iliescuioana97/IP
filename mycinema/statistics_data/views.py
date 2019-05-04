@@ -171,10 +171,10 @@ def statistics_age_distribution():
             '7-14': 0,
             '15-18': 0,
             '19-24': 0,
-            '25–34': 0,
-            '35–44': 0,
-            '45–54': 0,
-            '55–64': 0,
+            '25-34': 0,
+            '35-44': 0,
+            '45-54': 0,
+            '55-64': 0,
             '65+': 0
         }
     }
@@ -191,13 +191,13 @@ def statistics_age_distribution():
         elif 19 <= user_age <= 24:
             data['values']['19-24'] += 1
         elif 25 <= user_age <= 34:
-            data['values']['25–34'] += 1
+            data['values']['25-34'] += 1
         elif 35 <= user_age <= 44:
-            data['values']['35–44'] += 1
+            data['values']['35-44'] += 1
         elif 45 <= user_age <= 54:
-            data['values']['45–54'] += 1
+            data['values']['45-54'] += 1
         elif 55 <= user_age <= 64:
-            data['values']['55–54'] += 1
+            data['values']['55-54'] += 1
         elif user_age >= 65:
             data['values']['65+'] += 1
 
