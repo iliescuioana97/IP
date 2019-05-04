@@ -16,7 +16,7 @@
     </head>
 
     <body>
-                <div class="layout">
+        <div class="layout">
             <div class="l-left">
                 <a href="#" class="toggle-menu topm1"><i class="material-icons">menu</i></a>
                 <a href="{% url 'home' %}" class="logo-menu">My Cinema</a>
@@ -55,14 +55,18 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="iframe-container">                                
-                                <iframe width="1580" height="720" src="https://www.youtube.com/embed/{{ trailer_link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="iframe-container">
+                                <iframe width="1580" height="720" src="https://www.youtube.com/embed/{{ trailer_link }}"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
 
                             </div>
 
                             <div class="description-container">
                                 <div class="image-container">
-                                    <div class="movie-image" style="background-image: url({{ movie.photo_main.url }})"></div>
+                                    <div class="movie-image"
+                                         style="background-image: url({{ movie.photo_main.url }})"></div>
                                 </div>
 
                                 <div class="desc-text">
@@ -71,32 +75,32 @@
                                     <div class="text-desc"><b>Name</b>: {{movie.name}}</div>
                                     <div class="text-desc"><b>Genre</b>: {{movie.genre}}</div>
                                     <div class="text-desc"><b>Duration</b>: {{movie.duration}} minutes</div>
-                                    <div class="text-desc"><b>Price</b>: {{movie.price}} Lei</div>
+                                    <div class="text-desc"><b>Price</b>: {{movie.price | intcomma}} LEI</div>
 
                                     <br><br>
                                     {% if movie.is_published %}
-                                        <div class="button-book">                          
-                                            <button class="movie-button-book-now">Book now</button>
-                                        </div>
+                                    <div class="button-book">
+                                        <a href="{% url 'program' %}">
+                                            <button class="movie-button-book-now">
+                                                Book now
+                                            </button>
+                                        </a>
+                                    </div>
                                     {% else %}
-                                        <div class="button-book">
-                                            <div class="filler"></div>
-                                            <h1>Movie not yet available in our cinema!</h1>
-                                            <div class="filler"></div>
-                                        </div>
-                                    {% endif %}  
-                                </div>  
+                                    <h6>Movie not available</h6>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
 
-                       
+
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
 
-        
+
     </body>
 </html>

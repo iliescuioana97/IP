@@ -95,11 +95,10 @@
 
 .movie-button-book-now {
     color: white;
-    background-color: #3381ff;
+    background-color: #8f8dae;
     border-radius: 5px;
     padding: 10px 40px;
     border: none;
-    font-size: 13px;
 }
 
 .movie-button-book-now:disabled {
@@ -107,7 +106,7 @@
 }
 
 .movie-button-book-now:active {
-    background-color: #0062ff;
+    background-color: #ffffff !important;
 }
 
 .page-item.active .page-link {
@@ -123,12 +122,9 @@ a {
 
 a:hover {
     color: #fff;
-
+    text-decoration: none;
 }
 
-.movie-button-book-now {
-    background-color: #8f8dae;
-}
 .movie-button-book-now:hover{
-background-color: #dedde7;
+background-color: #dedde7 !important;
 }

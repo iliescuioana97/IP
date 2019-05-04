@@ -63,30 +63,50 @@
                             {% if value.current_day is True %}
                             <div class="tab-pane fade active show" id="{{ key }}">
                                 {% if value.movies.items %}
-                                    <div class="headers-table">
-                                        <p id="header-movie">Movie</p>
-                                        <p id="header-hours">Screening Hours</p>
+                                <div class="headers-table">
+                                    <p id="header-movie">Movie</p>
+                                    <p id="header-hours">Screening Hours</p>
+                                </div>
+                                {% for movie, hours in value.movies.items %}
+                                <div class="table-row">
+                                    <div class="column-left">
+                                        <div class="information-play"></div>
+                                        <p>{{ movie }}</p>
                                     </div>
-                                    {% for movie, hours in value.movies.items %}
-                                    <div class="table-row">
-                                        <div class="column-left">
-                                            <div class="information-play"></div>
-                                            <p>{{ movie }}</p>
-                                        </div>
-                                        <div class="column-right">
-                                            {% for hour in hours %}
-                                            <button class="button-hour">{{ hour }}</button>
-                                            {% endfor %}
-                                        </div>
+                                    <div class="column-right">
+                                        {% for hour in hours %}
+                                        <button class="button-hour">{{ hour }}</button>
+                                        {% endfor %}
                                     </div>
-                                    {% endfor %}
+                                </div>
+                                {% endfor %}
                                 {% else %}
-                                    <p class="msgi">No movies for this day...</p>
+                                <p class="msgi">No movies for this day...</p>
                                 {% endif %}
                             </div>
                             {% else %}
                             <div class="tab-pane fade" id="{{ key }}">
-                                {{ value.date_beautify }}
+                                {% if value.movies.items %}
+                                <div class="headers-table">
+                                    <p id="header-movie">Movie</p>
+                                    <p id="header-hours">Screening Hours</p>
+                                </div>
+                                {% for movie, hours in value.movies.items %}
+                                <div class="table-row">
+                                    <div class="column-left">
+                                        <div class="information-play"></div>
+                                        <p>{{ movie }}</p>
+                                    </div>
+                                    <div class="column-right">
+                                        {% for hour in hours %}
+                                        <button class="button-hour">{{ hour }}</button>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                <p class="msgi">No movies for this day...</p>
+                                {% endif %}
                             </div>
                             {% endif %}
                             {% endfor %}
