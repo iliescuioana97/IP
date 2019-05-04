@@ -75,3 +75,8 @@ def day(request, day_id):
 @login_required(login_url='/accounts/login')
 def search_program(request):
     return render(request, 'program/program.html')
+
+
+@login_required(login_url='/accounts/login')
+def booking(request, movie_id):
+    return render(request, 'program/booking.html')
