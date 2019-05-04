@@ -4,10 +4,10 @@ $(document).ready(function(){
         $(".info-tickets-total").html(parseInt(data.total_shows))
         $(".info-shows-total").html(parseInt(data.total_tickets))
         $(".info-earnings-total").html("$" + parseFloat(data.total_earnings))
-
-        $("info-tickets-arrow").removeClass("up").removeClass("down").addClass(data.tickets_growth ? "up" : "down")
-        $("info-shows-arrow").removeClass("up").removeClass("down").addClass(data.shows_growth ? "up" : "down")
-        $("info-earnings-arrow").removeClass("up").removeClass("down").addClass(data.earnings_growth ? "up" : "down")
+        
+        $(".info-tickets-arrow").removeClass("up").removeClass("down").addClass(data.tickets_growth ? "up" : "down")
+        $(".info-shows-arrow").removeClass("up").removeClass("down").addClass(data.shows_growth ? "up" : "down")
+        $(".info-earnings-arrow").removeClass("up").removeClass("down").addClass(data.earnings_growth ? "up" : "down")
 
         $(".info-tickets-percentage").html(parseFloat(data.tickets_percentage) + "%")
         $(".info-shows-percentage").html(parseFloat(data.shows_percentage) + "%")

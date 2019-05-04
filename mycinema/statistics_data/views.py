@@ -74,7 +74,10 @@ def statistics_admin_shows():
 
     # calculate mean total shows and mean last week
 
-    mean_total_shows = total_shows / total_weeks
+    mean_total_shows = 0
+    if total_weeks > 0:
+        mean_total_shows = total_shows / total_weeks
+
     mean_last_week_shows = last_week_shows
     percentage = round(mean_last_week_shows - mean_total_shows, 2)
     data['percentage'] = percentage
@@ -104,8 +107,10 @@ def statistics_admin_tickets():
         (((datetime.datetime.now()) - datetime.timedelta(days=7)) - first_ticket_date.replace(tzinfo=None)).days / 7)
 
     # calculate mean total shows and mean last week
+    mean_total_tickets = 0
+    if total_weeks > 0:
+        mean_total_tickets = total_tickets / total_weeks
 
-    mean_total_tickets = total_tickets / total_weeks
     mean_last_week_tickets = last_week_tickets
     percentage = round(mean_last_week_tickets - mean_total_tickets, 2)
     data['percentage'] = percentage
@@ -146,7 +151,10 @@ def statistics_admin_earnings():
 
     # calculate mean total shows and mean last week
 
-    mean_total_earnings = total_earnings / total_weeks
+    mean_total_earnings = 0
+    if total_weeks:
+        mean_total_earnings = total_earnings / total_weeks
+
     mean_last_week_earnings = last_week_earnings
     percentage = round(mean_last_week_earnings - mean_total_earnings, 2)
     data['percentage'] = float(percentage)
