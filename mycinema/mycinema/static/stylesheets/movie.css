@@ -63,9 +63,8 @@
 	color: white;
     background-color: #8f8dae;
     border-radius: 5px;
-    padding: 20px 70px;
+    padding: 10px 40px;
     border: none;
-    font-size: 13px;
 }
 
 .movie-button-book-now:hover{
@@ -76,4 +75,13 @@ background-color: #dedde7;
 	.image-container{
 		display: none;
 	}	
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    color: #fff;
+    text-decoration: none;
 }

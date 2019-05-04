@@ -21,6 +21,7 @@ import datetime
 def index(request):
     return render(request, 'statistics_data/statistics_data.html', {})
 
+
 @login_required(login_url='/accounts/login')
 def stats_api(request):
     admin_shows = statistics_admin_shows()
@@ -48,16 +49,8 @@ def stats_api(request):
     context['age_distribution'] = age_distribution
     context['movie_distribution'] = movie_distribution
 
-    # statistics_location = os.path.join(settings.MEDIA_ROOT, 'statistics')
-    # os.makedirs(statistics_location, exist_ok=True)
-
-    # with open(os.path.join(statistics_location, 'age_distribution.json'), 'w+') as fh:
-    #     json.dump(age_distribution, fh, indent=4)
-    #
-    # with open(os.path.join(statistics_location, 'movie_distribution.json'), 'w+') as fh:
-    #     json.dump(movie_distribution, fh, indent=4)
-
     return JsonResponse(context)
+
 
 def statistics_admin_shows():
     data = {
