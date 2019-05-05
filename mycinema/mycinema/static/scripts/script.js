@@ -1,10 +1,12 @@
 $(document).ready(function(){
     setInitialTriggers();
+    setBookingHandlers();
 
     $(".programs .buttons-top button").click(function (e) {
        e.preventDefault();
        $(this).removeClass('active');
     });
+
 })
 
 var setInitialTriggers = function() {
@@ -39,4 +41,18 @@ function setProfImgSettings(input) {
 
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function setBookingHandlers() {
+    $(".room-view-table .chair.free").on('click', function(e){
+        e.preventDefault();
+
+        var row = $(this).data('row');
+        var col = $(this).data('col');
+
+        $('#book-now-modal input[name=seat_row]').val(row)
+        $('#book-now-modal input[name=seat_col]').val(col)
+
+        $('#book-now-modal').modal('show')
+    })
 }
