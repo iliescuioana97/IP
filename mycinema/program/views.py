@@ -42,18 +42,23 @@ def index(request):
 
     for program_day in context.get('program_days'):
         date = context['program_days'][program_day]['date']
-        # check for movies
 
+        # check for movies
         query_movies = Show.objects.filter(is_published=True, movie_id__is_published=True)
 
         for show in query_movies.iterator():
+            print("SHOW")
+            print(show.movie_id.name)
             show_day = show.date
             if date.day == show_day.day and date.month == show_day.month and date.year == show_day.year:
                 show_name = show.movie_id.name
                 if not context['program_days'][program_day]['movies'].get(show_name):
-                    context['program_days'][program_day]['movies'][show_name] = list()
+                    context['program_days'][program_day]['movies'][show_name] = {
+                        'id': show.movie_id.id,
+                        'hours': list()
+                    }
 
-                context['program_days'][program_day]['movies'][show_name].append(
+                context['program_days'][program_day]['movies'][show_name]['hours'].append(
                     '{:02d}:{:02d}'.format(show.hour_begin.hour,
                                            show.hour_begin.minute))
 

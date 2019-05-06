@@ -67,14 +67,20 @@
                                     <p id="header-movie">Movie</p>
                                     <p id="header-hours">Screening Hours</p>
                                 </div>
-                                {% for movie, hours in value.movies.items %}
+                                {% for movie, movie_data in value.movies.items %}
                                 <div class="table-row">
                                     <div class="column-left">
-                                        <div class="information-play"></div>
-                                        <p>{{ movie }}</p>
+                                        <a href="{% url 'movie' movie_data.id %}">
+                                            <div class="information-play"></div>
+                                        </a>
+                                        <p>
+                                            <a href="{% url 'movie' movie_data.id %}">
+                                                {{ movie }}
+                                            </a>
+                                        </p>
                                     </div>
                                     <div class="column-right">
-                                        {% for hour in hours %}
+                                        {% for hour in movie_data.hours %}
                                         <button class="button-hour">{{ hour }}</button>
                                         {% endfor %}
                                     </div>
@@ -91,21 +97,27 @@
                                     <p id="header-movie">Movie</p>
                                     <p id="header-hours">Screening Hours</p>
                                 </div>
-                                {% for movie, hours in value.movies.items %}
+                                {% for movie, movie_data in value.movies.items %}
                                 <div class="table-row">
                                     <div class="column-left">
-                                        <div class="information-play"></div>
-                                        <p>{{ movie }}</p>
+                                        <a href="{% url 'movie' movie_data.id %}">
+                                            <div class="information-play"></div>
+                                        </a>
+                                        <p>
+                                            <a href="{% url 'movie' movie_data.id %}">
+                                                {{ movie }}
+                                            </a>
+                                        </p>
                                     </div>
                                     <div class="column-right">
-                                        {% for hour in hours %}
+                                        {% for hour in movie_data.hours %}
                                         <a class="button-hour" href="/program/booking/43">{{ hour }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>
                                 {% endfor %}
                                 {% else %}
-                                <p class="msgi">No movies for this day...</p>
+                                <p class="msgi">No movies found</p>
                                 {% endif %}
                             </div>
                             {% endif %}
