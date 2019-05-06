@@ -81,7 +81,9 @@
                                     </div>
                                     <div class="column-right">
                                         {% for hour in movie_data.hours %}
-                                        <button class="button-hour">{{ hour }}</button>
+                                        <form action="" method="POST">
+                                            <button class="button-hour" name="">{{ hour }}</button>
+                                        </form>
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -111,7 +113,9 @@
                                     </div>
                                     <div class="column-right">
                                         {% for hour in movie_data.hours %}
-                                        <a class="button-hour" href="/program/booking/43">{{ hour }}</a>
+                                        <form action="" method="POST">
+                                            <button class="button-hour" name="">{{ hour }}</button>
+                                        </form>
                                         {% endfor %}
                                     </div>
                                 </div>
