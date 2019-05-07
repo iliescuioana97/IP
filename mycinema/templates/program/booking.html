@@ -99,21 +99,7 @@
                 </div>
             </div>
             <div class="l-right">
-                <div class="top-bar">
-                    <form action="" class="left">
-                        <a href="#" class="toggle-menu topm2"><i class="material-icons">menu</i></a>
-                        <img src="assets/icons/icon_search.svg" alt="" class="icon">
-                        <input type="text" id="input_search" placeholder="Search">
-                    </form>
-                    <div class="right">
-                        <img src="assets/icons/icon_notification.svg" alt="" class="notif-ico">
-                        <a href="#" class="user-menu">
-                            John Doe
-                            <img src="assets/icons/icon_down-arrow-small.svg" alt="" class="arrow">
-
-                        </a>
-                    </div>
-                </div>
+                {% include 'partials/top_bar.html' %}
                 <div class="main">
                     <h2 class="title">Room Name</h2>
 
@@ -123,16 +109,18 @@
                                 <!-- 13 x 7 -->
                                 <table class="room-view-table">
                                     <tr>
-                                        <td colspan="13" class="screen-row"><div class="screen-el">Screen</div></td>
+                                        <td colspan="13" class="screen-row">
+                                            <div class="screen-el"><h6><b>Screen</b></h6></div>
+                                        </td>
                                     </tr>
                                     {% for i in '123456'|make_list %}
                                     <tr>
                                         {% for j in '123456789'|make_list %}
                                         <td>
                                             {% if i == '5' or j == '3' %}
-                                                <div class="chair booked" data-row="{{i}}" data-col="{{j}}"></div>
+                                            <div class="chair booked" data-row="{{i}}" data-col="{{j}}"></div>
                                             {% else %}
-                                                <div class="chair free" data-row="{{i}}" data-col="{{j}}"></div>
+                                            <div class="chair free" data-row="{{i}}" data-col="{{j}}"></div>
                                             {% endif %}
                                         </td>
                                         {% endfor %}
@@ -140,8 +128,10 @@
                                     {% endfor %}
                                 </table>
                                 <div class="room-view-legend">
-                                    <div class="chair free"></div> Free <br>
-                                    <div class="chair booked"></div> Booked <br>
+                                    <div class="chair free"></div>
+                                    Free <br>
+                                    <div class="chair booked"></div>
+                                    Booked <br>
                                     <!-- <div class="chair sold"></div> Sold <br> -->
                                 </div>
                             </div>

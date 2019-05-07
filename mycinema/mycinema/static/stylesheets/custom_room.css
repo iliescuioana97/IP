@@ -12,11 +12,11 @@
     border-radius: 5px;
 }
 .room-view-table .chair.free {
-    background: #3c85fd;
+    background: #8f8dae;
     cursor: pointer;
 }
 .room-view-table .chair.booked {
-    background: #968c8d;
+    background: #dedde7;
 }
 .room-view-table .chair.sold {
     background: #ff6567;
@@ -27,7 +27,7 @@
     text-align: center;
 }
 .room-view-table .screen-row .screen-el {
-    background: #e2e2e2;
+    background: var(--color-bg1);
     color: #333;
     font-weight: bold;
     padding: 3px;
@@ -42,11 +42,64 @@
     margin-top: 1px;
 }
 .room-view-legend .chair.free {
-    background: #3c85fd;
+    background: #8f8dae;
 }
 .room-view-legend .chair.booked {
-    background: #968c8d;
+    background: #dedde7;
 }
 .room-view-legend .chair.sold {
     background: #ff6567;
+}
+.form-control:disabled, .form-control[readonly]{
+    background-color: var(--color-bg1);
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #8f8dae;
+    border-color: #8f8dae;
+}
+
+.btn-secondary:hover {
+    background-color: #dedde7 !important;
+    border-color: #dedde7 !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--color-sec);
+    border-color: var(--color-sec);
+}
+
+.btn-primary:hover {
+    background-color: #dedde7 !important;
+    border-color: #dedde7 !important;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #8f8dae;
+    border-color: #8f8dae;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: var(--color-sec);
+    border-color: var(--color-sec);
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgb(222, 221, 231);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgb(222, 221, 231);
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgb(222, 221, 231);
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+    box-shadow: 0 0 0 0.2rem rgb(222, 221, 231);
 }
