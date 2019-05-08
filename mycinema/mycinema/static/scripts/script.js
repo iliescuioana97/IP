@@ -25,6 +25,10 @@ var setInitialTriggers = function() {
     $(".settingsContainer .field label").on('click', function(){
         $(this).parent().find("input").focus();
     })
+
+    if($("#booked-movies-list")) {
+        populate_booked_movies()
+    }
 }
 
 function getFocus() {
@@ -59,5 +63,22 @@ function setBookingHandlers() {
         $('#book-now-modal input[name=seat_col]').val(col)
 
         $('#book-now-modal').modal('show')
+    })
+}
+
+function populate_booked_movies() {
+    var loc = $("#booked-movies-list")
+    var html = '<div class="list-group-item">Booked movies:</div>';
+    $.get("/api/notifications")
+    .done(data => {
+        var els = data.tickets
+        for(var el of els){
+            html += `<a href="/movies/${el.movie_id}" class="list-group-item list-group-item-action">
+                <img src="/media/${el.movie_photo}" class="movie_icon_drd">
+                <b>${el.movie_name}</b><br>
+                <span>${el.show_datetime}</span>
+            </a>`
+        }
+        loc.html(html)
     })
 }

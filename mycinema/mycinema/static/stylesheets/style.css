@@ -152,6 +152,9 @@ body {
     padding: 15px;
 }
 
+.l-right .top-bar .right .notif-ico-cnt {
+    display: inline-block;
+}
 .l-right .top-bar .right .notif-ico {
     vertical-align: bottom;
     height: 22px;
@@ -212,4 +215,16 @@ body {
     font-size: 18px;
     margin-top: 3px;
     margin-bottom: 8px;
+}
+
+.movies-dropdown {
+    padding: 0!important;
+    border: 0!important;
+}
+.movies-dropdown .movie_icon_drd {
+    float: left;
+    width: 23px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 6px;
 }

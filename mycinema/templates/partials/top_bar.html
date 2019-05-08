@@ -7,7 +7,16 @@
         <input type="text" id="input_search" name="movie" placeholder="Search" value="{{ values.movie }}">
     </form>
     <div class="right">
-        <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
+        <div class="dropdown notif-ico-cnt">
+            <a href="#" data-toggle="dropdown">
+                <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right movies-dropdown" style="width: 225px;">
+                <div class="list-group" id="booked-movies-list">
+                    <!-- Will be filled by js -->
+                </div>
+            </div>
+        </div>
         <div class="dropdown user-menu">
             <a href="#" class="" data-toggle="dropdown">
                 <!--  -->
