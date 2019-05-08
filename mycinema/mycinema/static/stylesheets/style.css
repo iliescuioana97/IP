@@ -196,6 +196,11 @@ body {
     padding: 20px 50px;
     overflow-y: auto;
 }
+@media(max-width: 450px) {
+    .l-right .main {
+        padding: 10px 17px;
+    }
+}
 
 .clear:after {
     display: block;
