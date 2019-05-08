@@ -3,6 +3,7 @@
 }
 .room-view .room-view-table {
     margin: auto;
+    margin-bottom: 10px;
 }
 .room-view-table .chair {
     width: 33px;
@@ -102,4 +103,18 @@
 
 .btn-secondary:focus, .btn-secondary.focus {
     box-shadow: 0 0 0 0.2rem rgb(222, 221, 231);
+}
+
+
+
+@media(max-width: 540px) {
+    .room-view-table .chair {
+        width: 25px;
+        height: 25px;
+        margin: 3px;
+    }
+    .room-view-legend .chair {
+        width: 20px;
+        height: 20px;
+    }
 }
