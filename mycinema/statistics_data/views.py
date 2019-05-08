@@ -64,9 +64,9 @@ def statistics_admin_shows():
         date__gte=make_aware(datetime.datetime.now()) - datetime.timedelta(days=7)).count()
 
     first_show_date = Show.objects.all().aggregate(Min('date'))
-    if first_show_date:
-        first_show_date = first_show_date.get('date__min', datetime.datetime.now())
-    else:
+    first_show_date = first_show_date.get('date__min', datetime.datetime.now())
+
+    if not first_show_date:
         first_show_date = datetime.datetime.now()
 
     total_weeks = int(
@@ -97,10 +97,9 @@ def statistics_admin_tickets():
         show_id__date__gte=make_aware(datetime.datetime.now()) - datetime.timedelta(days=7)).count()
 
     first_ticket_date = Ticket.objects.all().aggregate(Min('show_id__date'))
+    first_ticket_date = first_ticket_date.get('show_id__date__min', datetime.datetime.now())
 
-    if first_ticket_date:
-        first_ticket_date = first_ticket_date.get('show_id__date__min', datetime.datetime.now())
-    else:
+    if not first_ticket_date:
         first_ticket_date = datetime.datetime.now()
 
     total_weeks = int(
@@ -125,25 +124,25 @@ def statistics_admin_earnings():
     }
 
     total_earnings = Ticket.objects.aggregate(Sum('show_id__movie_id__price'))
-    if total_earnings:
-        total_earnings = total_earnings.get('show_id__movie_id__price__sum', 0)
-    else:
+    total_earnings = total_earnings.get('show_id__movie_id__price__sum', 0)
+
+    if not total_earnings:
         total_earnings = 0
+        
     data['total_earnings'] = float(total_earnings)
 
     last_week_earnings = Ticket.objects.filter(
         show_id__date__gte=make_aware(datetime.datetime.now()) - datetime.timedelta(days=7)).aggregate(
         Sum('show_id__movie_id__price'))
-    if last_week_earnings:
-        last_week_earnings = last_week_earnings.get('show_id__movie_id__price__sum', 0)
-    else:
+    last_week_earnings = last_week_earnings.get('show_id__movie_id__price__sum', 0)
+
+    if not last_week_earnings:
         last_week_earnings = 0
 
     first_ticket_date = Ticket.objects.all().aggregate(Min('show_id__date'))
+    first_ticket_date = first_ticket_date.get('show_id__date__min', datetime.datetime.now())
 
-    if first_ticket_date:
-        first_ticket_date = first_ticket_date.get('show_id__date__min', datetime.datetime.now())
-    else:
+    if not first_ticket_date:
         first_ticket_date = datetime.datetime.now()
 
     total_weeks = int(
