@@ -26,7 +26,10 @@ def index(request):
 @login_required(login_url='/accounts/login')
 def movie(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
-    trailer_link = movie.trailer_link.split("https://www.youtube.com/watch?v=")[1]
+    try:
+        trailer_link = movie.trailer_link.split("https://www.youtube.com/watch?v=")[1]
+    except:
+        trailer_link = False
 
     context = {
         'movie': movie,

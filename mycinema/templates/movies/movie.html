@@ -55,6 +55,7 @@
 
                     <div class="card">
                         <div class="card-body">
+                            {% if trailer_link %}
                             <div class="iframe-container">
                                 <iframe width="1580" height="720" src="https://www.youtube.com/embed/{{ trailer_link }}"
                                         frameborder="0"
@@ -62,6 +63,7 @@
                                         allowfullscreen></iframe>
 
                             </div>
+                            {% endif %}
 
                             <div class="description-container">
                                 <div class="image-container">
