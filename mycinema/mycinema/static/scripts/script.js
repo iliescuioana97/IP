@@ -72,6 +72,10 @@ function populate_booked_movies() {
     $.get("/api/notifications")
     .done(data => {
         var els = data.tickets
+        if(els.length == 0){
+            html += '<div class="list-group-item"><em>No movies booked...</em></div>'
+        }
+        
         for(var el of els){
             html += `<a href="/movies/${el.movie_id}" class="list-group-item list-group-item-action">
                 <img src="/media/${el.movie_photo}" class="movie_icon_drd">
