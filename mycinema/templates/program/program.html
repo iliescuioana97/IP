@@ -80,8 +80,17 @@
                                         </p>
                                     </div>
                                     <div class="column-right">
-                                        {% for hour in movie_data.hours %}
+                                        {% for hour, room_data in movie_data.hours_rooms.items %}
+
                                         <form action="" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="movie" value="{{ movie }}"/>
+                                            <input type="hidden" name="room" value="{{ room_data.room_name }}"/>
+                                            <input type="hidden" name="date" value="{{ value.date }}"/>
+                                            <input type="hidden" name="hour" value="{{ hour }}"/>
+                                            <input type="hidden" name="price" value="{{ movie_data.price }}"/>
+                                            <input type="hidden" name="rows" value="{{ room_data.room_rows }}"/>
+                                            <input type="hidden" name="cols" value="{{ room_data.room_cols }}"/>
                                             <button class="button-hour" name="">{{ hour }}</button>
                                         </form>
                                         {% endfor %}
@@ -112,7 +121,7 @@
                                         </p>
                                     </div>
                                     <div class="column-right">
-                                        {% for hour in movie_data.hours %}
+                                        {% for hour, room_data in movie_data.hours_rooms.items %}
                                         <form action="" method="POST">
                                             <button class="button-hour" name="">{{ hour }}</button>
                                         </form>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth.decorators import login_required
 
@@ -44,44 +44,33 @@ def index(request):
         date = context['program_days'][program_day]['date']
 
         # check for movies
-        query_movies = Show.objects.filter(is_published=True, movie_id__is_published=True)
+        query_movies = Show.objects.filter(is_published=True, movie_id__is_published=True).order_by('hour_begin')
 
         for show in query_movies.iterator():
-            print("SHOW")
-            print(show.movie_id.name)
             show_day = show.date
             if date.day == show_day.day and date.month == show_day.month and date.year == show_day.year:
                 show_name = show.movie_id.name
                 if not context['program_days'][program_day]['movies'].get(show_name):
                     context['program_days'][program_day]['movies'][show_name] = {
                         'id': show.movie_id.id,
-                        'hours': list()
+                        'price': show.movie_id.price,
+                        'hours_rooms': dict()
                     }
 
-                context['program_days'][program_day]['movies'][show_name]['hours'].append(
-                    '{:02d}:{:02d}'.format(show.hour_begin.hour,
-                                           show.hour_begin.minute))
-
-    print(context['program_days'])
+                context['program_days'][program_day]['movies'][show_name]['hours_rooms'][
+                    '{:02d}:{:02d}'.format(show.hour_begin.hour, show.hour_begin.minute)] = {
+                    'room_name': show.room_id.name,
+                    'room_rows': show.room_id.row_sits,
+                    'room_cols': show.room_id.column_sits,
+                }
 
     return render(request, 'program/program.html', context)
 
 
 @login_required(login_url='/accounts/login')
-def program_movie(request, movie_id):
-    return render(request, 'program/program.html')
-
-
-@login_required(login_url='/accounts/login')
-def day(request, day_id):
-    return render(request, 'program/program.html')
-
-
-@login_required(login_url='/accounts/login')
-def search_program(request):
-    return render(request, 'program/program.html')
-
-
-@login_required(login_url='/accounts/login')
-def booking(request, movie_id):
-    return render(request, 'program/booking.html')
+def booking(request):
+    # return render(request, 'program/booking.html')
+    if request.method == 'POST':
+        pass
+    else:
+        return redirect('program')
