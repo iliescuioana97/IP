@@ -71,6 +71,6 @@ def index(request):
 def booking(request):
     # return render(request, 'program/booking.html')
     if request.method == 'POST':
-        pass
+        return render(request, 'program/booking.html')
     else:
         return redirect('program')
