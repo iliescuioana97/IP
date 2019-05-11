@@ -37,11 +37,11 @@
                             <input type="hidden" name="show_id" value="18">
                             <div class="form-group">
                                 <label>Movie:</label>
-                                <input type="text" name="movie_name" class="form-control" value="Die Hard 4" disabled>
+                                <input type="text" name="movie_name" class="form-control" value="{{ movie }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Room:</label>
-                                <input type="text" name="room_name" class="form-control" value="Room 3" disabled>
+                                <input type="text" name="room_name" class="form-control" value="{{ room }}" disabled>
                             </div>
                             <div class="row form-group">
                                 <div class="col">
@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Price:</label>
-                                <input type="text" class="form-control" value="$12.3" disabled>
+                                <input type="text" class="form-control" value="LEI {{ price }}" disabled>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -101,7 +101,7 @@
             <div class="l-right">
                 {% include 'partials/top_bar.html' %}
                 <div class="main">
-                    <h2 class="title">Room Name</h2>
+                    <h2 class="title">{{ room }}</h2>
 
                     <div class="card">
                         <div class="card-body">
@@ -113,14 +113,16 @@
                                             <div class="screen-el"><h6><b>Screen</b></h6></div>
                                         </td>
                                     </tr>
-                                    {% for i in '123456'|make_list %}
+                                    {% for col_seats in seats %}
                                     <tr>
-                                        {% for j in '123456789'|make_list %}
+                                        {% for seat in col_seats %}
                                         <td>
-                                            {% if i == '5' or j == '3' %}
-                                            <div class="chair booked" data-row="{{i}}" data-col="{{j}}"></div>
+                                            {% if seat.2 == 'booked' %}
+                                            <div class="chair booked" data-row="{{ seat.0 }}"
+                                                 data-col="{{ seat.1 }}"></div>
                                             {% else %}
-                                            <div class="chair free" data-row="{{i}}" data-col="{{j}}"></div>
+                                            <div class="chair free" data-row="{{ seat.0 }}"
+                                                 data-col="{{ seat.1 }}"></div>
                                             {% endif %}
                                         </td>
                                         {% endfor %}
