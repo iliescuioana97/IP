@@ -1,4 +1,4 @@
-from django.utils.dateparse import parse_date
+from django.contrib.auth.models import User
 from django.shortcuts import render, HttpResponse, redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib.auth.decorators import login_required
@@ -62,6 +62,7 @@ def index(request):
 
                 context['program_days'][program_day]['movies'][show_name]['hours_rooms'][
                     '{:02d}:{:02d}'.format(show.hour_begin.hour, show.hour_begin.minute)] = {
+                    'show_id': show.id,
                     'room_name': show.room_id.name,
                     'room_rows': show.room_id.row_sits,
                     'room_cols': show.room_id.column_sits,
@@ -74,6 +75,7 @@ def index(request):
 @login_required(login_url='/accounts/login')
 def booking(request):
     if request.method == 'POST':
+        show_id = request.POST['show_id']
         movie = request.POST['movie']
         room = request.POST['room']
         date = request.POST['date']
@@ -117,6 +119,7 @@ def booking(request):
             seats = [seats[i:i + rows] for i in range(0, len(seats), rows)]
 
             context = {
+                'show_id': show_id,
                 'movie': movie,
                 'room': room,
                 'date': date,
@@ -129,5 +132,81 @@ def booking(request):
             return render(request, 'program/booking.html', context)
         else:
             return redirect('program')
+    else:
+        return redirect('program')
+
+
+@login_required(login_url='/accounts/login')
+def book_ticket(request):
+    if request.method == 'POST':
+        show_id = request.POST['show_id']
+        row = int(request.POST['row']) - 1
+        col = int(request.POST['col']) - 1
+        ticket_query = Ticket.objects.filter(show_id=show_id, row_num=row, col_num=col)
+        if ticket_query.count() > 0:
+            return redirect('program')
+        else:
+            user = User.objects.get(id=request.user.id)
+            show = Show.objects.get(id=show_id)
+            ticket = Ticket(user_id=user, show_id=show, row_num=row, col_num=col, is_paid=True, is_valid=True)
+            ticket.save()
+            # render page
+            show_id = request.POST['show_id']
+            movie = request.POST['movie']
+            room = request.POST['room']
+            date = request.POST['date']
+            hour = request.POST['hour']
+            price = request.POST['price']
+            rows = int(request.POST['rows'])
+            cols = int(request.POST['cols'])
+
+            date = date.replace('p.m.', 'PM')
+            date = date.replace('a.m.', 'AM')
+
+            try:
+                date = datetime.datetime.strptime(date, "%B %d, %Y, %I:%M %p")
+                date = date.strftime("%Y-%m-%d %H:%M")
+            except Exception as e:
+                try:
+                    date = datetime.datetime.strptime(date, "%B %d, %Y, %I %p")
+                    date = date.strftime("%Y-%m-%d %H:%M")
+                except Exception as e:
+                    pass
+
+            query_show = Show.objects.filter(movie_id__name=movie, room_id__name=room, hour_begin__icontains=hour,
+                                             date__icontains=date, movie_id__price=price, room_id__row_sits=rows,
+                                             room_id__column_sits=cols)
+            if query_show.count():
+                seats = list()
+                tickets = list()
+                show_data = query_show.last()
+                query_tickets = Ticket.objects.filter(show_id=show_data.id)
+
+                for ticket in query_tickets:
+                    tickets.append((ticket.row_num, ticket.col_num))
+
+                for i in range(rows):
+                    for j in range(rows):
+                        if (i, j) in tickets:
+                            seats.append((i + 1, j + 1, 'booked'))
+                        else:
+                            seats.append((i + 1, j + 1, 'free'))
+
+                seats = [seats[i:i + rows] for i in range(0, len(seats), rows)]
+
+                context = {
+                    'show_id': show_id,
+                    'movie': movie,
+                    'room': room,
+                    'date': date,
+                    'hour': hour,
+                    'price': price,
+                    'rows': [i + 1 for i in range(rows)],
+                    'cols': [i + 1 for i in range(cols)],
+                    'seats': seats
+                }
+                return render(request, 'program/booking.html', context)
+            else:
+                return redirect('program')
     else:
         return redirect('program')

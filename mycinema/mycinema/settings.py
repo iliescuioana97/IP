@@ -26,7 +26,7 @@ SECRET_KEY = 'gsu4+=cup&&l0e45jkgtn!9)t#)vq-b=z+_8i46#rg7+@_1-@4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
 

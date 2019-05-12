@@ -84,6 +84,7 @@
 
                                         <form action="{% url 'booking' %}" method="POST">
                                             {% csrf_token %}
+                                            <input type="hidden" name="show_id" value="{{ room_data.show_id }}"/>
                                             <input type="hidden" name="movie" value="{{ movie }}"/>
                                             <input type="hidden" name="room" value="{{ room_data.room_name }}"/>
                                             <input type="hidden" name="date" value="{{ room_data.date }}"/>
@@ -125,6 +126,7 @@
 
                                         <form action="{% url 'booking' %}" method="POST">
                                             {% csrf_token %}
+                                            <input type="hidden" name="show_id" value="{{ room_data.show_id }}"/>
                                             <input type="hidden" name="movie" value="{{ movie }}"/>
                                             <input type="hidden" name="room" value="{{ room_data.room_name }}"/>
                                             <input type="hidden" name="date" value="{{ room_data.date }}"/>

@@ -29,7 +29,7 @@
         <div class="modal fade" id="book-now-modal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form action="" method="post">
+                    <form action="book_ticket" method="post">
                         {% csrf_token %}
                         <div class="modal-body">
                             <input type="hidden" name="movie_id" value="23">
@@ -46,11 +46,13 @@
                             <div class="row form-group">
                                 <div class="col">
                                     <label>Row:</label>
-                                    <input type="text" name="seat_row" class="form-control" value="3" disabled>
+                                    <input type="text" name="seat_row" id="seat_row" class="form-control" value="3"
+                                           disabled>
                                 </div>
                                 <div class="col">
                                     <label>Column:</label>
-                                    <input type="text" name="seat_col" class="form-control" value="5" disabled>
+                                    <input type="text" name="seat_col" id="seat_col" class="form-control" value="5"
+                                           disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -60,6 +62,19 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="hidden">
+                            <input type="hidden" name="show_id" value="{{ show_id }}"/>
+                            <input type="hidden" name="row">
+                            <input type="hidden" name="col"/>
+                            <!--extra-->
+                            <input type="hidden" name="movie" value="{{ movie }}"/>
+                            <input type="hidden" name="room" value="{{ room }}"/>
+                            <input type="hidden" name="date" value="{{ date }}"/>
+                            <input type="hidden" name="hour" value="{{ hour }}"/>
+                            <input type="hidden" name="price" value="{{ price }}"/>
+                            <input type="hidden" name="rows" value="{{ rows | length }}"/>
+                            <input type="hidden" name="cols" value="{{ cols | length }}"/>
+
                             <button type="submit" class="btn btn-primary">Book ticket</button>
                         </div>
                     </form>

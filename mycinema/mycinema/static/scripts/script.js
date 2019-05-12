@@ -62,6 +62,9 @@ function setBookingHandlers() {
         $('#book-now-modal input[name=seat_row]').val(row)
         $('#book-now-modal input[name=seat_col]').val(col)
 
+        $('#book-now-modal input[name=row]').val(row)
+        $('#book-now-modal input[name=col]').val(col)
+
         $('#book-now-modal').modal('show')
     })
 }
