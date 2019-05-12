@@ -15,12 +15,12 @@ class ShowAdmin(admin.ModelAdmin):
 
 
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user_id', 'show_id', 'row_num', 'col_num', 'is_paid', 'is_valid')
+    list_display = ('id', 'user_id', 'show_id', 'row_num', 'col_num', 'is_booked', 'is_valid')
     list_display_links = ('id',)
-    list_filter = ('row_num', 'col_num', 'is_paid', 'is_valid')
-    list_editable = ('user_id', 'show_id', 'row_num', 'col_num', 'is_paid', 'is_valid')
+    list_filter = ('row_num', 'col_num', 'is_booked', 'is_valid')
+    list_editable = ('user_id', 'show_id', 'row_num', 'col_num', 'is_booked', 'is_valid')
     search_fields = (
-        'id', 'user_id__username', 'show_id__movie_id__name', 'row_num', 'col_num', 'is_paid', 'is_valid'
+        'id', 'user_id__username', 'show_id__movie_id__name', 'row_num', 'col_num', 'is_booked', 'is_valid'
     )
     list_per_page = 25
 

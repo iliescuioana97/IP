@@ -26,7 +26,7 @@ class Ticket(models.Model):
     show_id = models.ForeignKey(Show, on_delete=models.DO_NOTHING)
     row_num = models.IntegerField()
     col_num = models.IntegerField()
-    is_paid = models.BooleanField(default=False)
+    is_booked = models.BooleanField(default=False)
     is_valid = models.BooleanField(default=True)
 
     def __str__(self):

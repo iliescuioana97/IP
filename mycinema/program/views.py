@@ -107,7 +107,8 @@ def booking(request):
             query_tickets = Ticket.objects.filter(show_id=show_data.id)
 
             for ticket in query_tickets:
-                tickets.append((ticket.row_num, ticket.col_num))
+                if ticket.is_valid and ticket.is_booked:
+                    tickets.append((ticket.row_num, ticket.col_num))
 
             for i in range(rows):
                 for j in range(rows):
@@ -142,13 +143,13 @@ def book_ticket(request):
         show_id = request.POST['show_id']
         row = int(request.POST['row']) - 1
         col = int(request.POST['col']) - 1
-        ticket_query = Ticket.objects.filter(show_id=show_id, row_num=row, col_num=col)
+        ticket_query = Ticket.objects.filter(show_id=show_id, row_num=row, col_num=col, is_booked=True, is_valid=True)
         if ticket_query.count() > 0:
             return redirect('program')
         else:
             user = User.objects.get(id=request.user.id)
             show = Show.objects.get(id=show_id)
-            ticket = Ticket(user_id=user, show_id=show, row_num=row, col_num=col, is_paid=True, is_valid=True)
+            ticket = Ticket(user_id=user, show_id=show, row_num=row, col_num=col, is_booked=True)
             ticket.save()
             # render page
             show_id = request.POST['show_id']
@@ -183,7 +184,8 @@ def book_ticket(request):
                 query_tickets = Ticket.objects.filter(show_id=show_data.id)
 
                 for ticket in query_tickets:
-                    tickets.append((ticket.row_num, ticket.col_num))
+                    if ticket.is_valid and ticket.is_booked:
+                        tickets.append((ticket.row_num, ticket.col_num))
 
                 for i in range(rows):
                     for j in range(rows):
