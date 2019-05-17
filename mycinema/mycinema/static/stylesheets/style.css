@@ -242,3 +242,43 @@ body {
     margin-right: 9px;
     margin-top: 8px;
 }
+
+
+.admin_container {
+
+}
+
+.admin_container #content {
+    padding: 0;
+    font-size: 13px;
+}
+.admin_container .atitle {
+    font-size: 18px;
+    margin: 15px 2px;
+    font-weight: 400;
+}
+
+.admin_container caption {
+    caption-side: top;
+    text-transform: none;
+}
+.admin_container .object-tools {
+    margin-top: -70px;
+}
+
+.admin_container .submit-row a.deletelink {
+    height: auto;
+}
+.admin_container .action-checkbox-column,
+.admin_container .action-checkbox,
+.admin_container #toolbar,
+.admin_container .actions,
+.admin_container .timezonewarning,
+.admin_container .column-is_published,
+.admin_container .field-is_published {
+    display: none;
+}
+
+.admin_container .object-tools a {
+    text-decoration: none;
+}

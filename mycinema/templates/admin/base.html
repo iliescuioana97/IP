@@ -1,0 +1,114 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+{% block extrastyle %}{% endblock %}
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}
+{% block extrahead %}{% endblock %}
+{% block responsive %}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
+{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+
+{% include "partials/head_styles.html" %}
+
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}" data-admin-utc-offset="{% now "Z" %}">
+
+<!-- Container -->
+
+<div class="layout">
+    <div class="l-left">
+        <a href="#" class="toggle-menu topm1"><i class="material-icons">menu</i></a>
+        <a href="{% url 'home' %}" class="logo-menu">My Cinema</a>
+        <div class="menu">
+            <a href="/admin" class="menu-item">
+                <img src="{% static 'icons/icon_home-1.svg' %}" alt="" class="ico">
+                Admin Home
+            </a>
+            <a href="/admin/movies/movie" class="menu-item">
+                <img src="{% static 'icons/icon_products-1.svg' %}" alt="" class="ico">
+                Movies
+            </a>
+            <a href="/admin/cinema_rooms/cinemaroom/" class="menu-item">
+                <img src="{% static 'icons/icon_Invoices-1.svg' %}" alt="" class="ico">
+                Cinema Rooms
+            </a>
+            <a href="/admin/program/show/" class="menu-item">
+                <img src="{% static 'icons/icon_calendar-1.svg' %}" alt="" class="ico">
+                Program
+            </a>
+            <a href="/admin/auth/user/" class="menu-item">
+                <img src="{% static 'icons/icon_customers-1.svg' %}" alt="" class="ico">
+                Users
+            </a>
+            <a href="/" class="menu-item">
+                <img src="{% static 'icons/icon_home-1.svg' %}" alt="" class="ico">
+                Back to Home
+            </a>
+        </div>
+    </div>
+    <div class="l-right">
+        {% include 'partials/top_bar.html' %}
+
+        <div class="main">
+            {% block content_title %}{% if title %}<h2 class="title">{{ title }}</h1>{% endif %}{% endblock %}
+
+            <div class="card">
+                <div class="card-body">
+
+
+                    <div class="admin_container">
+
+                        {% if not is_popup %}
+                        <!-- {% block breadcrumbs %}
+                        <div class="breadcrumbs">
+                        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+                        {% if title %} &rsaquo; {{ title }}{% endif %}
+                        </div>
+                        {% endblock %} -->
+                        {% endif %}
+
+                        {% block messages %}
+                            {% if messages %}
+                            <ul class="messagelist">{% for message in messages %}
+                              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+                            {% endfor %}</ul>
+                            {% endif %}
+                        {% endblock messages %}
+
+                        <!-- Content -->
+                        <div id="content" class="{% block coltype %}colM{% endblock %}">
+                            {% block pretitle %}{% endblock %}
+                            {% block content %}
+                            {% block object-tools %}{% endblock %}
+                            {{ content }}
+                            {% endblock %}
+                            {% block sidebar %}{% endblock %}
+                            <br class="clear">
+                        </div>
+                        <!-- END Content -->
+
+                        {% block footer %}<div id="footer"></div>{% endblock %}
+                    </div>
+                    <!-- END Container -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include "partials/footer_scripts.html" %}
+
+
+
+</body>
+</html>

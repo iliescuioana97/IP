@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 from datetime import datetime
 import uuid
@@ -15,6 +16,11 @@ class Movie(models.Model):
     photo_main = models.ImageField(upload_to='photos/movies/%Y/%m/%d/', max_length=255)
     date_added = models.DateTimeField(default=datetime.now, blank=True)
     is_published = models.BooleanField(default=True)
+
+    def image_tag(self):
+        return mark_safe('<img src="/media/%s" width="80" />' % (self.photo_main))
+
+    image_tag.short_description = 'Image'
 
     def __str__(self):
         return self.name
