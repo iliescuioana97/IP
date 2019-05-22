@@ -275,10 +275,56 @@ body {
 .admin_container .actions,
 .admin_container .timezonewarning,
 .admin_container .column-is_published,
-.admin_container .field-is_published {
+.admin_container .field-is_published,
+.admin_container a.historylink,
+.admin_container input[name="_addanother"],
+.admin_container input[name="_continue"] {
     display: none;
 }
 
 .admin_container .object-tools a {
     text-decoration: none;
+}
+
+.admin_container .object-tools {
+    margin-top: 0;
+    display: block;
+    float: none;
+    overflow: hidden;
+    margin-bottom: 0;
+    /* height: 30px; */
+}
+
+.admin_container .object-tools a {
+    text-decoration: none;
+    background-color: #3381ff;
+    min-width: 120px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 12px;
+    border-radius: 4px;
+    background-image: none;
+    text-align: center;
+}
+
+.admin_container #changelist {
+    margin: 0;
+}
+.admin_container .object-tools li {
+    font-weight: normal;
+    height: auto;
+    margin-bottom: 1rem;
+}
+.admin_container #changelist .paginator {
+    display: none;
+}
+
+.admin_container form .aligned ul {
+    float: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
 }

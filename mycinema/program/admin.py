@@ -12,7 +12,7 @@ class ShowAdmin(admin.ModelAdmin):
     search_fields = (
         'id', 'date', 'hour_begin', 'hour_end', 'movie_id__name', 'room_id__name', 'is_published'
     )
-    list_per_page = 25
+    # list_per_page = 25
 
 
 class TicketAdmin(admin.ModelAdmin):
@@ -24,7 +24,7 @@ class TicketAdmin(admin.ModelAdmin):
     search_fields = (
         'id', 'user_id__username', 'show_id__movie_id__name', 'row_num', 'col_num', 'is_booked', 'is_valid'
     )
-    list_per_page = 25
+    # list_per_page = 25
 
 
 admin.site.register(Show, ShowAdmin)

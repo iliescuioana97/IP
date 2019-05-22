@@ -22,7 +22,7 @@ class MovieAdmin(admin.ModelAdmin):
     list_filter = ()
     list_editable = ()
     search_fields = ( 'id', 'name', 'genre', 'description', 'image_tag', 'trailer_link', 'duration', 'price', 'date_added')
-    list_per_page = 25
+    # list_per_page = 25
 
 
 admin.site.register(Movie, MovieAdmin)
