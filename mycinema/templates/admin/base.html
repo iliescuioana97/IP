@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="l-right">
-        {% include 'partials/top_bar.html' %}
+        {% include 'partials/top_bar.html' with hide_top_menu=1 %}
 
         <div class="main">
             {% block content_title %}{% if title %}<h2 class="title">{{ title }}</h1>{% endif %}{% endblock %}

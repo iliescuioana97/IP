@@ -7,6 +7,9 @@
         <input type="text" id="input_search" name="movie" placeholder="Search" value="{{ values.movie }}">
     </form>
     <div class="right">
+        {% if hide_top_menu %}
+
+        {% else %}
         <div class="dropdown notif-ico-cnt">
             <a href="#" data-toggle="dropdown">
                 <img src="{% static 'icons/icon_notification.svg' %}" alt="" class="notif-ico">
@@ -38,5 +41,6 @@
                 <input type="hidden">
             </form>
         </div>
+        {% endif %}
     </div>
 </div>
