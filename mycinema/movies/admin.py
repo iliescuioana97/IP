@@ -17,6 +17,7 @@ from .models import Movie
 
 
 class MovieAdmin(admin.ModelAdmin):
+    ordering = ('id',)
     list_display = ( 'id', 'name', 'genre', 'description', 'image_tag', 'trailer_link', 'duration', 'price', 'date_added')
     list_display_links = ('id', 'name')
     list_filter = ()

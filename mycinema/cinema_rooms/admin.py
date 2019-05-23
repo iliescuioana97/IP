@@ -4,7 +4,8 @@ from .models import CinemaRoom
 
 
 class CinemaRoomAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'row_sits', 'column_sits', 'is_published')
+    ordering = ('id',)
+    list_display = ('id', 'name', 'image_tag', 'row_sits', 'column_sits', 'is_published')
     list_display_links = ('id', 'name')
     # list_filter = ('name',)
     list_filter = ()
