@@ -9,12 +9,13 @@ def index(request):
     rooms = CinemaRoom.objects.all().filter(is_published=True)
     # CinemaRoom.objects.order_by('-date_added').filter(is_published=True)
 
-    paginator = Paginator(rooms, 6)
+    # paginator = Paginator(rooms, 6)
     page = request.GET.get('page')
-    paged_rooms = paginator.get_page(page)
+    # paged_rooms = paginator.get_page(page)
 
     context = {
-        'rooms': paged_rooms
+        # 'rooms': paged_rooms
+        'rooms': rooms
     }
 
     return render(request, 'cinema_rooms/cinema_rooms.html', context)

@@ -12,12 +12,13 @@ import os
 def index(request):
     movies = Movie.objects.order_by('-date_added').filter(is_published=True)
 
-    paginator = Paginator(movies, 8)
+    # paginator = Paginator(movies, 8)
     page = request.GET.get('page')
-    paged_movies = paginator.get_page(page)
+    # paged_movies = paginator.get_page(page)
 
     context = {
-        'movies': paged_movies
+        # 'movies': paged_movies
+        'movies': movies
     }
 
     return render(request, 'movies/movies.html', context)
