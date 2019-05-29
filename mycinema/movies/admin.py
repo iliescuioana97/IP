@@ -17,12 +17,11 @@ from .models import Movie
 
 
 class MovieAdmin(admin.ModelAdmin):
-    ordering = ('id',)
-    list_display = ( 'id', 'name', 'genre', 'description', 'image_tag', 'trailer_link', 'duration', 'price', 'date_added')
+    # ordering = ('id',)
+    list_display = ( 'id', 'name', 'image_tag', 'price', 'duration', 'modify', 'delete')
     list_display_links = ('id', 'name')
     list_filter = ()
     list_editable = ()
-    search_fields = ( 'id', 'name', 'genre', 'description', 'image_tag', 'trailer_link', 'duration', 'price', 'date_added')
     # list_per_page = 25
 
 

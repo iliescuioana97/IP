@@ -29,6 +29,10 @@ var setInitialTriggers = function() {
     if($("#booked-movies-list")) {
         populate_booked_movies()
     }
+
+    if($(".admin_container")){
+        init_admin();
+    }
 }
 
 function getFocus() {
@@ -78,7 +82,7 @@ function populate_booked_movies() {
         if(els.length == 0){
             html += '<div class="list-group-item"><em>No movies booked...</em></div>'
         }
-        
+
         for(var el of els){
             html += `<a href="/movies/${el.movie_id}" class="list-group-item list-group-item-action">
                 <img src="/media/${el.movie_photo}" class="movie_icon_drd">
@@ -88,4 +92,31 @@ function populate_booked_movies() {
         }
         loc.html(html)
     })
+}
+
+
+function init_admin(){
+    $("th.column-id .text > a").html("Number")
+    $("th.column-name .text > a").html("Title")
+    $("#result_list tr[class^=row]").each(function(i, el) {
+    	$(el).find(".delete-checkbox").html($(el).find(".action-checkbox").html())
+    })
+
+    var name = $(".addlink").html().replace('Add ', '')
+
+    $(".object-tools").append(`
+        <li>
+        <a href="#" class="delete-link-new">Delete ${name}</a>
+        </li>
+    `)
+
+    $(".delete-link-new").click(function(e){
+        e.preventDefault();
+        $(".actions [name=action]").val("delete_selected")
+        $(".actions [name=index]").click()
+    })
+
+    if($('[value="Yes, I\'m sure"]')) {
+        $('[value="Yes, I\'m sure"]').click()
+    }
 }

@@ -20,6 +20,12 @@ class Movie(models.Model):
     def image_tag(self):
         return mark_safe('<img src="/media/%s" width="80" />' % (self.photo_main))
 
+    def modify(self):
+        return mark_safe('<a href="/admin/movies/movie/%s/change/">Edit</a>' % (self.id))
+
+    def delete(self):
+        return mark_safe('<div class="delete-checkbox"></div>')
+
     image_tag.short_description = 'Image'
 
     def __str__(self):
