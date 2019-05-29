@@ -7,6 +7,9 @@ $(document).ready(function(){
        $(this).removeClass('active');
     });
 
+    setTimeout(function() {
+      $('.messagelist').fadeOut('slow');
+    }, 2000);
 })
 
 var setInitialTriggers = function() {
@@ -102,21 +105,32 @@ function init_admin(){
     	$(el).find(".delete-checkbox").html($(el).find(".action-checkbox").html())
     })
 
-    var name = $(".addlink").html().replace('Add ', '')
+    if($(".addlink").length) {
+        var name = $(".addlink").html().replace('Add ', '').trim()
+        if(name.toLowerCase() != 'user'){
+            $(".object-tools").append(`
+                <li>
+                <a href="#" class="delete-link-new">Delete ${name}</a>
+                </li>
+            `)
 
-    $(".object-tools").append(`
-        <li>
-        <a href="#" class="delete-link-new">Delete ${name}</a>
-        </li>
-    `)
-
-    $(".delete-link-new").click(function(e){
-        e.preventDefault();
-        $(".actions [name=action]").val("delete_selected")
-        $(".actions [name=index]").click()
-    })
+            $(".delete-link-new").click(function(e){
+                e.preventDefault();
+                $(".actions [name=action]").val("delete_selected")
+                $(".actions [name=index]").click()
+            })
+        }
+    }
 
     if($('[value="Yes, I\'m sure"]')) {
         $('[value="Yes, I\'m sure"]').click()
+    }
+    if($("#changelist").length) {
+        $("#changelist").removeClass("filtered")
+        $("#changelist-filter").remove()
+    }
+    if($(".app-accounts").length) {
+        $(".app-accounts").remove()
+        $(".model-group").remove()
     }
 }

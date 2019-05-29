@@ -17,8 +17,8 @@ from .models import Movie
 
 
 class MovieAdmin(admin.ModelAdmin):
-    # ordering = ('id',)
-    list_display = ( 'id', 'name', 'image_tag', 'price', 'duration', 'modify', 'delete')
+    ordering = ('id',)
+    list_display = ('id', 'name', 'image_tag', 'price', 'duration', 'delete', 'modify')
     list_display_links = ('id', 'name')
     list_filter = ()
     list_editable = ()

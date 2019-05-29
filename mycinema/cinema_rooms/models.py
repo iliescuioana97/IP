@@ -15,6 +15,12 @@ class CinemaRoom(models.Model):
     def image_tag(self):
         return mark_safe('<img src="/media/%s" width="100" />' % (self.photo_main))
 
+    def modify(self):
+        return mark_safe('<a href="/admin/cinema_rooms/cinemaroom/%s/change/">Edit</a>' % (self.id))
+
+    def delete(self):
+        return mark_safe('<div class="delete-checkbox"></div>')
+
     image_tag.short_description = 'Image'
 
     def __str__(self):
