@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        {% include "partials/head_styles.html" %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/program.css' %}">
+
+        <title>MyCinema | Program</title>
+    </head>
+    <body>
+        <div class="layout">
+            <div class="l-left">
+                <a href="#" class="toggle-menu topm1"><i class="material-icons">menu</i></a>
+                <a href="{% url 'home' %}" class="logo-menu">My Cinema</a>
+                <div class="menu">
+                    <a href="{% url 'home' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_home-1.svg' %}" alt="" class="ico">
+                        Home
+                    </a>
+                    <a href="{% url 'statistics_data' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_dashboard-1.svg' %}" alt="" class="ico">
+                        Statistics
+                    </a>
+                    <a href="{% url 'movies' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_products-1.svg' %}" alt="" class="ico">
+                        Movies
+                    </a>
+                    <a href="{% url 'cinema_rooms' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_Invoices-1.svg' %}" alt="" class="ico">
+                        Cinema Rooms
+                    </a>
+                    <a href="{% url 'program' %}" class="menu-item active">
+                        <img src="{% static 'icons/icon_calendar-1.svg' %}" alt="" class="ico">
+                        Program
+                    </a>
+                    <a href="{% url 'settings' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_setting.svg' %}" alt="" class="ico">
+                        Settings
+                    </a>
+                    {% if user.is_superuser %}
+                    <a href="/admin" class="menu-item">
+                        <img src="{% static 'icons/icon_customers-1.svg' %}" alt="" class="ico">
+                        Admin
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="l-right">
+                {% include 'partials/top_bar.html' %}
+
+                <div class="main">
+                    <h2 class="title">Program</h2>
+
+                    <div class="programs">
+                        <div class="buttons-top">
+                            {% for key, value in program_days.items %}
+                            <button data-toggle="tab" href="#{{ key }}" class="button-day">
+                                {{ value.date_beautify }}
+                            </button>
+                            {% endfor %}
+                        </div>
+                        <div class="tab-content">
+                            {% for key, value in program_days.items %}
+                            {% if value.current_day is True %}
+                            <div class="tab-pane fade active show" id="{{ key }}">
+                                {% if value.movies.items %}
+                                <div class="headers-table">
+                                    <p id="header-movie">Movie</p>
+                                    <p id="header-hours">Screening Hours</p>
+                                </div>
+                                {% for movie, movie_data in value.movies.items %}
+                                <div class="table-row">
+                                    <div class="column-left">
+                                        <a href="{% url 'movie' movie_data.id %}">
+                                            <div class="information-play"></div>
+                                        </a>
+                                        <p>
+                                            <a href="{% url 'movie' movie_data.id %}">
+                                                {{ movie }}
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="column-right">
+                                        {% for hour, room_data in movie_data.hours_rooms.items %}
+
+                                        <form action="{% url 'booking' %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="show_id" value="{{ room_data.show_id }}"/>
+                                            <input type="hidden" name="movie" value="{{ movie }}"/>
+                                            <input type="hidden" name="room" value="{{ room_data.room_name }}"/>
+                                            <input type="hidden" name="date" value="{{ room_data.date }}"/>
+                                            <input type="hidden" name="hour" value="{{ hour }}"/>
+                                            <input type="hidden" name="price" value="{{ movie_data.price }}"/>
+                                            <input type="hidden" name="rows" value="{{ room_data.room_rows }}"/>
+                                            <input type="hidden" name="cols" value="{{ room_data.room_cols }}"/>
+                                            <button class="button-hour" name="">{{ hour }}</button>
+                                        </form>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                <p class="msgi">No movies found</p>
+                                {% endif %}
+                            </div>
+                            {% else %}
+                            <div class="tab-pane fade" id="{{ key }}">
+                                {% if value.movies.items %}
+                                <div class="headers-table">
+                                    <p id="header-movie">Movie</p>
+                                    <p id="header-hours">Screening Hours</p>
+                                </div>
+                                {% for movie, movie_data in value.movies.items %}
+                                <div class="table-row">
+                                    <div class="column-left">
+                                        <a href="{% url 'movie' movie_data.id %}">
+                                            <div class="information-play"></div>
+                                        </a>
+                                        <p>
+                                            <a href="{% url 'movie' movie_data.id %}">
+                                                {{ movie }}
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="column-right">
+                                        {% for hour, room_data in movie_data.hours_rooms.items %}
+
+                                        <form action="{% url 'booking' %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="show_id" value="{{ room_data.show_id }}"/>
+                                            <input type="hidden" name="movie" value="{{ movie }}"/>
+                                            <input type="hidden" name="room" value="{{ room_data.room_name }}"/>
+                                            <input type="hidden" name="date" value="{{ room_data.date }}"/>
+                                            <input type="hidden" name="hour" value="{{ hour }}"/>
+                                            <input type="hidden" name="price" value="{{ movie_data.price }}"/>
+                                            <input type="hidden" name="rows" value="{{ room_data.room_rows }}"/>
+                                            <input type="hidden" name="cols" value="{{ room_data.room_cols }}"/>
+                                            <button class="button-hour" name="">{{ hour }}</button>
+                                        </form>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                <p class="msgi">No movies found</p>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include "partials/footer_scripts.html" %}
+    </body>
+</html>

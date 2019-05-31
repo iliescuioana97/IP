@@ -1,0 +1,16 @@
+*.log
+*.pot
+*.pyc
+__pycache__
+**/__pycache__
+local_settings.py
+**/db.sqlite3
+media
+venv
+.idea
+**/.idea
+.DS_Store
+**/.DS_Store
+**/migrations/**
+media/
+.scannerwork/

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MyCinema</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/beautify/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'stylesheets/Login.css' %}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="image-container"></div>
+        <div class="flex-white-container"></div>
+        <div class="white-contanier">
+            <div class="title-container"> My Cinema</div>
+            <div class="subtitle-container">Welcome back! Please login to your account.</div>
+            <div class="login-container">
+                <!--Alerts-->
+                {% include 'partials/alerts.html' %}
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="username" id="username" placeholder="Username" required value={{ login_username }}>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <div class="checkbox-forgpass-container">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="RememberMe" autocomplete="off">
+                            <label for="RememberMe"> Remember Me</label>
+                        </div>
+                        <div class="forgot-password-container" onclick="location.href='{% url 'password_reset' %}'">
+                            Forgot Password
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <input type="submit" value="Login" class="button">
+                        <div class="button" onclick="location.href='{% url 'register' %}'">Sign Up</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="flex-white-container"></div>
+        <script src="{% static 'scripts/jquery-3.3.1.min.js' %} "></script>
+        <script src="{% static 'scripts/main.js' %}"></script>
+        <script src="{% static 'scripts/bootstrap.bundle.min.js' %} "></script>
+        <script src="{% static 'scripts/lightbox.min.js' %} "></script>
+    </body>
+</html>

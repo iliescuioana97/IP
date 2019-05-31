@@ -1,0 +1,299 @@
+/*terminare cod Ioana */
+
+.sparklist {
+overflow: visible;
+width: 100%;
+margin-top: 60px;
+
+}
+.sparklist p {
+list-style: none;
+margin-right: 35px;
+}
+/*
+.sparklist li:hover .sparkline, .sparklist li:focus .sparkline {
+-webkit-transform: translate(200px) scale(6);
+        transform: translate(200px) scale(6);
+}
+.sparklist li:hover .index .count, .sparklist li:focus .index .count {
+background-color: #0074d9;
+}
+*/
+.sparkline {
+display: inline-block;
+height: auto;
+
+
+}
+
+.sparkline .index {
+position: relative;
+float: left;
+width: 8px;
+height: 40px;
+
+}
+
+
+.sparkline .index .count1 {
+display: block;
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 0;
+font: 0/0 a;
+text-shadow: none;
+background:rgb(119, 191, 233);
+color: transparent;
+
+}
+.sparkline .index .count2 {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  font: 0/0 a;
+  text-shadow: none;
+  background:rgb(107, 73, 107);
+  color: transparent;
+  }
+  .sparkline .index .count3 {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    background:rgb(143, 218, 183);
+    color: transparent;
+    }
+
+
+.main i {
+border: solid black;
+border-width: 0 3px 3px 0;
+display: inline-block;
+padding: 3px;
+}
+
+
+.up {
+  color: rgb(0, 0, 255);
+  transform: rotate(-135deg);
+  }
+
+  .down {
+  color: red;
+  transform: rotate(45deg);
+  }
+
+.column {
+float: left;
+width: 30%;
+background-color:white;
+padding:5px;
+margin-right:20px;
+
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+.column h6{
+font-size: 12px;
+margin-top: 10px;
+margin-left:10px;
+margin-bottom: 20px;
+color:grey;
+
+}
+.column h3{
+  font-size: 26px;
+margin-top: 10px;
+margin-left:10px;
+font-weight: bold;
+color:rgb(0, 0, 0);
+}
+
+.column h4{
+  color:#a03030;
+font-size: 16px;
+margin-top: 10px;
+margin-bottom: 20px;
+font-weight: bold;
+margin-left:10px;
+}
+.column .movies h4{
+  color:rgb(26, 158, 147);
+}
+.main h1{
+color:#43425d;
+font-size: 36px;
+margin-top: 10px;
+margin-bottom: 20px;
+
+}
+
+.row {
+
+    background-clip: padding-box;
+    width:100%;
+    text-align:left;
+    margin-left:50px;
+    margin-top:50px;
+}
+
+.tickets, .earnings, .movies{
+  float: left;
+  width: 40%;
+  background-color:white;
+}
+.tickets1, .earnings1, .movies1{
+
+    float: left;
+    width: 60%;
+    background-color:white;
+
+}
+.chart
+{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+/*pentru diagramele de tip pie*/
+.selectdiv {
+  position: relative;
+  /*Don't really need this just for demo styling*/
+
+  float: left;
+  min-width: 200px;
+  margin: 50px 33%;
+}
+
+.selectdiv:after {
+    content: '\f078';
+    font: normal normal normal 17px/1 FontAwesome;
+    color: #0ebeff;
+    right: 11px;
+    top: 6px;
+    height: 34px;
+    padding: 15px 0px 0px 8px;
+    border-left: 1px solid #0ebeff;
+    position: absolute;
+    pointer-events: none;
+}
+
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+display: none;
+}
+
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
+  float: right;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #0ebeff;
+  -ms-word-break: normal;
+  word-break: normal;
+}
+
+
+
+#Age_chart_div,
+#Movie_chart_div {
+    margin: 15px;
+}
+
+
+@media screen and (max-width: 1700px) and (min-width:1201px)
+{
+  .chart
+  {
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top:100px; */
+  }
+  .column {
+    width: 30%;
+    margin-top: 10px;
+  }
+
+  .row
+  {
+    margin-left: 30px;
+    margin-top:15px;
+  }
+
+}
+@media screen and (max-width: 1200px) and (min-width:601px)
+{
+
+  .chart
+  {
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top:150px; */
+  }
+  .column {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .chart table,tr,td {
+    display: block;
+  }
+  .row
+  {
+    margin-left: 0px;
+    margin-top:15px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 80%;
+    margin-top: 10px;
+  }
+
+
+
+  .chart
+{
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-top:50px; */
+}
+.chart td {
+  display: block;
+}
+
+.row
+{
+  margin-left: 0;
+  margin-top:15px;
+}
+
+}

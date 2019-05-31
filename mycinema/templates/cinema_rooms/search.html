@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Cinema | Cinema Rooms</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+        {% include "partials/head_styles.html" %}
+        <script src="{% static 'scripts/cinema-rooms.js' %}"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static 'stylesheets/cinema_rooms.css' %}">
+
+    </head>
+
+    <body>
+
+        <div class="layout">
+            <div class="l-left">
+                <a href="#" class="toggle-menu topm1"><i class="material-icons">menu</i></a>
+                <a href="{% url 'home' %}" class="logo-menu">My Cinema</a>
+                <div class="menu">
+                    <a href="{% url 'home' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_home-1.svg' %}" alt="" class="ico">
+                        Home
+                    </a>
+                    <a href="{% url 'statistics_data' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_dashboard-1.svg' %}" alt="" class="ico">
+                        Statistics
+                    </a>
+                    <a href="{% url 'movies' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_products-1.svg' %}" alt="" class="ico">
+                        Movies
+                    </a>
+                    <a href="{% url 'cinema_rooms' %}" class="menu-item active">
+                        <img src="{% static 'icons/icon_Invoices-1.svg' %}" alt="" class="ico">
+                        Cinema Rooms
+                    </a>
+                    <a href="{% url 'program' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_calendar-1.svg' %}" alt="" class="ico">
+                        Program
+                    </a>
+                    <a href="{% url 'settings' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_setting.svg' %}" alt="" class="ico">
+                        Settings
+                    </a>
+                    {% if user.is_superuser %}
+                    <a href="/admin" class="menu-item">
+                        <img src="{% static 'icons/icon_customers-1.svg' %}" alt="" class="ico">
+                        Admin
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="l-right">
+                {% include 'partials/top_bar.html' %}
+
+                <div class="main">
+                    <h2 class="title">Cinema Rooms</h2>
+                    {% if rooms %}
+                    <div class="cinema-rooms-grid-container row">
+                        {% for r in rooms %}
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                            <div class="cinema-room">
+                                <h5 class="title"><a href="{% url 'program' %}">{{ r.name }}</a></h5>
+                                <div class="slider-container w3-content w3-display-container">
+                                    <div class="slide slide-bg" style="background-image: url('{{ r.photo_main.url }}')"></div>
+                                    {% if r.photo_1 %}
+                                    <div class="slide slide-bg" style="background-image: url('{{ r.photo_1.url }}')"></div>
+                                    {% endif %}
+                                    {% if r.photo_2 %}
+                                    <div class="slide slide-bg" style="background-image: url('{{ r.photo_2.url }}')"></div>
+                                    {% endif %}
+                                    {% if r.photo_3 %}
+                                    <div class="slide slide-bg" style="background-image: url('{{ r.photo_3.url }}')"></div>
+                                    {% endif %}
+                                    <div class="badges-container w3-center w3-container w3-large w3-text-white w3-display-bottommiddle">
+                                        <span class="w3-badge badge w3-hover-white"> </span>
+                                        {% if r.photo_1 %}
+                                        <span class="w3-badge badge w3-hover-white"> </span>
+                                        {% endif %}
+                                        {% if r.photo_2 %}
+                                        <span class="w3-badge badge w3-hover-white"> </span>
+                                        {% endif %}
+                                        {% if r.photo_3 %}
+                                        <span class="w3-badge badge w3-hover-white"> </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+
+                    <h5 class="title" style="margin-left: 5%">No Rooms Available</h5>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% include "partials/footer_scripts.html" %}
+    </body>
+</html>

@@ -1,0 +1,97 @@
+#header {
+    height: 50px;
+    background: #dedde7;
+    color: #43425D;
+}
+
+#branding h1 {
+    color: #43425d;
+    font-weight: bold;
+}
+
+a:link,
+    a:visited {
+    color: #43425d;
+}
+
+div.breadcrumbs {
+    background: #8f8dae;
+    color: #43425d;
+}
+
+div.breadcrumbs a{
+    color: #333;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #8f8dae;
+}
+
+.button, input[type=submit], input[type=button], submit-row input, a.button{
+    background: #43425d;
+    color: #fff;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default{
+    background: #43425d;
+    color: #fff;
+}
+
+.button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+        background: #dedde7;
+}
+
+#user-tools a:focus, #user-tools a:hover {
+        text-decoration: none;
+        border-bottom-color: #43425d;
+        color: #43425d;
+}
+
+.object-tools a:focus, .object-tools a:hover {
+    background-color: #43425d;
+}
+
+.button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
+    background: #dedde7;
+}
+
+.selector-chosen h2 {
+    background: #8f8dae !important;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #8f8dae !important;
+}
+
+div.breadcrumbs a:focus, div.breadcrumbs a:hover {
+    color: #e9e9ef;
+}
+
+.selector .selector-available h2 {
+    color: #f8f8f8 !important;
+}
+
+a.active.selector-chooseall:focus, a.active.selector-clearall:focus, a.active.selector-chooseall:hover, a.active.selector-clearall:hover {
+    color: #8f8dae !important;
+}
+
+a.active.selector-chooseall:focus, a.active.selector-clearall:focus, a.active.selector-chooseall:hover, a.active.selector-clearall:hover {
+    color: #8f8dae !important;
+}
+
+.selector .help-icon {
+    background: url(../admin/img/icon-unknown-alt.svg) 0 0 no-repeat !important;
+}
+
+a.active.selector-chooseall:focus, a.active.selector-chooseall:hover {
+    background-position: 100% -160px !important;
+}
+
+.calendar td.selected a {
+    background: #8f8dae !important;
+}
+
+.calendar td a:focus, .timelist a:focus, .calendar td a:hover, .timelist a:hover {
+    background: #8f8dae !important;
+}
+

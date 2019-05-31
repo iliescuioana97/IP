@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        {% include "partials/head_styles.html" %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/custom_room.css' %}">
+
+        <title>MyCinema | Booking</title>
+    </head>
+    <body>
+        <div class="modal fade" id="booked-already-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Seat is already booked.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="book-now-modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form action="book_ticket" method="post">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <input type="hidden" name="movie_id" value="23">
+                            <input type="hidden" name="room_id" value="2">
+                            <input type="hidden" name="show_id" value="18">
+                            <div class="form-group">
+                                <label>Movie:</label>
+                                <input type="text" name="movie_name" class="form-control" value="{{ movie }}" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Room:</label>
+                                <input type="text" name="room_name" class="form-control" value="{{ room }}" disabled>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col">
+                                    <label>Row:</label>
+                                    <input type="text" name="seat_row" id="seat_row" class="form-control" value="3"
+                                           disabled>
+                                </div>
+                                <div class="col">
+                                    <label>Column:</label>
+                                    <input type="text" name="seat_col" id="seat_col" class="form-control" value="5"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Price:</label>
+                                <input type="text" class="form-control" value="LEI {{ price }}" disabled>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="hidden" name="show_id" value="{{ show_id }}"/>
+                            <input type="hidden" name="row">
+                            <input type="hidden" name="col"/>
+                            <!--extra-->
+                            <input type="hidden" name="movie" value="{{ movie }}"/>
+                            <input type="hidden" name="room" value="{{ room }}"/>
+                            <input type="hidden" name="date" value="{{ date }}"/>
+                            <input type="hidden" name="hour" value="{{ hour }}"/>
+                            <input type="hidden" name="price" value="{{ price }}"/>
+                            <input type="hidden" name="rows" value="{{ rows | length }}"/>
+                            <input type="hidden" name="cols" value="{{ cols | length }}"/>
+
+                            <button type="submit" class="btn btn-primary">Book ticket</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="layout">
+            <div class="l-left">
+                <a href="#" class="toggle-menu topm1"><i class="material-icons">menu</i></a>
+                <a href="{% url 'home' %}" class="logo-menu">My Cinema</a>
+                <div class="menu">
+                    <a href="{% url 'home' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_home-1.svg' %}" alt="" class="ico">
+                        Home
+                    </a>
+                    <a href="{% url 'statistics_data' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_dashboard-1.svg' %}" alt="" class="ico">
+                        Statistics
+                    </a>
+                    <a href="{% url 'movies' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_products-1.svg' %}" alt="" class="ico">
+                        Movies
+                    </a>
+                    <a href="{% url 'cinema_rooms' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_Invoices-1.svg' %}" alt="" class="ico">
+                        Cinema Rooms
+                    </a>
+                    <a href="{% url 'program' %}" class="menu-item active">
+                        <img src="{% static 'icons/icon_calendar-1.svg' %}" alt="" class="ico">
+                        Program
+                    </a>
+                    <a href="{% url 'settings' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_setting.svg' %}" alt="" class="ico">
+                        Settings
+                    </a>
+                    {% if user.is_superuser %}
+                    <a href="/admin" class="menu-item">
+                        <img src="{% static 'icons/icon_customers-1.svg' %}" alt="" class="ico">
+                        Admin
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="l-right">
+                {% include 'partials/top_bar.html' %}
+                <div class="main">
+                    <h2 class="title">{{ room }}</h2>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="room-view">
+                                <!-- 13 x 7 -->
+                                <table class="room-view-table">
+                                    <tr>
+                                        <td colspan="{{seats|first|length}}" class="screen-row">
+                                            <div class="screen-el"><h6><b>Screen</b></h6></div>
+                                        </td>
+                                    </tr>
+                                    {% for col_seats in seats %}
+                                    <tr>
+                                        {% for seat in col_seats %}
+                                        <td>
+                                            {% if seat.2 == 'booked' %}
+                                            <div class="chair booked" data-row="{{ seat.0 }}"
+                                                 data-col="{{ seat.1 }}"></div>
+                                            {% else %}
+                                            <div class="chair free" data-row="{{ seat.0 }}"
+                                                 data-col="{{ seat.1 }}"></div>
+                                            {% endif %}
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                                <div class="room-view-legend">
+                                    <div class="chair free"></div>
+                                    Free <br>
+                                    <div class="chair booked"></div>
+                                    Booked <br>
+                                    <!-- <div class="chair sold"></div> Sold <br> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include "partials/footer_scripts.html" %}
+    </body>
+</html>

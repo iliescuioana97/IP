@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        {% include "partials/head_styles.html" %}
+
+        <link rel="stylesheet" href="{% static 'stylesheets/Statistics/style.css' %}">
+        <title>MyCinema | Statistics</title>
+    </head>
+    <body>
+        <div class="layout">
+            <div class="l-left">
+                <a href="#" class="toggle-menu topm1"><i class="material-icons">menu</i></a>
+                <a href="{% url 'home' %}" class="logo-menu">My Cinema</a>
+                <div class="menu">
+                    <a href="{% url 'home' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_home-1.svg' %}" alt="" class="ico">
+                        Home
+                    </a>
+                    <a href="{% url 'statistics_data' %}" class="menu-item active">
+                        <img src="{% static 'icons/icon_dashboard-1.svg' %}" alt="" class="ico">
+                        Statistics
+                    </a>
+                    <a href="{% url 'movies' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_products-1.svg' %}" alt="" class="ico">
+                        Movies
+                    </a>
+                    <a href="{% url 'cinema_rooms' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_Invoices-1.svg' %}" alt="" class="ico">
+                        Cinema Rooms
+                    </a>
+                    <a href="{% url 'program' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_calendar-1.svg' %}" alt="" class="ico">
+                        Program
+                    </a>
+                    <a href="{% url 'settings' %}" class="menu-item">
+                        <img src="{% static 'icons/icon_setting.svg' %}" alt="" class="ico">
+                        Settings
+                    </a>
+                    {% if user.is_superuser %}
+                    <a href="/admin" class="menu-item">
+                        <img src="{% static 'icons/icon_customers-1.svg' %}" alt="" class="ico">
+                        Admin
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="l-right">
+                {% include 'partials/top_bar.html' %}
+
+                <div class="main">
+                    <h2 class="title">Statistics</h2>
+                    {% if user.is_superuser %}
+                    <div class="row">
+                        <div class="column">
+                            <div class="tickets">
+                                <h6>Total Tickets</h6>
+                                <h3 class="info-tickets-total">-</h3>
+                                <h4><i class="arrow up info-tickets-arrow"></i>&nbsp; <span class="info-tickets-percentage">-%</span></h4>
+                            </div>
+                            <div class="tickets1">
+                                <p class="sparklist">
+                        <span class="sparkline">
+                        <span class="index"><span class="count1"
+                                                  style="height: 42%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 67%;border: 1px solid rgb(252, 252, 252)">220,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 39%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 67%;border: 1px solid rgb(252, 252, 252)">80,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 95%;border: 1px solid rgb(252, 252, 252)">110,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 42%;border: 1px solid rgb(252, 252, 252)">90,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 60%;border: 1px solid rgb(252, 252, 252)">180,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 72%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 60%;border: 1px solid rgb(252, 252, 252)">120,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 21%;border: 1px solid rgb(252, 252, 252)">160,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 42%;border: 1px solid rgb(252, 252, 252)">175,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 67%;border: 1px solid rgb(252, 252, 252)">225,</span> </span>
+                        <span class="index"><span class="count1"
+                                                  style="height: 39%;border: 1px solid rgb(252, 252, 252)">175,</span> </span>
+                       </span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="movies">
+                                <h6>Movies played</h6>
+                                <h3 class="info-shows-total">-</h3>
+                                <h4><i class="arrow up info-shows-arrow"></i>&nbsp; <span class="info-shows-percentage">-%</span></h4>
+                            </div>
+                            <div class="movies1">
+                                <p class="sparklist">
+                     <span class="sparkline">
+                      <span class="index"><span class="count2" style="height: 42%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                      <span class="index"><span class="count2" style="height: 67%;border: 1px solid rgb(252, 252, 252)">220,</span> </span>
+                      <span class="index"><span class="count2" style="height: 39%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                      <span class="index"><span class="count2" style="height: 67%;border: 1px solid rgb(252, 252, 252)">80,</span> </span>
+                      <span class="index"><span class="count2" style="height: 95%;border: 1px solid rgb(252, 252, 252)">110,</span> </span>
+                      <span class="index"><span class="count2" style="height: 42%;border: 1px solid rgb(252, 252, 252)">90,</span> </span>
+                      <span class="index"><span class="count2" style="height: 60%;border: 1px solid rgb(252, 252, 252)">180,</span> </span>
+                      <span class="index"><span class="count2" style="height: 72%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                      <span class="index"><span class="count2" style="height: 60%;border: 1px solid rgb(252, 252, 252)">120,</span> </span>
+                      <span class="index"><span class="count2" style="height: 21%;border: 1px solid rgb(252, 252, 252)">160,</span> </span>
+                      <span class="index"><span class="count2" style="height: 42%;border: 1px solid rgb(252, 252, 252)">175,</span> </span>
+                      <span class="index"><span class="count2" style="height: 67%;border: 1px solid rgb(252, 252, 252)">225,</span> </span>
+                      <span class="index"><span class="count2" style="height: 39%;border: 1px solid rgb(252, 252, 252)">175,</span> </span>
+                     </span>
+                                <p>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="earnings">
+                                <h6>Total Earnings</h6>
+                                <h3 class="info-earnings-total">-</h3>
+                                <h4><i class="arrow up info-earnings-arrow"></i>&nbsp; <span class="info-earnings-percentage">-%</span></h4>
+                            </div>
+                            <div class="earnings1"><p class="sparklist">
+                      <span class="sparkline">
+                        <span class="index"><span class="count3"
+                                                  style="height: 42%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 67%;border: 1px solid rgb(252, 252, 252)">220,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 39%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 67%;border: 1px solid rgb(252, 252, 252)">80,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 95%;border: 1px solid rgb(252, 252, 252)">110,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 42%;border: 1px solid rgb(252, 252, 252)">90,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 60%;border: 1px solid rgb(252, 252, 252)">180,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 72%;border: 1px solid rgb(252, 252, 252)">140,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 60%;border: 1px solid rgb(252, 252, 252)">120,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 21%;border: 1px solid rgb(252, 252, 252)">160,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 42%;border: 1px solid rgb(252, 252, 252)">175,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 67%;border: 1px solid rgb(252, 252, 252)">225,</span> </span>
+                        <span class="index"><span class="count3"
+                                                  style="height: 39%;border: 1px solid rgb(252, 252, 252)">175,</span> </span>
+                      </span>
+                                <p>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="chart">
+
+                    <table class="columns">
+                        <tr>
+                            <td>
+                                <div id="Age_chart_div" style="border: 1px solid #fff"></div>
+                            </td>
+
+                            <td>
+                                <div id="Movie_chart_div" style="border: 1px solid #fff"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {% include "partials/footer_scripts.html" %}
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="{% static 'scripts/stats.js' %}"></script>
+    </body>
+</html>
